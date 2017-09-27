@@ -12,6 +12,6 @@ class SaleItem {
     var name: String?
     var price: Double?
     var description: String?
-    var Images: [UIImage]?
+    var images: [UIImage]?
     var category : String?
 }

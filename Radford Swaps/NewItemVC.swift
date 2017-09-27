@@ -12,43 +12,53 @@ import UIKit
 
 class NewItemVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
-   
+    
+    
+    //scrollview reference
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var activeField: UITextField?
+    //image views for items
     
-
+    @IBOutlet weak var itemImage1: UIImageView!
+    @IBOutlet weak var itemImage2: UIImageView!
+    @IBOutlet weak var itemImage3: UIImageView!
+    @IBOutlet weak var itemImage4: UIImageView!
+    @IBOutlet weak var itemImage5: UIImageView!
+    @IBOutlet weak var itemImage6: UIImageView!
+    var imageSelected = [Bool](repeating: false, count: 6)
+    var imagesAdded = [Bool](repeating: false, count: 6)
+    
+    
+    
     @IBAction func addImgBtn1(_ sender: Any) {
         openCamera()
+        imageSelected[0] = true;
     }
     @IBAction func addImgBtn2(_ sender: Any) {
         openCamera()
+        imageSelected[1] = true;
     }
     @IBAction func addImgBtn3(_ sender: Any) {
         openCamera()
+        imageSelected[2] = true;
     }
     @IBAction func addImgBtn4(_ sender: Any) {
         openCamera()
+        imageSelected[3] = true;
     }
     @IBAction func addImgBtn5(_ sender: Any) {
         openCamera()
+        imageSelected[4] = true;
     }
     @IBAction func addImgBtn6(_ sender: Any) {
         openCamera()
+        imageSelected[5] = true;
     }
-
-    func openCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            var imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .camera;
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
         
     }
     
@@ -62,53 +72,67 @@ UINavigationControllerDelegate{
         //gives access to the root known as condition in the JSON Tree
         
     }
-    func registerForKeyboardNotifications(){
-        //Adding notifies on keyboard appearing
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
     
-    func deregisterFromKeyboardNotifications(){
-        //Removing notifies on keyboard appearing
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func keyboardWasShown(notification: NSNotification){
-        //Need to calculate keyboard exact size due to Apple suggestions
-        self.scrollView.isScrollEnabled = true
-        var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
-        
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        
-        var aRect : CGRect = self.view.frame
-        aRect.size.height -= keyboardSize!.height
-        if let activeField = self.activeField {
-            if (!aRect.contains(activeField.frame.origin)){
-                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
-            }
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
-    
-    func keyboardWillBeHidden(notification: NSNotification){
-        //Once keyboard disappears, restore original positions
-        var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        self.view.endEditing(true)
-        self.scrollView.isScrollEnabled = false
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageBeingChanged = specifyImageToSet(whichImage: imageSelected)
+        imageBeingChanged.image = image
+        dismiss(animated:true, completion: nil)
+        imageSelected = [Bool](repeating: false, count: 6) //resets imageselection
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField){
-        activeField = textField
+    /*
+     private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+     //let imageBeingChanged = specifyImageToSet(whichImage: imageSelected)
+     itemImage1.image = image
+     print(image)
+     
+     }
+     */
+    private func specifyImageToSet(whichImage: [Bool]) -> UIImageView {
+        var outputImageView : UIImageView?
+        if(whichImage[0]){
+            outputImageView = itemImage1
+            imagesAdded[0] = true;
+        }
+        if(whichImage[1]){
+            outputImageView = itemImage2
+            imagesAdded[1] = true;
+        }
+        if(whichImage[2]){
+            outputImageView = itemImage3
+            imagesAdded[2] = true;
+        }
+        if(whichImage[3]){
+            outputImageView = itemImage4
+            imagesAdded[3] = true;
+        }
+        if(whichImage[4]){
+            outputImageView = itemImage5
+            imagesAdded[4] = true;
+        }
+        if(whichImage[5]){
+            outputImageView = itemImage6
+            imagesAdded[5] = true;
+        }
+        return outputImageView!
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField){
-        activeField = nil
-    }
 }
+
+
+
+
+
+
+

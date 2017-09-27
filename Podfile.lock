@@ -25,11 +25,13 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.0)
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
+  - IQKeyboardManagerSwift (4.0.7)
 
 DEPENDENCIES:
   - Firebase
   - Firebase/Core
   - Firebase/Database
+  - IQKeyboardManagerSwift
 
 SPEC CHECKSUMS:
   Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
@@ -40,7 +42,8 @@ SPEC CHECKSUMS:
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
 
-PODFILE CHECKSUM: 3601e575358e9c6d7ba722cd53c9d06315c6a152
+PODFILE CHECKSUM: c616dcb841f77df3d9283c943dc82410f8e13690
 
 COCOAPODS: 1.1.1

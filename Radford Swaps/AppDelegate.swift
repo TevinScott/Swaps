@@ -9,17 +9,20 @@
 import UIKit
 import Firebase
 import CoreData
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    
+    
     override init(){
         FIRApp.configure()
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        IQKeyboardManager.sharedManager().enable = true
         // Override point for customization after application launch.
         return true
     }
