@@ -11,11 +11,17 @@ import UIKit
 import Firebase
 import FirebaseAnalytics
 import FirebaseDatabase
-
+/// a Interace for accessing the FireBase Database
 class DataManager {
     let rootRef = FIRDatabase.database().reference()
     
-    
+    /**
+     Desc: returns the JSON Object of the current values of the database
+     
+     @param Completion: Creates a thread Lock that allows this method's Asynchronous task to complete
+     
+     @return none
+     */
     func dataSync(completion: @escaping (String) -> ()) {
         let postRef = rootRef.child("Posts")
         postRef.observeSingleEvent(of: .value) { (snapshot:FIRDataSnapshot) in

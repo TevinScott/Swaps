@@ -5,7 +5,7 @@
 //  Created by Tevin Scott on 9/21/17.
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
-
+//***NOT FOR FINAL BUILD***
 import UIKit
 import Firebase
 //import FirebaseAnalytics
@@ -22,39 +22,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //dbManager.getAllPosts();
+
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //gives access to the root known as condition in the JSON Tree
 
     }
-
-    @IBAction func printPostsBtn(_ sender: Any) {
-        dbManager.dataSync() { (listOfPosts) -> () in
-            self.postViewer.text = listOfPosts
-        }
-        
-        //doesnt post currently ***BUG - PLZ Squish***
-        
-    }
-    @IBAction func addPostBtn(_ sender: Any) {
-        if(titleField.hasText && descField.hasText){
-            let newPost : [String : AnyObject] = ["title" : titleField.text as AnyObject, "message" : descField.text as AnyObject]
-            rootRef.child("Posts").childByAutoId().setValue(newPost)
-        }
-    }
-    @IBAction func deletePostBtn(_ sender: Any) {
-    }
- 
     
     func addPost(){
         let title = "title is T2"
@@ -68,6 +47,54 @@ class ViewController: UIViewController {
         
         
     }
+    
+    /**
+     Desc: print posts that are currently in the database
+     
+     @param
+     
+     @return
+     */
+    @IBAction func printPostsBtn(_ sender: Any) {
+        dbManager.dataSync() { (listOfPosts) -> () in
+            self.postViewer.text = listOfPosts
+        }
+        
+        //doesnt post currently ***BUG - PLZ Squish***
+        
+    }
+    /**
+     Desc:
+     
+     @param
+     
+     @return
+     */
+    @IBAction func addPostBtn(_ sender: Any) {
+        if(titleField.hasText && descField.hasText){
+            let newPost : [String : AnyObject] = ["title" : titleField.text as AnyObject, "message" : descField.text as AnyObject]
+            rootRef.child("Posts").childByAutoId().setValue(newPost)
+        }
+    }
+    /**
+     Desc:
+     
+     @param
+     
+     @return
+     */
+    @IBAction func deletePostBtn(_ sender: Any) {
+    
+    }
+ 
+    /**
+     Desc:
+     
+     @param
+     
+     @return
+     */
+    
     
 }
 

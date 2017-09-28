@@ -19,7 +19,7 @@
 		E2405C701F75715100F2EF49 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* DataManager.swift */; };
 		E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA161F7B17650073102B /* FeedCollectionVC.swift */; };
 		E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */; };
-		E2D1DC9F1F77345500891BA7 /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1DC9E1F77345500891BA7 /* ImageHandler.swift */; };
+		E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* ItemCollection.swift */; };
 		E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */; };
 		E5A86CDACBB9AFC30D3B62BF /* Pods_Radford_Swaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766BDF60E175635C9ABF6A3C /* Pods_Radford_Swaps.framework */; };
 /* End PBXBuildFile section */
@@ -41,7 +41,7 @@
 		E2405C6F1F75715100F2EF49 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E24FAA161F7B17650073102B /* FeedCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCollectionVC.swift; sourceTree = "<group>"; };
 		E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		E2D1DC9E1F77345500891BA7 /* ImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
+		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
 		E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItem.swift; sourceTree = "<group>"; };
 		F7C26E0D5384E9D63237B3B2 /* Pods-Radford Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radford Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Radford Swaps/Pods-Radford Swaps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,8 +121,8 @@
 			children = (
 				E2405C6D1F756FE100F2EF49 /* Post.swift */,
 				E2405C6F1F75715100F2EF49 /* DataManager.swift */,
-				E2D1DC9E1F77345500891BA7 /* ImageHandler.swift */,
 				E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */,
+				E24FAA1C1F7C80740073102B /* ItemCollection.swift */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				E2405C591F7481AC00F2EF49 /* ViewController.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* DataManager.swift in Sources */,
-				E2D1DC9F1F77345500891BA7 /* ImageHandler.swift in Sources */,
+				E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */,
 				E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */,
 				E2405C5F1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld in Sources */,
 				E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */,
