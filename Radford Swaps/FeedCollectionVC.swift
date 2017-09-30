@@ -22,22 +22,28 @@ class FeedCollectionVC: UICollectionViewController{
     //MARK - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //constrains the layout to the layout property attributes
         let width = ((collectionView?.frame)!.width - leftAndRightPadding)/numberOfItemsPerRow
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
     }
 
-
+    /**
+     Returns the number of sections displayed by the collection view.
+     */
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    /**
+     Returns the number of cells to be displayed by the collection view based on the dataset Size.
+     */
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  setOfItems.collectionCount //based on size of list
     }
     
-
+    /**
+     Retruns a new reusable cell that is associated with the element in setOfItems using the indexPath
+     */
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
         cell.saleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)

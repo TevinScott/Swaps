@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var descField: UITextField!
     @IBOutlet weak var postViewer: UITextView!
     
+    @IBOutlet var imageForUpload: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +36,15 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
 
     }
+    
+
+    @IBAction func uploadImgBtn(_ sender: Any) {
+        if(titleField.text!.characters.count > 0){
+            //dbManager.uploadImage(imageParam: imageForUpload.image!, name: titleField.text!)
+        }
+    }
+
+    
     
     func addPost(){
         let title = "title is T2"
@@ -51,9 +62,9 @@ class ViewController: UIViewController {
     /**
      Desc: print posts that are currently in the database
      
-     @param
+     -parameter
      
-     @return
+     -returns 
      */
     @IBAction func printPostsBtn(_ sender: Any) {
         dbManager.dataSync() { (listOfPosts) -> () in

@@ -4,8 +4,9 @@
 use_frameworks!
 
 target 'Radford Swaps' do
-	pod ’Firebase’
-    pod ‘Firebase/Core’
-	pod ’Firebase/Database’
-    pod 'IQKeyboardManagerSwift'
+	pod 'Firebase'
+    pod 'Firebase/Core'
+	pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+
 end

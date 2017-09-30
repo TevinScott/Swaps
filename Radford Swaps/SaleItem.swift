@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-///SaleItem describes an item that a user would like to Sell
+/// SaleItem describes an item that a user would like to Sell
 class SaleItem {
     var name: String?
-    var price: Double?
+    var price: String?
     var description: String?
-    var images: [UIImage]?
+    var image: UIImage?
+    var imageURL: String? // only instantiated after this saleItem is uploaded
     var category : String?
-    
     /*
     intializes variables to default placeholder values for testing
      */
     private func placeHolderInit() {
         let placeholderImage = UIImage(named: "ps4")
-        images = [placeholderImage!]
+        image = placeholderImage!
         name = "Item Name Here"
-        price = 99.99
+        price = "99.99"
         description = "Item Description used here"
         category = "placeholder category"
     }

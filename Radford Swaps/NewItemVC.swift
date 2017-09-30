@@ -9,122 +9,117 @@
 import Foundation
 import UIKit
 
-// A View Controller that manages user interactions performed on the New Item View
+///A view Controller that Manages the New Item View
 class NewItemVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
     
+    let dataManager: DataManager = DataManager()
+    //
+    @IBOutlet var itemNameField: UITextField!
+    @IBOutlet var priceField: UITextField!
+    @IBOutlet var descField: UITextView!
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet var scrollView: UIScrollView!
     
-    //scrollview reference
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    //image views for items
-    @IBOutlet weak var itemImage1: UIImageView!
-    @IBOutlet weak var itemImage2: UIImageView!
-    @IBOutlet weak var itemImage3: UIImageView!
-    @IBOutlet weak var itemImage4: UIImageView!
-    @IBOutlet weak var itemImage5: UIImageView!
-    @IBOutlet weak var itemImage6: UIImageView!
-    
-    // which image is selected and which image(s) added by user
-    var imageSelected = [Bool](repeating: false, count: 6)
-    var imagesAdded = [Bool](repeating: false, count: 6)
+    var imageAdded: Bool = false;
     
     
     /**
      opensCamera and specifies that imageSelected at element "n" is true n = to addImgBtn(num-1)
      
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
+     - Parameter sender:
      
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
      */
-    @IBAction func addImgBtn1(_ sender: Any) {
+
+    @IBAction func addImgBtn(_ sender: Any) {
         openCamera()
-        imageSelected[0] = true;
+    }
+    
+    @IBAction func uploadItemBtn(_ sender: Any) {
+        createAndUpload()
+    }
+    
+    /**
+     opens a camera view over the current view
+     */
+    private func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     /**
-     opensCamera and specifies that imageSelected at element "n" is true n = to addImgBtn(num-1)
-     
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
-     
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
+     assigns the Image taking within the UIImagePickerController to a ImageView
      */
-    @IBAction func addImgBtn2(_ sender: Any) {
-        openCamera()
-        imageSelected[1] = true;
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+
+        itemImageView.image = image
+        imageAdded = true;
+        dismiss(animated:true, completion: nil)
+                
+    }
+    private func checkAllFieldsCompleted() -> Bool{
+        var isCompleted = false;
+        if(itemNameField.text!.characters.count > 0){
+            if(descField.text!.characters.count > 0){
+                if(priceField.text!.characters.count > 0){
+                    if(imageAdded){
+                        isCompleted = true;
+                    }
+                }
+            }
+        }
+        return isCompleted
     }
     /**
-     opensCamera and specifies that imageSelected at element "n" is true n = to addImgBtn(num-1)
+     Description: Creates a SaleItem Object using the fields within the New Item View
      
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
-     
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
+     -returns a SaleItem representation of the users inputted values
      */
-    @IBAction func addImgBtn3(_ sender: Any) {
-        openCamera()
-        imageSelected[2] = true;
+    private func createNewItemObj() -> SaleItem {
+        let newItem: SaleItem = SaleItem.init()
+        if(checkAllFieldsCompleted()){
+            newItem.category = "All"
+            newItem.description = descField.text
+            newItem.image = itemImageView.image
+            newItem.price = priceField.text
+            newItem.name = itemNameField.text
+        }
+        return newItem
     }
     /**
-     opensCamera and specifies that imageSelected at element "n" is true n = to addImgBtn(num-1)
-     
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
-     
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
+     creates a sale item object and pploads it to the cloud storage
      */
-    @IBAction func addImgBtn4(_ sender: Any) {
-        openCamera()
-        imageSelected[3] = true;
-    }
-    /**
-     opensCamera and specifies that imageSelected at element "n" is true n = to addImgBtn(num-1)
-     
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
-     
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
-     */
-    @IBAction func addImgBtn5(_ sender: Any) {
-        openCamera()
-        imageSelected[4] = true;
-    }
-    /**
-     opensCamera and specifies that imageSelected at element "n" is true n = to addImgBtn(num-1)
-     
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
-     
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
-     */
-    @IBAction func addImgBtn6(_ sender: Any) {
-        openCamera()
-        imageSelected[5] = true;
+    private func createAndUpload(){
+        let newItem: SaleItem = createNewItemObj()
+        dataManager.uploadSaleItemToAll(saleItem: newItem)
     }
     //MARK - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*** Part OF Stopping Point ** let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))
+        view.addGestureRecognizer(tapGesture)
+
+         */
+    }
+    /*** Stopping point *** setting up keyboard view offset
+    @objc func didTapView(gesture: UITapGestureRecognizer){
+        view.endEditing(true)
     }
     
+    func keyboardWillSwow(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let frame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+                return
+        }
+        let contentInset = UIEdgeInsets(top: 0, left:0, bottom: frame.height, right: 0)
+        scrollView.contentInset = contentInset
+    }
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -133,73 +128,7 @@ UINavigationControllerDelegate{
         super.viewDidAppear(animated)
     }
     
-    /**
-     opens a camera view over the current view
-     
-     */
-    func openCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .camera;
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    /**
-     Repeats a string `times` times.
-     
-     - Parameter str:   The string to repeat.
-     - Parameter times: The number of times to repeat `str`.
-     
-     - Throws: `MyError.InvalidTimes` if the `times` parameter
-     is less than zero.
-     
-     - Returns: A new string with `str` repeated `times` times.
-     */
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageBeingChanged = specifyImageToSet(whichImage: imageSelected)
-        imageBeingChanged.image = image
-        dismiss(animated:true, completion: nil)
-        imageSelected = [Bool](repeating: false, count: 6) //resets imageselection
-    }
-
-    /**
-     returns the specific UIImageView that is in this class
-     
-     - Parameter whichImage: specifics which itemImage(num) to return based on which index is true itemImage(num: index + 1)
-     
-     - Returns: itemImage(num) corresponding to the true element in the whichImage[] array
-     */
-    private func specifyImageToSet(whichImage: [Bool]) -> UIImageView {
-        var outputImageView : UIImageView?
-        if(whichImage[0]){
-            outputImageView = itemImage1
-            imagesAdded[0] = true;
-        }
-        if(whichImage[1]){
-            outputImageView = itemImage2
-            imagesAdded[1] = true;
-        }
-        if(whichImage[2]){
-            outputImageView = itemImage3
-            imagesAdded[2] = true;
-        }
-        if(whichImage[3]){
-            outputImageView = itemImage4
-            imagesAdded[3] = true;
-        }
-        if(whichImage[4]){
-            outputImageView = itemImage5
-            imagesAdded[4] = true;
-        }
-        if(whichImage[5]){
-            outputImageView = itemImage6
-            imagesAdded[5] = true;
-        }
-        return outputImageView!
-    }
+    
     
 }
 

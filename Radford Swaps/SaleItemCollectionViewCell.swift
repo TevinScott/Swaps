@@ -26,9 +26,9 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
      updates this cell to the current values of the SaleItem
     */
     func updateUI(){
-        saleItemImg.image = saleItem?.images?[0]
+        saleItemImg.image = saleItem?.image
         //places dollarsign infront of price
-        priceLabel.text = "$\((String(format:"%.2f", (saleItem?.price)!)))"
+        priceLabel.text = "$\(String(describing: saleItem?.price!))"
         //***input should be stored as string in %.2f format***
     }
 }
