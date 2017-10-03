@@ -74,7 +74,6 @@
                                                 <constraint firstAttribute="width" constant="150" id="eRD-T0-Tpo"/>
                                             </constraints>
                                             <connections>
-                                                <action selector="viewSaleItemBtn:" destination="Psi-gz-X4M" eventType="touchUpInside" id="mOM-kw-S6y"/>
                                                 <segue destination="dWU-fE-xou" kind="show" id="LPH-qY-I1M"/>
                                             </connections>
                                         </button>
