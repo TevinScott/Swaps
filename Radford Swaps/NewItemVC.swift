@@ -14,7 +14,7 @@ class NewItemVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerD
 UINavigationControllerDelegate{
     
     let dataManager: DataManager = DataManager()
-    //
+
     @IBOutlet var itemNameField: UITextField!
     @IBOutlet var priceField: UITextField!
     @IBOutlet var descField: UITextView!
@@ -55,13 +55,17 @@ UINavigationControllerDelegate{
      assigns the Image taking within the UIImagePickerController to a ImageView
      */
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-
-        itemImageView.image = image
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        itemImageView.image = UIImage(data: (image .jpeg(.low))!)
         imageAdded = true;
         dismiss(animated:true, completion: nil)
                 
     }
+    /**
+     Checks all fields within the NewItemVC is fulfilled. this function assists the createAndUpload function
+     
+     - Returns isCompleted: true if all fields have information editted by user
+     */
     private func checkAllFieldsCompleted() -> Bool{
         var isCompleted = false;
         if(itemNameField.text!.characters.count > 0){
@@ -75,59 +79,103 @@ UINavigationControllerDelegate{
         }
         return isCompleted
     }
+    
     /**
      Description: Creates a SaleItem Object using the fields within the New Item View
      
-     -returns a SaleItem representation of the users inputted values
+     - Returns SaleItem: representation of the users inputted values
      */
     private func createNewItemObj() -> SaleItem {
-        let newItem: SaleItem = SaleItem.init()
+        let newItem: SaleItem = SaleItem()
         if(checkAllFieldsCompleted()){
             newItem.category = "All"
             newItem.description = descField.text
-            newItem.image = itemImageView.image
+            newItem.image =  itemImageView.image
             newItem.price = priceField.text
             newItem.name = itemNameField.text
         }
         return newItem
     }
+    
     /**
      creates a sale item object and pploads it to the cloud storage
      */
     private func createAndUpload(){
         let newItem: SaleItem = createNewItemObj()
         dataManager.uploadSaleItemToAll(saleItem: newItem)
+        _ = navigationController?.popViewController(animated: true)
     }
+    
     //MARK - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*** Part OF Stopping Point ** let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))  
         view.addGestureRecognizer(tapGesture)
 
-         */
+
     }
-    /*** Stopping point *** setting up keyboard view offset
-    @objc func didTapView(gesture: UITapGestureRecognizer){
-        view.endEditing(true)
-    }
-    
-    func keyboardWillSwow(notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let frame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-                return
-        }
-        let contentInset = UIEdgeInsets(top: 0, left:0, bottom: frame.height, right: 0)
-        scrollView.contentInset = contentInset
-    }
-    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addObservers()
+     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        removeObservers()
     }
     
+    @objc func didTapView(gesture: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        removeObservers()
+    }
+    // MARK - Keyboard view offset functions
+    
+    func addObservers(){
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillChangeFrame, object: nil, queue: nil){
+            notification in
+            self.keyboardWillShow(notification: notification)
+        }
+        
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil){
+            notification in
+            self.keyboardWillHide(notification: notification)
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
+    
+    func removeObservers(){
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+            else {
+                self.view.frame.origin.y = 0
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
     
     
 }

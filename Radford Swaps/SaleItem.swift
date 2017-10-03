@@ -8,30 +8,41 @@
 
 import Foundation
 import UIKit
-
+import Firebase
 /// SaleItem describes an item that a user would like to Sell
 class SaleItem {
+    var itemID: String?
     var name: String?
     var price: String?
     var description: String?
     var image: UIImage?
     var imageURL: String? // only instantiated after this saleItem is uploaded
     var category : String?
-    /*
-    intializes variables to default placeholder values for testing
+    let placeholderImage = UIImage(named: "default-placeholder")
+    
+    /**
+    intializes variables to default placeholder values for testing.
+     
+     - Parameter snapshot: A snapshot of a saleItem currently in the FirebaseDatabase
      */
-    private func placeHolderInit() {
-        let placeholderImage = UIImage(named: "ps4")
-        image = placeholderImage!
-        name = "Item Name Here"
-        price = "99.99"
-        description = "Item Description used here"
-        category = "placeholder category"
+    init(snapshot: FIRDataSnapshot) {
+        let saleAttribute = snapshot.value as! [String: Any]
+        itemID = snapshot.key
+        name = ((saleAttribute["name"]) as? String)!
+        price = ((saleAttribute["price"]) as? String)!
+        description = ((saleAttribute["desc"]) as? String)!
+        imageURL = ((saleAttribute["imageURL"]) as? String)!
+        
     }
+
     /*
-     initializes SaleItems attributes
+     initializes SaleItems attributes to default values
     */
     init(){
-        placeHolderInit()
+        image = placeholderImage!
+        name = "Currently Un-named"
+        price = "00.00"
+        description = "no description"
+        category = "no category"
     }
 }

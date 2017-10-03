@@ -9,18 +9,18 @@
 /* Begin PBXBuildFile section */
 		E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */; };
 		E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C561F7481AC00F2EF49 /* AppDelegate.swift */; };
-		E2405C591F7481AC00F2EF49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C581F7481AC00F2EF49 /* ViewController.swift */; };
 		E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C5A1F7481AC00F2EF49 /* Main.storyboard */; };
 		E2405C5F1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2405C5D1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld */; };
 		E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2405C601F7481AC00F2EF49 /* Assets.xcassets */; };
 		E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C621F7481AC00F2EF49 /* LaunchScreen.storyboard */; };
 		E2405C6C1F7481F100F2EF49 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2405C6B1F7481F100F2EF49 /* GoogleService-Info.plist */; };
-		E2405C6E1F756FE200F2EF49 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6D1F756FE100F2EF49 /* Post.swift */; };
 		E2405C701F75715100F2EF49 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* DataManager.swift */; };
 		E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA161F7B17650073102B /* FeedCollectionVC.swift */; };
 		E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */; };
 		E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* ItemCollection.swift */; };
+		E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */; };
 		E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */; };
+		E2F890651F81314800CD479D /* ImageCompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890641F81314800CD479D /* ImageCompression.swift */; };
 		E5A86CDACBB9AFC30D3B62BF /* Pods_Radford_Swaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766BDF60E175635C9ABF6A3C /* Pods_Radford_Swaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,19 +30,19 @@
 		E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemVC.swift; sourceTree = "<group>"; };
 		E2405C531F7481AC00F2EF49 /* Radford Swaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Radford Swaps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405C561F7481AC00F2EF49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E2405C581F7481AC00F2EF49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E2405C5B1F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2405C5E1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Radford_Swaps.xcdatamodel; sourceTree = "<group>"; };
 		E2405C601F7481AC00F2EF49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2405C631F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2405C651F7481AC00F2EF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2405C6B1F7481F100F2EF49 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E2405C6D1F756FE100F2EF49 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E2405C6F1F75715100F2EF49 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E24FAA161F7B17650073102B /* FeedCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCollectionVC.swift; sourceTree = "<group>"; };
 		E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
+		E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItemVC.swift; sourceTree = "<group>"; };
 		E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItem.swift; sourceTree = "<group>"; };
+		E2F890641F81314800CD479D /* ImageCompression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompression.swift; sourceTree = "<group>"; };
 		F7C26E0D5384E9D63237B3B2 /* Pods-Radford Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radford Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Radford Swaps/Pods-Radford Swaps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,10 +108,10 @@
 		E2D1DCA41F79FF6600891BA7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E2405C581F7481AC00F2EF49 /* ViewController.swift */,
 				E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */,
 				E24FAA161F7B17650073102B /* FeedCollectionVC.swift */,
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
+				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -119,10 +119,10 @@
 		E2D1DCA51F79FF8900891BA7 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				E2405C6D1F756FE100F2EF49 /* Post.swift */,
 				E2405C6F1F75715100F2EF49 /* DataManager.swift */,
 				E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */,
 				E24FAA1C1F7C80740073102B /* ItemCollection.swift */,
+				E2F890641F81314800CD479D /* ImageCompression.swift */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -273,8 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */,
 				E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */,
-				E2405C591F7481AC00F2EF49 /* ViewController.swift in Sources */,
+				E2F890651F81314800CD479D /* ImageCompression.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* DataManager.swift in Sources */,
 				E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */,
@@ -282,7 +283,6 @@
 				E2405C5F1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld in Sources */,
 				E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */,
 				E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */,
-				E2405C6E1F756FE200F2EF49 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

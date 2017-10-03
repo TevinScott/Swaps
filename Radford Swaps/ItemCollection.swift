@@ -18,8 +18,10 @@ class ItemCollection {
     
     ///initializes an ItemCollection Object to placeholder values currently
     init(){
-        let saleItemObj = SaleItem.init()
-        listOfItems = [SaleItem](repeating: saleItemObj, count: 100)
+        listOfItems = [SaleItem]()
+    }
+    init(inputList: [SaleItem]){
+        listOfItems = inputList
     }
     /**
      Returns a SaleItem based on the location of the indexPath given

@@ -11,8 +11,13 @@ import UIKit
 
 /// A Collection View Controller that manages Sale Item Cells
 class FeedCollectionVC: UICollectionViewController{
-    var setOfItems: ItemCollection = ItemCollection.init()
-    
+    var setOfItems: ItemCollection = ItemCollection.init() {
+        didSet {
+            self.collectionView?.reloadData()
+            
+        }
+    }
+    let dbManager = DataManager()
     //layout properties
     private let leftAndRightPadding: CGFloat = 32.0
     private let numberOfItemsPerRow: CGFloat = 2.0
@@ -26,8 +31,12 @@ class FeedCollectionVC: UICollectionViewController{
         let width = ((collectionView?.frame)!.width - leftAndRightPadding)/numberOfItemsPerRow
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
+        dbManager.getAllItems() { (completedList) -> () in
+            self.setOfItems = ItemCollection.init(inputList: completedList)
+            
+        }
     }
-
+    
     /**
      Returns the number of sections displayed by the collection view.
      */
@@ -48,6 +57,12 @@ class FeedCollectionVC: UICollectionViewController{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
         cell.saleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
         return cell
+    }
+    /**
+     called whenever a cell is tapped
+     */
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        //function call doesnt work here
     }
 
 }
