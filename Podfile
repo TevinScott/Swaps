@@ -3,10 +3,11 @@
 #Comment the next line if you're not using Swift and don't want to use dynamic frameworks
 use_frameworks!
 
-target 'Radford Swaps' do
-	pod 'Firebase'
-    pod 'Firebase/Core'
-	pod 'Firebase/Database'
-    pod 'Firebase/Storage'
+target 'Swaps' do
+    
+    pod 'Firebase'
+    pod 'FirebaseCore'
+    pod 'FirebaseDatabase'
+    pod 'FirebaseStorage'
 
 end

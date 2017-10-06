@@ -29,4 +29,5 @@ extension UIImage {
     func jpeg(_ quality: JPEGQuality) -> Data? {
         return UIImageJPEGRepresentation(self, quality.rawValue)
     }
+    
 }

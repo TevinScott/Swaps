@@ -10,40 +10,43 @@
 		E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */; };
 		E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C561F7481AC00F2EF49 /* AppDelegate.swift */; };
 		E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C5A1F7481AC00F2EF49 /* Main.storyboard */; };
-		E2405C5F1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2405C5D1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld */; };
+		E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */; };
 		E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2405C601F7481AC00F2EF49 /* Assets.xcassets */; };
 		E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C621F7481AC00F2EF49 /* LaunchScreen.storyboard */; };
-		E2405C6C1F7481F100F2EF49 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2405C6B1F7481F100F2EF49 /* GoogleService-Info.plist */; };
 		E2405C701F75715100F2EF49 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* DataManager.swift */; };
 		E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA161F7B17650073102B /* FeedCollectionVC.swift */; };
 		E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */; };
 		E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* ItemCollection.swift */; };
 		E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */; };
+		E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */; };
 		E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */; };
-		E2F890651F81314800CD479D /* ImageCompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890641F81314800CD479D /* ImageCompression.swift */; };
-		E5A86CDACBB9AFC30D3B62BF /* Pods_Radford_Swaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766BDF60E175635C9ABF6A3C /* Pods_Radford_Swaps.framework */; };
+		E2F1A7C71F86926800EE7C24 /* EditItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */; };
+		E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890641F81314800CD479D /* UIImage+ImageCompression.swift */; };
+		F8615FEFEAFEE55B6530EA9B /* Pods_Swaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4B66E270B7FF1EB9CBA04DB6 /* Pods-Radford Swaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radford Swaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Radford Swaps/Pods-Radford Swaps.release.xcconfig"; sourceTree = "<group>"; };
-		766BDF60E175635C9ABF6A3C /* Pods_Radford_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Radford_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.release.xcconfig"; sourceTree = "<group>"; };
+		716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig"; sourceTree = "<group>"; };
 		E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemVC.swift; sourceTree = "<group>"; };
-		E2405C531F7481AC00F2EF49 /* Radford Swaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Radford Swaps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2405C531F7481AC00F2EF49 /* Swaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405C561F7481AC00F2EF49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2405C5B1F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2405C5E1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Radford_Swaps.xcdatamodel; sourceTree = "<group>"; };
 		E2405C601F7481AC00F2EF49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2405C631F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2405C651F7481AC00F2EF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2405C6B1F7481F100F2EF49 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2405C6F1F75715100F2EF49 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E24FAA161F7B17650073102B /* FeedCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCollectionVC.swift; sourceTree = "<group>"; };
 		E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
 		E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItemVC.swift; sourceTree = "<group>"; };
+		E28D6FBA1F86F608007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItem.swift; sourceTree = "<group>"; };
-		E2F890641F81314800CD479D /* ImageCompression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompression.swift; sourceTree = "<group>"; };
-		F7C26E0D5384E9D63237B3B2 /* Pods-Radford Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Radford Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Radford Swaps/Pods-Radford Swaps.debug.xcconfig"; sourceTree = "<group>"; };
+		E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemVC.swift; sourceTree = "<group>"; };
+		E2F890641F81314800CD479D /* UIImage+ImageCompression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageCompression.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5A86CDACBB9AFC30D3B62BF /* Pods_Radford_Swaps.framework in Frameworks */,
+				F8615FEFEAFEE55B6530EA9B /* Pods_Swaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,8 +64,8 @@
 		05230057DF039E863EB0F844 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F7C26E0D5384E9D63237B3B2 /* Pods-Radford Swaps.debug.xcconfig */,
-				4B66E270B7FF1EB9CBA04DB6 /* Pods-Radford Swaps.release.xcconfig */,
+				BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */,
+				3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -70,7 +73,7 @@
 		13E60030EAB86342218CB0B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				766BDF60E175635C9ABF6A3C /* Pods_Radford_Swaps.framework */,
+				716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -78,7 +81,7 @@
 		E2405C4A1F7481AC00F2EF49 = {
 			isa = PBXGroup;
 			children = (
-				E2405C551F7481AC00F2EF49 /* Radford Swaps */,
+				E2405C551F7481AC00F2EF49 /* Swaps */,
 				E2405C541F7481AC00F2EF49 /* Products */,
 				05230057DF039E863EB0F844 /* Pods */,
 				13E60030EAB86342218CB0B4 /* Frameworks */,
@@ -88,26 +91,38 @@
 		E2405C541F7481AC00F2EF49 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2405C531F7481AC00F2EF49 /* Radford Swaps.app */,
+				E2405C531F7481AC00F2EF49 /* Swaps.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E2405C551F7481AC00F2EF49 /* Radford Swaps */ = {
+		E2405C551F7481AC00F2EF49 /* Swaps */ = {
 			isa = PBXGroup;
 			children = (
+				E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */,
+				E2A5AEC41F85BE6E00EE62A5 /* Extensions */,
 				E2405C601F7481AC00F2EF49 /* Assets.xcassets */,
 				E2D1DCA51F79FF8900891BA7 /* Data Structures */,
 				E2D1DCA61F79FFB300891BA7 /* Important Stuff */,
 				E2D1DCA71F79FFE400891BA7 /* StoryBoards */,
 				E2D1DCA41F79FF6600891BA7 /* View Controllers */,
 			);
-			path = "Radford Swaps";
+			path = Swaps;
+			sourceTree = "<group>";
+		};
+		E2A5AEC41F85BE6E00EE62A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E28D6FBA1F86F608007601F8 /* GoogleService-Info.plist */,
+				E2F890641F81314800CD479D /* UIImage+ImageCompression.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		E2D1DCA41F79FF6600891BA7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */,
 				E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */,
 				E24FAA161F7B17650073102B /* FeedCollectionVC.swift */,
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
@@ -122,7 +137,6 @@
 				E2405C6F1F75715100F2EF49 /* DataManager.swift */,
 				E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */,
 				E24FAA1C1F7C80740073102B /* ItemCollection.swift */,
-				E2F890641F81314800CD479D /* ImageCompression.swift */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -131,9 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				E2405C561F7481AC00F2EF49 /* AppDelegate.swift */,
-				E2405C6B1F7481F100F2EF49 /* GoogleService-Info.plist */,
 				E2405C651F7481AC00F2EF49 /* Info.plist */,
-				E2405C5D1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld */,
+				E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */,
 			);
 			name = "Important Stuff";
 			sourceTree = "<group>";
@@ -150,9 +163,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2405C521F7481AC00F2EF49 /* Radford Swaps */ = {
+		E2405C521F7481AC00F2EF49 /* Swaps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2405C681F7481AC00F2EF49 /* Build configuration list for PBXNativeTarget "Radford Swaps" */;
+			buildConfigurationList = E2405C681F7481AC00F2EF49 /* Build configuration list for PBXNativeTarget "Swaps" */;
 			buildPhases = (
 				EFE1E2F5F25BA64B861BD3A0 /* [CP] Check Pods Manifest.lock */,
 				E2405C4F1F7481AC00F2EF49 /* Sources */,
@@ -165,9 +178,9 @@
 			);
 			dependencies = (
 			);
-			name = "Radford Swaps";
+			name = Swaps;
 			productName = "Radford Swaps";
-			productReference = E2405C531F7481AC00F2EF49 /* Radford Swaps.app */;
+			productReference = E2405C531F7481AC00F2EF49 /* Swaps.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2405C4E1F7481AC00F2EF49 /* Build configuration list for PBXProject "Radford Swaps" */;
+			buildConfigurationList = E2405C4E1F7481AC00F2EF49 /* Build configuration list for PBXProject "Swaps" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -201,7 +214,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2405C521F7481AC00F2EF49 /* Radford Swaps */,
+				E2405C521F7481AC00F2EF49 /* Swaps */,
 			);
 		};
 /* End PBXProject section */
@@ -212,7 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */,
-				E2405C6C1F7481F100F2EF49 /* GoogleService-Info.plist in Resources */,
+				E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */,
 				E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */,
 				E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */,
 			);
@@ -233,7 +246,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Radford Swaps/Pods-Radford Swaps-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swaps/Pods-Swaps-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BA7A24AC47537363D0B82D43 /* [CP] Copy Pods Resources */ = {
@@ -248,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Radford Swaps/Pods-Radford Swaps-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swaps/Pods-Swaps-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFE1E2F5F25BA64B861BD3A0 /* [CP] Check Pods Manifest.lock */ = {
@@ -275,12 +288,13 @@
 			files = (
 				E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */,
 				E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */,
-				E2F890651F81314800CD479D /* ImageCompression.swift in Sources */,
+				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* DataManager.swift in Sources */,
 				E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */,
+				E2F1A7C71F86926800EE7C24 /* EditItemVC.swift in Sources */,
 				E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */,
-				E2405C5F1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld in Sources */,
+				E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */,
 				E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */,
 				E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */,
 			);
@@ -415,13 +429,13 @@
 		};
 		E2405C691F7481AC00F2EF49 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7C26E0D5384E9D63237B3B2 /* Pods-Radford Swaps.debug.xcconfig */;
+			baseConfigurationReference = BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z77JDD3BWU;
-				INFOPLIST_FILE = "Radford Swaps/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Swaps/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Scotty.Radford-Swaps";
+				PRODUCT_BUNDLE_IDENTIFIER = Scotty.Swaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -430,13 +444,13 @@
 		};
 		E2405C6A1F7481AC00F2EF49 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B66E270B7FF1EB9CBA04DB6 /* Pods-Radford Swaps.release.xcconfig */;
+			baseConfigurationReference = 3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z77JDD3BWU;
-				INFOPLIST_FILE = "Radford Swaps/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Swaps/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Scotty.Radford-Swaps";
+				PRODUCT_BUNDLE_IDENTIFIER = Scotty.Swaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -446,7 +460,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2405C4E1F7481AC00F2EF49 /* Build configuration list for PBXProject "Radford Swaps" */ = {
+		E2405C4E1F7481AC00F2EF49 /* Build configuration list for PBXProject "Swaps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2405C661F7481AC00F2EF49 /* Debug */,
@@ -455,7 +469,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2405C681F7481AC00F2EF49 /* Build configuration list for PBXNativeTarget "Radford Swaps" */ = {
+		E2405C681F7481AC00F2EF49 /* Build configuration list for PBXNativeTarget "Swaps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2405C691F7481AC00F2EF49 /* Debug */,
@@ -467,13 +481,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E2405C5D1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodeld */ = {
+		E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				E2405C5E1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodel */,
 			);
 			currentVersion = E2405C5E1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodel */;
-			path = Radford_Swaps.xcdatamodeld;
+			path = Swaps.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

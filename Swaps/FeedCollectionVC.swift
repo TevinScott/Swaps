@@ -12,6 +12,7 @@ import UIKit
 /// A Collection View Controller that manages Sale Item Cells
 class FeedCollectionVC: UICollectionViewController{
     var setOfItems: ItemCollection = ItemCollection.init() {
+        
         didSet {
             self.collectionView?.reloadData()
             
@@ -62,7 +63,27 @@ class FeedCollectionVC: UICollectionViewController{
      called whenever a cell is tapped
      */
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        //function call doesnt work here
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            //branch here, if user owns item go to (Edit)SaleItemSegue
+            performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+        } else {
+            // Error indexPath is not on screen: this should never happen.
+        }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewSaleItemSegue"{
+            let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
+            let textToPass = selectedSaleItem
+            let saleItemVC = segue.destination as! SaleItemVC
+                saleItemVC.saleItem = textToPass
+        }
+        if segue.identifier == "EditSaleItemSegue"{
+            let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
+            let textToPass = selectedSaleItem
+            let saleItemVC = segue.destination as! EditItemVC
+            saleItemVC.saleItem = textToPass
+        }
+    }
+
 
 }

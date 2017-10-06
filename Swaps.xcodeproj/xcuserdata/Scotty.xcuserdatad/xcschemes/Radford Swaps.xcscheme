@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2FA08EE705ABC97CA5C15AA4EB4A9CAB"
-               BuildableName = "Pods_Radford_Swaps.framework"
-               BlueprintName = "Pods-Radford Swaps"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "E2405C521F7481AC00F2EF49"
+               BuildableName = "Swaps.app"
+               BlueprintName = "Swaps"
+               ReferencedContainer = "container:Swaps.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,6 +30,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E2405C521F7481AC00F2EF49"
+            BuildableName = "Swaps.app"
+            BlueprintName = "Swaps"
+            ReferencedContainer = "container:Swaps.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -44,15 +53,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2FA08EE705ABC97CA5C15AA4EB4A9CAB"
-            BuildableName = "Pods_Radford_Swaps.framework"
-            BlueprintName = "Pods-Radford Swaps"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "E2405C521F7481AC00F2EF49"
+            BuildableName = "Swaps.app"
+            BlueprintName = "Swaps"
+            ReferencedContainer = "container:Swaps.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -62,6 +72,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E2405C521F7481AC00F2EF49"
+            BuildableName = "Swaps.app"
+            BlueprintName = "Swaps"
+            ReferencedContainer = "container:Swaps.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

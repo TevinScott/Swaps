@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Swaps.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:Pods"
+      name = "Targets Support Files">
+      <Group
+         location = "group:Pods/Target Support Files/Pods-Swaps"
+         name = "Pods-Swaps">
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Info.plist">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps.modulemap">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps-acknowledgements.markdown">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps-acknowledgements.plist">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps-dummy.m">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps-frameworks.sh">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps-resources.sh">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps-umbrella.h">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig">
+         </FileRef>
+         <FileRef
+            location = "group:Pods/Target Support Files/Pods-Swaps/Pods-Swaps.release.xcconfig">
+         </FileRef>
+      </Group>
+   </Group>
+</Workspace>
