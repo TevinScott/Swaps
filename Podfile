@@ -9,5 +9,7 @@ target 'Swaps' do
     pod 'FirebaseCore'
     pod 'FirebaseDatabase'
     pod 'FirebaseStorage'
-
+    pod 'FirebaseAuth'
+    pod 'GoogleSignIn'
+    
 end

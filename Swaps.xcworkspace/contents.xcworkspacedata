@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Swaps/CDGoogleUser+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
       location = "group:Swaps.xcodeproj">
    </FileRef>
    <FileRef
