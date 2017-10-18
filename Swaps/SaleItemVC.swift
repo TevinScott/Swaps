@@ -11,8 +11,8 @@ import UIKit
 /// Manages the a SaleItem View
 class SaleItemVC: UIViewController {
     
+    // MARK: - Attributes
     var dbManager = FirebaseDataManager()
-    
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var itemNameLabel: UILabel!
     @IBOutlet var itemPriceLabel: UILabel!
@@ -24,6 +24,20 @@ class SaleItemVC: UIViewController {
     override func viewDidLoad(){
         updateUI()
     }
+    
+    // MARK: - Button Actions
+    /**
+     favoriteItmBtn favorites this current sale item and stores a reference to it
+     in the current user's account
+     
+     - parameters:
+         - sender: the object reference of the Button that called this function
+     
+     */
+    @IBAction func favoriteItemBtn(_ sender: Any) {
+       //store user's favorited items by itemID into user's favorites list
+    }
+    // MARK: - Support Functions
     /**
      updateUI sets all outletted values within this view controller to this current values in
      the saleItem value
@@ -41,17 +55,6 @@ class SaleItemVC: UIViewController {
         if (saleItem?.image != nil){
             itemImageView.image = saleItem?.image!
         }
-    }
-    /**
-     removeItemBtn removes the current saleItem from public listings
-     
-     - parameters:
-         - sender: the object reference of the Button that called this function
-     
-     */
-    @IBAction func removeItemBtn(_ sender: Any) {
-        dbManager.removeSaleItem(saleItemID: (saleItem?.itemID)!)
-        _ = navigationController?.popViewController(animated: true)
     }
     
 }

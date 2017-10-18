@@ -12,14 +12,18 @@ import UIKit
 ///A View Controller that Manages the Edit Item View
 class EditItemVC: UIViewController {
     
-    var dbManager = FirebaseDataManager()
+ // MARK: - Attributes
+    var fbaseDataManager = FirebaseDataManager()
     @IBOutlet var itemImageView: UIImageView!
-    @IBOutlet var itemNameField: UILabel!
+    @IBOutlet var itemNameField: UITextField!
     @IBOutlet var itemPriceField: UITextField!
     @IBOutlet var itemDescField: UITextView!
+    @IBOutlet var scrollView: UIScrollView!
+    var imageHasBeenChanged : Bool = false;
+    var saleItem: SaleItem! = SaleItem()
+    var keyboardHandler : KeyboardHandler!
     
-    var saleItem: SaleItem? = SaleItem()
-    
+    // MARK: - Button Actions
     /**
      Opens Camera on tap
      
@@ -28,9 +32,48 @@ class EditItemVC: UIViewController {
      
      */
     @IBAction func changeImageBtn(_ sender: Any) {
-        //must open camera here like in NewItem VC
+        openCamera()
+        if(itemImageView.image != saleItem.image){
+            print("image has been changed")
+            imageHasBeenChanged = true
+        }
     }
     
+    /**
+     delete's the sale item
+     
+     - parameters:
+         - sender: the object reference of the Button that called this function
+     
+     */
+    @IBAction func delBtnPressed(_ sender: Any) {
+        fbaseDataManager.deleteSaleItem(saleItemToDelete: saleItem)
+        _ = navigationController?.popViewController(animated: true) //needs test
+    }
+    
+    /**
+     updates the signed in user's saleItem and returns to the Feed Collection view
+     
+     - parameters:
+         - sender: the object reference of the Button that called this function
+     
+     */
+    @IBAction func updateBtnPressed(_ sender: Any) {
+        self.updateSaleItem()
+         _ = navigationController?.popViewController(animated: true) //needs test
+    }
+    
+    // MARK: - Support Functions
+    private func updateSaleItem(){
+        saleItem.name = itemNameField.text
+        saleItem.price = itemPriceField.text
+        saleItem.description = itemDescField.text
+        if(imageHasBeenChanged){
+            saleItem.image = itemImageView.image
+        }
+        fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged)
+        //need condition for if the image has been changed
+    }
     /**
      updateUI sets all outletted values within this view controller to this current values in
      the saleItem value
@@ -63,6 +106,11 @@ class EditItemVC: UIViewController {
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
     /**
      assigns the Image taking within the UIImagePickerController to a ImageView
      
@@ -78,8 +126,34 @@ class EditItemVC: UIViewController {
         dismiss(animated:true, completion: nil)
         
     }
+    
     // MARK: - View controller life cycle
     override func viewDidLoad(){
         updateUI()
+        imageHasBeenChanged = false;
+        let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))
+        view.addGestureRecognizer(tapGesture)
+        keyboardHandler = KeyboardHandler.init(view: scrollView)
     }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardHandler.addObservers()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @objc func didTapView(gesture: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardHandler.removeObservers()
+    }
+    
+    
 }

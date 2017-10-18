@@ -8,28 +8,31 @@
 
 import Foundation
 import UIKit
-
+import GoogleSignIn
+import Firebase
 ///A View Controller that Manages the New Item View
 class NewItemVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
     
-    let dataManager: FirebaseDataManager = FirebaseDataManager()
+    // MARK: - Attributes
+    let cdataManager: CoreDataManager = CoreDataManager()
+    let fbaseDataManager: FirebaseDataManager = FirebaseDataManager()
     var keyboardHandler : KeyboardHandler!
-    
+    var imageAdded: Bool = false;
     @IBOutlet var itemNameField: UITextField!
     @IBOutlet var priceField: UITextField!
     @IBOutlet var descField: UITextView!
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet var scrollView: UIScrollView!
     
-    var imageAdded: Bool = false;
     
     
+    // MARK: - Button Actions
     /**
      Opens Camera on tap
 
      - parameters:
-     - sender: the object reference of the Button that called this function
+         - sender: the object reference of the Button that called this function
  
      */
     @IBAction func addImgBtn(_ sender: Any) {
@@ -46,6 +49,7 @@ UINavigationControllerDelegate{
         createAndUpload()
     }
     
+    // MARK: - Support Functions
     /**
      opens a camera view over the current view
      
@@ -65,8 +69,9 @@ UINavigationControllerDelegate{
      
      - parameters:
          -picker:   The controller object managing the image picker interface
-         -info:     A dictionary containing the original image and the edited image, if an       image was picked; or a filesystem URL for the movie, if a movie was picked.
-                    The dictionary also contains any relevant editing information. The keys for this dictionary are listed in Editing Information Keys.
+         -info:     A dictionary containing the original image and the edited image, if an image was picked; or a filesystem URL for the movie,
+                     if a movie was picked.The dictionary also contains any relevant editing information.
+                     The keys for this dictionary are listed in Editing Information Keys.
      
      */
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -97,6 +102,11 @@ UINavigationControllerDelegate{
         return isCompleted
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
     /**
      Description: Creates a SaleItem Object using the fields within the New Item View
      
@@ -104,14 +114,16 @@ UINavigationControllerDelegate{
          SaleItem: representation of the users inputted values
      */
     private func createNewItemObj() -> SaleItem {
+        
         let newItem: SaleItem = SaleItem()
-        if(checkAllFieldsCompleted()){
-            newItem.category = "All"
-            newItem.description = descField.text
-            newItem.image =  itemImageView.image
-            newItem.price = priceField.text
-            newItem.name = itemNameField.text
-        }
+        
+        newItem.category = "All"
+        newItem.description = descField.text
+        newItem.image =  itemImageView.image
+        newItem.price = priceField.text
+        newItem.name = itemNameField.text
+        newItem.userID = FIRAuth.auth()!.currentUser!.uid
+        
         return newItem
     }
     
@@ -119,9 +131,13 @@ UINavigationControllerDelegate{
      creates a sale item object and uploads it to Firebase database & storage
      */
     private func createAndUpload(){
-        let newItem: SaleItem = createNewItemObj()
-        dataManager.uploadSaleItemToAll(saleItem: newItem)
-        _ = navigationController?.popViewController(animated: true)
+        if(true/*checkAllFieldsCompleted()*/){
+            let newItem: SaleItem = createNewItemObj()
+            fbaseDataManager.uploadSaleItem(inputSaleItem: newItem)
+            _ = navigationController?.popViewController(animated: true)
+        }else{
+            // need to do a prompt overlay specifying that not all fields have been completed
+        }
     }
     
     //MARK: - View controller life cycle
@@ -129,7 +145,7 @@ UINavigationControllerDelegate{
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))  
         view.addGestureRecognizer(tapGesture)
-        keyboardHandler = KeyboardHandler.init(view: self)
+        keyboardHandler = KeyboardHandler.init(view: scrollView)
 
     }
     override func didReceiveMemoryWarning() {

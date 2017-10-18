@@ -12,6 +12,7 @@ import Firebase
 /// SaleItem describes an item that a user would like to Sell
 class SaleItem {
     
+     // MARK: - Attributes
     var itemID: String?
     var name: String?
     var price: String?
@@ -22,6 +23,7 @@ class SaleItem {
     let placeholderImage = UIImage(named: "default-placeholder")
     var userID: String? //if a new item is created the current Google User ID should be used
     
+     // MARK: - Initializers
     /**
     intializes variables to default placeholder values for testing.
      
@@ -30,12 +32,13 @@ class SaleItem {
      */
     init(snapshot: FIRDataSnapshot) {
         let saleAttribute = snapshot.value as! [String: Any]
+        
         itemID = snapshot.key
         name = ((saleAttribute["name"]) as? String)!
         price = ((saleAttribute["price"]) as? String)!
         description = ((saleAttribute["desc"]) as? String)!
         imageURL = ((saleAttribute["imageURL"]) as? String)!
-        
+        userID = ((saleAttribute["userID"]) as? String)!
     }
 
     /*

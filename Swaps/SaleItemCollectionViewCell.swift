@@ -9,18 +9,15 @@
 import UIKit
 ///Managers the SaleItemViewCell and its attributes
 class SaleItemCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Attributes
     //cell component references
     @IBOutlet var saleItemImg: UIImageView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     @IBOutlet var priceLabel: UILabel!
-    
-    /// a sale item that updates the ui when saleItem is set
-    var saleItem: SaleItem? {
-        didSet {
-            updateUI()
-        }
-    }
+    var saleItem: SaleItem? { didSet {updateUI() } }
 
+    // MARK: - Support Functions
     /**
      updates this cell to the current values of the SaleItem.
     */

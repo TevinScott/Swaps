@@ -12,12 +12,16 @@ import UIKit
 ///This Class manages the adjustment of a Given View, creating the space for the iOS Keyboard
 class KeyboardHandler {
     
-    var viewHandle: UIViewController?
+    // MARK: - Attributes
+    var scrollViewHandle: UIScrollView?
     
-    init( view: UIViewController){
-        viewHandle = view
+    // MARK: - Initializers
+    init( view: UIScrollView){
+        scrollViewHandle = view
     }
-    
+    /**
+     adds the observers from the viewHandle
+     */
     func addObservers(){
         NotificationCenter.default.addObserver(forName: .UIKeyboardWillChangeFrame, object: nil, queue: nil){
             notification in
@@ -29,34 +33,31 @@ class KeyboardHandler {
             self.keyboardWillHide(notification: notification)
         }
     }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
-    
+    /**
+     removes the observers from the viewHandle
+     */
     func removeObservers(){
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(scrollViewHandle!)
     }
     
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if viewHandle?.view.frame.origin.y == 0{
-                viewHandle?.view.frame.origin.y -= keyboardSize.height
+            if scrollViewHandle?.frame.origin.y == 0{
+                scrollViewHandle?.frame.origin.y -= keyboardSize.height
             }
             else {
-                viewHandle?.view.frame.origin.y = 0
-                viewHandle?.view.frame.origin.y -= keyboardSize.height
+                scrollViewHandle?.frame.origin.y = 0
+                scrollViewHandle?.frame.origin.y -= keyboardSize.height
             }
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if viewHandle?.view.frame.origin.y != 0{
-                viewHandle?.view.frame.origin.y += keyboardSize.height
+            if scrollViewHandle?.frame.origin.y != 0{
+                scrollViewHandle?.frame.origin.y += keyboardSize.height
             }
         }
     }
+    
 }

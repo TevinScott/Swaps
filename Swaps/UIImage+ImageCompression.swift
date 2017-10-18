@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 ///extenstion to the UIImage class that adds the .jpeg function which compresses the image to a enumerated preset
 extension UIImage {
+    
     enum JPEGQuality: CGFloat {
         case lowest  = 0
         case low     = 0.25

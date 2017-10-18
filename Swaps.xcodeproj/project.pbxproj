@@ -49,7 +49,6 @@
 		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
 		E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItemVC.swift; sourceTree = "<group>"; };
 		E286B9321F918344008000B3 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
-		E28D6FBA1F86F608007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItem.swift; sourceTree = "<group>"; };
@@ -107,7 +106,6 @@
 		E2405C551F7481AC00F2EF49 /* Swaps */ = {
 			isa = PBXGroup;
 			children = (
-				E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */,
 				E2A5AEC41F85BE6E00EE62A5 /* Extensions */,
 				E2405C601F7481AC00F2EF49 /* Assets.xcassets */,
 				E2CF505C1F9155C60071EAD2 /* Data Managers */,
@@ -122,8 +120,9 @@
 		E2A5AEC41F85BE6E00EE62A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E28D6FBA1F86F608007601F8 /* GoogleService-Info.plist */,
+				E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */,
 				E2F890641F81314800CD479D /* UIImage+ImageCompression.swift */,
+				E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -146,7 +145,6 @@
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
-				E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */,
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
 			);
 			name = "View Controllers";

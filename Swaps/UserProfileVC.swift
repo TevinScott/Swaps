@@ -14,27 +14,38 @@ import GoogleSignIn
 ///A View Controller that Manages the Edit Item View
 class UserProfileVC: UIViewController {
     
+    // MARK: - Attributes
     let coreDataManager: CoreDataManager = CoreDataManager.init()
     @IBOutlet var signOutBtn: UIButton!
     
     @IBAction func signOutBtnPressed(_ sender: Any) {
         
     }
-    
+    // MARK: - Support Functions
+    /**
+     signs out the current Google User from google & Firebase
+     and removes their data from core Data
+     */
     private func signOut(){
         try! FIRAuth.auth()!.signOut()
         GIDSignIn.sharedInstance().signOut()
         coreDataManager.deleteAll()
     }
     
-    // MARK: - View controller life cycle
-    override func viewDidLoad(){
-        roundSignOutBtnCorners()
-    }
+    /**
+     rounds the signOutBtn's corners
+     */
     private func roundSignOutBtnCorners(){
         signOutBtn.layer.cornerRadius = 8
         signOutBtn.layer.borderWidth = 1
         signOutBtn.layer.borderColor = UIColor(displayP3Red: 215, green: 90, blue: 74, alpha: 1).cgColor
     }
+    
+    // MARK: - View controller life cycle
+    override func viewDidLoad(){
+        roundSignOutBtnCorners()
+    }
+    
+    
 }
 

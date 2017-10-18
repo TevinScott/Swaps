@@ -1,6 +1,6 @@
 //
 //  FeedCollectionVC.swift
-//  Radford Swaps
+//  Swaps
 //
 //  Created by Tevin Scott on 9/26/17.
 //  Copyright © 2017 Tevin Scott. All rights reserved.
@@ -8,26 +8,29 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
+import Firebase
 
 /// A Collection View Controller that manages the Feed Collection and its Sale Item Cells
 class FeedCollectionVC: UICollectionViewController{
     
-    
-    var setOfItems: ItemCollection = ItemCollection.init() {
-        didSet {
-            self.collectionView?.reloadData()
-        }
-    }
-    let dbManager = FirebaseDataManager()
-    var keyboardHandler : KeyboardHandler!
-    
+    // MARK: - Attributes
+    let cdataManager = CoreDataManager()
+    let fbaseDataManager = FirebaseDataManager()
+    //var keyboardHandler : KeyboardHandler!
     //layout properties
     private let leftAndRightPadding: CGFloat = 32.0
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 5.0
     private let cellIdentifier = "SaleCell"
+    var setOfItems: ItemCollection = ItemCollection.init() {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
+   
     
-
+    
     // MARK: - Collection View function Overrides
     
     /**
@@ -89,15 +92,24 @@ class FeedCollectionVC: UICollectionViewController{
      
      */
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        if let cell = collectionView.cellForItem(at: indexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
-            performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+            let userID = FIRAuth.auth()!.currentUser!.uid
+
+            if(cell.saleItem?.userID == userID){
+                performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
+
+            }
+            else{
+                performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+
+            }
         } else {
             // Error indexPath is not on screen: this should never happen.
         }
     }
     
-    // MARK: Segue Override
+    // MARK: - Segue Override
     
     /**
      Notifies the view controller that a segue is about to be performed.
@@ -123,15 +135,14 @@ class FeedCollectionVC: UICollectionViewController{
     }
     
     // MARK: - View controller life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //constrains the layout to the layout property attributes
         let width = ((collectionView?.frame)!.width - leftAndRightPadding)/numberOfItemsPerRow
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
-        keyboardHandler = KeyboardHandler.init(view: self)
-        dbManager.getAllItems() { (completedList) -> () in
+        //keyboardHandler = KeyboardHandler.init(view: )
+        fbaseDataManager.getAllItems() { (completedList) -> () in
             self.setOfItems = ItemCollection.init(inputList: completedList)
             
         }
@@ -142,11 +153,11 @@ class FeedCollectionVC: UICollectionViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHandler.addObservers()
+        //keyboardHandler.addObservers()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        keyboardHandler.removeObservers()
+        //keyboardHandler.removeObservers()
     }
     
     @objc func didTapView(gesture: UITapGestureRecognizer){
@@ -154,7 +165,7 @@ class FeedCollectionVC: UICollectionViewController{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHandler.removeObservers()
+        //keyboardHandler.removeObservers()
     }
     
 }

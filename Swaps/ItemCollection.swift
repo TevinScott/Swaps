@@ -10,19 +10,24 @@ import Foundation
 
 /// In ItemCollection Stores a List Of Items and provides functionality protaining to the data structure
 class ItemCollection {
-    private var listOfItems = [SaleItem]()
     
+    // MARK: - Attributes
+    private var listOfItems = [SaleItem]()
     var collectionCount: Int {
         return listOfItems.count
     }
     
+    // MARK: - Initializers
     ///initializes an ItemCollection Object to placeholder values currently
     init(){
         listOfItems = [SaleItem]()
     }
+    
+    ///initializes an Object of ItemCollection with a given set of listOfItems
     init(inputList: [SaleItem]){
         listOfItems = inputList
     }
+    // MARK: - Functions
     /**
      Returns a SaleItem based on the location of the indexPath given
      - parameter indexPath: used to specify the element of a SaleItem within listOfItems
@@ -37,4 +42,5 @@ class ItemCollection {
             return SaleItem.init()
         }
     }
+    
 }

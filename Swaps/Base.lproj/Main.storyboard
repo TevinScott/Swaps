@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,14 +54,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhP-26-Jti" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dLb-Iy-Qxq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3839" y="1319"/>
+            <point key="canvasLocation" x="-3569" y="1316"/>
         </scene>
-        <!--Latest Posts-->
+        <!--Feed-->
         <scene sceneID="Eju-Tc-euV">
             <objects>
                 <collectionViewController id="HqS-pe-5tZ" customClass="FeedCollectionVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="WbN-dx-UPE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="671"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WbN-dx-UPE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OzT-mU-TIp">
@@ -135,8 +135,9 @@
                             <outlet property="delegate" destination="HqS-pe-5tZ" id="q3x-W0-Nnu"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Latest Posts" id="Ph3-qY-kIj">
+                    <navigationItem key="navigationItem" title="Feed" id="Ph3-qY-kIj">
                         <barButtonItem key="leftBarButtonItem" image="user" id="SBL-KE-xRZ">
+                            <inset key="imageInsets" minX="0.0" minY="-2" maxX="0.0" maxY="0.0"/>
                             <connections>
                                 <segue destination="Gvs-pP-Xr1" kind="show" id="Gwv-ii-eo1"/>
                             </connections>
@@ -149,15 +150,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="735"/>
+                    <size key="freeformSize" width="375" height="731"/>
                     <connections>
                         <segue destination="dWU-fE-xou" kind="show" identifier="ViewSaleItemSegue" id="49Q-X8-7eN"/>
-                        <segue destination="eW5-U5-u9f" kind="show" identifier="EditItemSegue" id="P7S-dG-tr4"/>
+                        <segue destination="eW5-U5-u9f" kind="show" identifier="EditSaleItemSegue" id="P7S-dG-tr4"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QN1-R6-y2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2393" y="516"/>
+            <point key="canvasLocation" x="-2382" y="515"/>
         </scene>
         <!--New Listing-->
         <scene sceneID="Oks-ZH-vsQ">
@@ -294,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHg-Rf-oz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1414" y="487"/>
+            <point key="canvasLocation" x="-1415" y="515"/>
         </scene>
         <!--View Item-->
         <scene sceneID="OnQ-sS-YaA">
@@ -311,6 +312,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ps4" translatesAutoresizingMaskIntoConstraints="NO" id="Niy-Fq-BXu">
                                 <rect key="frame" x="25" y="25" width="325" height="325"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="Niy-Fq-BXu" secondAttribute="height" multiplier="1:1" id="7hI-uX-GqF"/>
                                     <constraint firstAttribute="height" constant="325" id="m9q-na-QO5"/>
                                     <constraint firstAttribute="width" constant="325" id="nuT-dc-e7T"/>
                                 </constraints>
@@ -327,7 +329,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dif-BS-zbw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dif-BS-zbw" userLabel="favoriteBtn">
                                 <rect key="frame" x="25" y="409" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dif-BS-zbw" secondAttribute="height" multiplier="1:1" id="2g2-0D-TmI"/>
@@ -336,7 +338,7 @@
                                 </constraints>
                                 <state key="normal" image="favorite"/>
                                 <connections>
-                                    <action selector="removeItemBtn:" destination="dWU-fE-xou" eventType="touchUpInside" id="V4j-NU-7Vg"/>
+                                    <action selector="favoriteItemBtn:" destination="dWU-fE-xou" eventType="touchUpInside" id="SPv-ev-3Ry"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzl-gC-3M8">
@@ -421,7 +423,7 @@
                                 <rect key="frame" x="86" y="448" width="202" height="51"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="googleBtnTapped:" destination="OHd-TI-KIp" eventType="valueChanged" id="cDl-fn-Na5"/>
+                                    <action selector="googleBtnTapped:" destination="OHd-TI-KIp" eventType="valueChanged" id="KAR-rK-GZH"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -445,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kw3-w2-Q9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4234" y="488"/>
+            <point key="canvasLocation" x="-4290" y="515"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gxt-cO-iRt">
@@ -473,7 +475,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlX-Q6-7V5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3391" y="488"/>
+            <point key="canvasLocation" x="-3409" y="515"/>
         </scene>
         <!--Edit Post-->
         <scene sceneID="X8f-Np-lgR">
@@ -496,15 +498,6 @@
                                             <constraint firstAttribute="width" secondItem="Ejz-Zc-MgT" secondAttribute="height" multiplier="1:1" id="XEM-Id-NYT"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoM-DS-aLE" userLabel="addImgBtn">
-                                        <rect key="frame" x="25" y="88" width="325" height="325"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="OoM-DS-aLE" secondAttribute="height" multiplier="1:1" id="a12-xo-dBx"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="changeImageBtn:" destination="eW5-U5-u9f" eventType="touchUpInside" id="NQe-ld-1og"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Edit Title Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NH5-CA-R07" userLabel="itemNameField">
                                         <rect key="frame" x="25" y="437" width="325" height="30"/>
                                         <nil key="textColor"/>
@@ -542,6 +535,18 @@
                                             <constraint firstAttribute="width" secondItem="Pjb-Uc-ZpB" secondAttribute="height" multiplier="1:1" id="rC0-sH-Ges"/>
                                         </constraints>
                                         <state key="normal" image="completeIcon"/>
+                                        <connections>
+                                            <action selector="updateBtnPressed:" destination="eW5-U5-u9f" eventType="touchUpInside" id="SQy-PI-WYV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoM-DS-aLE" userLabel="addImgBtn">
+                                        <rect key="frame" x="25" y="88" width="325" height="325"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="OoM-DS-aLE" secondAttribute="height" multiplier="1:1" id="a12-xo-dBx"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="changeImageBtn:" destination="eW5-U5-u9f" eventType="touchUpInside" id="jXg-cZ-dbF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -596,15 +601,20 @@
                             <constraint firstItem="yT2-EQ-0Vb" firstAttribute="top" secondItem="nP8-l5-nuv" secondAttribute="bottom" id="zy3-ht-hJd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Post" id="EmG-eu-lvU"/>
+                    <navigationItem key="navigationItem" title="Edit Post" id="EmG-eu-lvU">
+                        <barButtonItem key="rightBarButtonItem" image="delItemIcon" id="8qI-Dw-r0o">
+                            <inset key="imageInsets" minX="0.0" minY="-5" maxX="6" maxY="0.0"/>
+                            <connections>
+                                <action selector="delBtnPressed:" destination="eW5-U5-u9f" id="SSk-zS-530"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="descField" destination="kiR-Jz-dPB" id="zS0-Cm-97E"/>
-                        <outlet property="itemDescField" destination="kiR-Jz-dPB" id="U8w-U8-jC3"/>
-                        <outlet property="itemImageView" destination="Ejz-Zc-MgT" id="RLU-TL-qfL"/>
-                        <outlet property="itemNameField" destination="ITm-wa-jp6" id="uPh-hT-v14"/>
-                        <outlet property="itemPriceField" destination="bRl-eW-gy2" id="6Z4-kI-CGM"/>
-                        <outlet property="priceField" destination="bRl-eW-gy2" id="rWf-1M-lrb"/>
-                        <outlet property="scrollView" destination="nP8-l5-nuv" id="q91-pM-9m3"/>
+                        <outlet property="itemDescField" destination="kiR-Jz-dPB" id="FcL-El-Wf7"/>
+                        <outlet property="itemImageView" destination="Ejz-Zc-MgT" id="Tq4-7I-VEC"/>
+                        <outlet property="itemNameField" destination="NH5-CA-R07" id="LSv-kp-5Wa"/>
+                        <outlet property="itemPriceField" destination="bRl-eW-gy2" id="Wym-QY-1b6"/>
+                        <outlet property="scrollView" destination="nP8-l5-nuv" id="v7f-PJ-exC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7f-p0-jFh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -616,6 +626,7 @@
         <image name="SwapsLogo" width="256" height="256"/>
         <image name="completeIcon" width="64" height="64"/>
         <image name="default-placeholder" width="1500" height="1500"/>
+        <image name="delItemIcon" width="32" height="32"/>
         <image name="favorite" width="64" height="64"/>
         <image name="ps4" width="670" height="500"/>
         <image name="uploadIcon" width="64" height="64"/>
