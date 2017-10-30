@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import GoogleSignIn
+//NEEDS: before segue ask user for a Username
 
 /// Manages the Sign In View and the Google Sign In Authentication that occurs within the view
 class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
@@ -29,17 +30,13 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
      Signs in the user to Google & Firebase
      */
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("Sign in called")
         if (user != nil){
             if let authentication = user.authentication {
-                let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-                 print("authenticating!!!!!!!!!")
-                FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) -> Void in
-                    if error != nil {
-                        print("Problem at signing in with google with error : \(String(describing: error))")
-                    } else if error == nil {
+                let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+                Auth.auth().signIn(with: credential, completion: { (user, error) -> Void in
+                    if error == nil {
+                        //prompt for Username here, should only occur if user is logging in for the first time
                         self.performSegue(withIdentifier: "goToFeed", sender: self)
-                        print("user signed in")
                     }
                 })
             }
@@ -68,7 +65,7 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
      signed out the user from Firebase & Google
      */
     private func signOut(){
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
         GIDSignIn.sharedInstance().signOut()
     }
     
@@ -77,9 +74,9 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         super.viewDidLoad()
         signOut()
         coreDataManager.deleteAll()
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        FIRAuth.auth()
+        Auth.auth()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,6 +10,7 @@ import UIKit
 ///Managers the SaleItemViewCell and its attributes
 class SaleItemCollectionViewCell: UICollectionViewCell {
     
+
     // MARK: - Attributes
     //cell component references
     @IBOutlet var saleItemImg: UIImageView!
@@ -42,15 +43,11 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
      */
     private func setImageFromURL(imgURL: String){
         URLSession.shared.dataTask(with: NSURL(string: imgURL)! as URL, completionHandler: { (data, response, error) -> Void in
-            
-            if error != nil {
-                print(error!)
-                return
-            }
             DispatchQueue.main.async(execute: { () -> Void in
                 let image = UIImage(data: data!)
                 self.saleItem?.image = image
                 self.saleItemImg.image = image
+                print("Image is being downloaded")
             })
             
         }).resume()

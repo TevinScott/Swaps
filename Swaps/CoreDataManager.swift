@@ -54,9 +54,7 @@ class CoreDataManager {
         userNSManagedObject.setValue(signedInUser, forKeyPath: "userdata")
         do {
             try context.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        } catch {}
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
     }

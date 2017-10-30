@@ -11,5 +11,5 @@ target 'Swaps' do
     pod 'FirebaseStorage'
     pod 'FirebaseAuth'
     pod 'GoogleSignIn'
-    
+    pod 'Google-Mobile-Ads-SDK'
 end

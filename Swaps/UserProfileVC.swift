@@ -19,15 +19,16 @@ class UserProfileVC: UIViewController {
     @IBOutlet var signOutBtn: UIButton!
     
     @IBAction func signOutBtnPressed(_ sender: Any) {
-        
+        signOut()
     }
+
     // MARK: - Support Functions
     /**
      signs out the current Google User from google & Firebase
      and removes their data from core Data
      */
     private func signOut(){
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
         GIDSignIn.sharedInstance().signOut()
         coreDataManager.deleteAll()
     }

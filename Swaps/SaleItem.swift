@@ -30,9 +30,8 @@ class SaleItem {
      - parameters:
          - snapshot: A snapshot of a saleItem currently in the FirebaseDatabase
      */
-    init(snapshot: FIRDataSnapshot) {
+    init(snapshot: DataSnapshot) {
         let saleAttribute = snapshot.value as! [String: Any]
-        
         itemID = snapshot.key
         name = ((saleAttribute["name"]) as? String)!
         price = ((saleAttribute["price"]) as? String)!

@@ -19,6 +19,7 @@ class KeyboardHandler {
     init( view: UIScrollView){
         scrollViewHandle = view
     }
+    
     /**
      adds the observers from the viewHandle
      */
@@ -33,6 +34,7 @@ class KeyboardHandler {
             self.keyboardWillHide(notification: notification)
         }
     }
+    
     /**
      removes the observers from the viewHandle
      */

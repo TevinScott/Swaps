@@ -10,13 +10,17 @@ import Foundation
 import UIKit
 import GoogleSignIn
 import Firebase
+import GoogleMobileAds
 
 /// A Collection View Controller that manages the Feed Collection and its Sale Item Cells
 class FeedCollectionVC: UICollectionViewController{
     
+    var adsToLoad = [GADNativeExpressAdView]()
+    let adInterval = 3
+    
     // MARK: - Attributes
-    let cdataManager = CoreDataManager()
-    let fbaseDataManager = FirebaseDataManager()
+    let coredataManager = CoreDataManager()
+    let firebaseDataManager = FirebaseDataManager()
     //var keyboardHandler : KeyboardHandler!
     //layout properties
     private let leftAndRightPadding: CGFloat = 32.0
@@ -80,7 +84,6 @@ class FeedCollectionVC: UICollectionViewController{
         return cell
     }
     
-    
     /**
      Tells the delegate that the item at the specified index path was selected.
      The collection view calls this method when the user successfully selects an item in the collection view.
@@ -94,7 +97,7 @@ class FeedCollectionVC: UICollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
-            let userID = FIRAuth.auth()!.currentUser!.uid
+            let userID = Auth.auth().currentUser!.uid
 
             if(cell.saleItem?.userID == userID){
                 performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
@@ -142,12 +145,24 @@ class FeedCollectionVC: UICollectionViewController{
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
         //keyboardHandler = KeyboardHandler.init(view: )
-        fbaseDataManager.getAllItems() { (completedList) -> () in
+        firebaseDataManager.getAllItems() { (completedList) -> () in
             self.setOfItems = ItemCollection.init(inputList: completedList)
             
         }
+        //addNativeExpressAds()
     }
     
+    /** for next feature commit
+    func addNativeExpressAds(){
+        let index = 2
+        let size = GADAdSizeFromCGSize(CGSize(width: 150, height: 150))
+        while index < setOfItems.collectionCount {
+            let adView = GADNativeExpressAdView(adSize: size)
+            //Stopping Point
+            //https://www.youtube.com/watch?v=chNb7-k6m4M 3:00 in
+        }
+    }
+   */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

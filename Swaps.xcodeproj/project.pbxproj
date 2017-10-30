@@ -14,6 +14,9 @@
 		E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2405C601F7481AC00F2EF49 /* Assets.xcassets */; };
 		E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C621F7481AC00F2EF49 /* LaunchScreen.storyboard */; };
 		E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */; };
+		E24B8BF91F9BE8DE0008C308 /* UserAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */; };
+		E24B8BFB1F9BEAC60008C308 /* String+ToBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8BFA1F9BEAC60008C308 /* String+ToBoolean.swift */; };
+		E24B8C031F9D01330008C308 /* SwapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8C021F9D01330008C308 /* SwapsTests.swift */; };
 		E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F8EA61F906038008BAFAD /* SignInVC.swift */; };
 		E24F8EA91F913DD3008BAFAD /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */; };
 		E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA161F7B17650073102B /* FeedCollectionVC.swift */; };
@@ -29,6 +32,16 @@
 		F8615FEFEAFEE55B6530EA9B /* Pods_Swaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E24B8C051F9D01330008C308 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2405C4B1F7481AC00F2EF49 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2405C521F7481AC00F2EF49;
+			remoteInfo = Swaps;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.release.xcconfig"; sourceTree = "<group>"; };
 		716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +55,11 @@
 		E2405C631F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2405C651F7481AC00F2EF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
+		E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountInfo.swift; sourceTree = "<group>"; };
+		E24B8BFA1F9BEAC60008C308 /* String+ToBoolean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToBoolean.swift"; sourceTree = "<group>"; };
+		E24B8C001F9D01330008C308 /* SwapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E24B8C021F9D01330008C308 /* SwapsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapsTests.swift; sourceTree = "<group>"; };
+		E24B8C041F9D01330008C308 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E24F8EA61F906038008BAFAD /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		E24FAA161F7B17650073102B /* FeedCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCollectionVC.swift; sourceTree = "<group>"; };
@@ -62,6 +80,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8615FEFEAFEE55B6530EA9B /* Pods_Swaps.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E24B8BFD1F9D01330008C308 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				E2405C551F7481AC00F2EF49 /* Swaps */,
+				E24B8C011F9D01330008C308 /* SwapsTests */,
 				E2405C541F7481AC00F2EF49 /* Products */,
 				05230057DF039E863EB0F844 /* Pods */,
 				13E60030EAB86342218CB0B4 /* Frameworks */,
@@ -99,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				E2405C531F7481AC00F2EF49 /* Swaps.app */,
+				E24B8C001F9D01330008C308 /* SwapsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +135,7 @@
 			children = (
 				E2A5AEC41F85BE6E00EE62A5 /* Extensions */,
 				E2405C601F7481AC00F2EF49 /* Assets.xcassets */,
+				E2D1BB611F99835D0063E8AA /* UI Functionality */,
 				E2CF505C1F9155C60071EAD2 /* Data Managers */,
 				E2D1DCA51F79FF8900891BA7 /* Data Structures */,
 				E2D1DCA61F79FFB300891BA7 /* Important Stuff */,
@@ -117,12 +145,20 @@
 			path = Swaps;
 			sourceTree = "<group>";
 		};
+		E24B8C011F9D01330008C308 /* SwapsTests */ = {
+			isa = PBXGroup;
+			children = (
+				E24B8C021F9D01330008C308 /* SwapsTests.swift */,
+				E24B8C041F9D01330008C308 /* Info.plist */,
+			);
+			path = SwapsTests;
+			sourceTree = "<group>";
+		};
 		E2A5AEC41F85BE6E00EE62A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */,
 				E2F890641F81314800CD479D /* UIImage+ImageCompression.swift */,
-				E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */,
+				E24B8BFA1F9BEAC60008C308 /* String+ToBoolean.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -134,6 +170,14 @@
 				E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */,
 			);
 			name = "Data Managers";
+			sourceTree = "<group>";
+		};
+		E2D1BB611F99835D0063E8AA /* UI Functionality */ = {
+			isa = PBXGroup;
+			children = (
+				E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */,
+			);
+			name = "UI Functionality";
 			sourceTree = "<group>";
 		};
 		E2D1DCA41F79FF6600891BA7 /* View Controllers */ = {
@@ -155,6 +199,7 @@
 			children = (
 				E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */,
 				E24FAA1C1F7C80740073102B /* ItemCollection.swift */,
+				E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -163,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				E2405C561F7481AC00F2EF49 /* AppDelegate.swift */,
+				E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */,
 				E2405C651F7481AC00F2EF49 /* Info.plist */,
 				E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */,
 			);
@@ -201,13 +247,31 @@
 			productReference = E2405C531F7481AC00F2EF49 /* Swaps.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E24B8BFF1F9D01330008C308 /* SwapsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E24B8C071F9D01330008C308 /* Build configuration list for PBXNativeTarget "SwapsTests" */;
+			buildPhases = (
+				E24B8BFC1F9D01330008C308 /* Sources */,
+				E24B8BFD1F9D01330008C308 /* Frameworks */,
+				E24B8BFE1F9D01330008C308 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E24B8C061F9D01330008C308 /* PBXTargetDependency */,
+			);
+			name = SwapsTests;
+			productName = SwapsTests;
+			productReference = E24B8C001F9D01330008C308 /* SwapsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E2405C4B1F7481AC00F2EF49 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Tevin Scott";
 				TargetAttributes = {
@@ -216,6 +280,12 @@
 						DevelopmentTeam = Z77JDD3BWU;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+					};
+					E24B8BFF1F9D01330008C308 = {
+						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = Z77JDD3BWU;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E2405C521F7481AC00F2EF49;
 					};
 				};
 			};
@@ -233,6 +303,7 @@
 			projectRoot = "";
 			targets = (
 				E2405C521F7481AC00F2EF49 /* Swaps */,
+				E24B8BFF1F9D01330008C308 /* SwapsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +317,13 @@
 				E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */,
 				E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */,
 				E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E24B8BFE1F9D01330008C308 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +388,7 @@
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
+				E24B8BFB1F9BEAC60008C308 /* String+ToBoolean.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */,
 				E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */,
@@ -318,11 +397,28 @@
 				E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */,
 				E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */,
 				E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */,
+				E24B8BF91F9BE8DE0008C308 /* UserAccountInfo.swift in Sources */,
 				E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E24B8BFC1F9D01330008C308 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E24B8C031F9D01330008C308 /* SwapsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E24B8C061F9D01330008C308 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2405C521F7481AC00F2EF49 /* Swaps */;
+			targetProxy = E24B8C051F9D01330008C308 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E2405C5A1F7481AC00F2EF49 /* Main.storyboard */ = {
@@ -479,6 +575,48 @@
 			};
 			name = Release;
 		};
+		E24B8C081F9D01330008C308 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z77JDD3BWU;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SwapsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Scotty.SwapsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swaps.app/Swaps";
+			};
+			name = Debug;
+		};
+		E24B8C091F9D01330008C308 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z77JDD3BWU;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SwapsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Scotty.SwapsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swaps.app/Swaps";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -496,6 +634,15 @@
 			buildConfigurations = (
 				E2405C691F7481AC00F2EF49 /* Debug */,
 				E2405C6A1F7481AC00F2EF49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E24B8C071F9D01330008C308 /* Build configuration list for PBXNativeTarget "SwapsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E24B8C081F9D01330008C308 /* Debug */,
+				E24B8C091F9D01330008C308 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

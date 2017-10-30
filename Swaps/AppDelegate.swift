@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Overridden Init
     override init(){
-        FIRApp.configure()
+        FirebaseApp.configure()
     }
     
     @available(iOS 9.0, *)

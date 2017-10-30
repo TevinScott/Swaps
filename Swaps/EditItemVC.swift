@@ -8,9 +8,10 @@
 
 import Foundation
 import UIKit
+//Needs: revert changes button
 
 ///A View Controller that Manages the Edit Item View
-class EditItemVC: UIViewController {
+class EditItemVC: UIViewController, UITextViewDelegate {
     
  // MARK: - Attributes
     var fbaseDataManager = FirebaseDataManager()
@@ -32,10 +33,14 @@ class EditItemVC: UIViewController {
      
      */
     @IBAction func changeImageBtn(_ sender: Any) {
-        openCamera()
-        if(itemImageView.image != saleItem.image){
-            print("image has been changed")
-            imageHasBeenChanged = true
+
+        //open prompt as if user would like to change current image
+        //if prompt true execute below
+        if(showDialog()){
+            openCamera()
+            if(itemImageView.image != saleItem.image){
+                imageHasBeenChanged = true
+            }
         }
     }
     
@@ -48,7 +53,7 @@ class EditItemVC: UIViewController {
      */
     @IBAction func delBtnPressed(_ sender: Any) {
         fbaseDataManager.deleteSaleItem(saleItemToDelete: saleItem)
-        _ = navigationController?.popViewController(animated: true) //needs test
+        _ = navigationController?.popViewController(animated: true)
     }
     
     /**
@@ -60,19 +65,41 @@ class EditItemVC: UIViewController {
      */
     @IBAction func updateBtnPressed(_ sender: Any) {
         self.updateSaleItem()
-         _ = navigationController?.popViewController(animated: true) //needs test
+         _ = navigationController?.popViewController(animated: true)
     }
     
+    /**
+     creates a dialog overlay, asking the user if they would like to proceed to replace their currently set image
+     
+     - returns: User's response to dialog: True if they would like to replace current image, False if not.
+     */
+    private func showDialog() -> Bool {
+        var answer = false
+        let alertController = UIAlertController(title: "Change Image?", message: "This will replace your current Image", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        let continueAction = UIAlertAction(title: "Continue", style: .default) { (_) in
+            answer = true;
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(continueAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+        return answer
+    }
     // MARK: - Support Functions
+    /**
+     updates this classes saleItem attributes based on the users new input
+     */
     private func updateSaleItem(){
+        var oldImageURL : String = ""
         saleItem.name = itemNameField.text
         saleItem.price = itemPriceField.text
         saleItem.description = itemDescField.text
         if(imageHasBeenChanged){
             saleItem.image = itemImageView.image
+            oldImageURL = saleItem.imageURL!
         }
-        fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged)
-        //need condition for if the image has been changed
+        fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
     }
     /**
      updateUI sets all outletted values within this view controller to this current values in
@@ -106,11 +133,6 @@ class EditItemVC: UIViewController {
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
     /**
      assigns the Image taking within the UIImagePickerController to a ImageView
      
@@ -155,5 +177,9 @@ class EditItemVC: UIViewController {
         keyboardHandler.removeObservers()
     }
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
 }
