@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+
 /// SaleItem describes an item that a user would like to Sell
 class SaleItem {
     
@@ -23,7 +24,7 @@ class SaleItem {
     let placeholderImage = UIImage(named: "default-placeholder")
     var userID: String? //if a new item is created the current Google User ID should be used
     
-     // MARK: - Initializers
+    // MARK: - Initializers
     /**
     intializes variables to default placeholder values for testing.
      

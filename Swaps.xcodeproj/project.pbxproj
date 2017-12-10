@@ -23,6 +23,7 @@
 		E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */; };
 		E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* ItemCollection.swift */; };
 		E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */; };
+		E2686DD71FAB6CD100CDA5C8 /* AccountSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */; };
 		E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */; };
 		E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286B9321F918344008000B3 /* UserProfileVC.swift */; };
 		E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */; };
@@ -66,6 +67,7 @@
 		E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
 		E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItemVC.swift; sourceTree = "<group>"; };
+		E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupVC.swift; sourceTree = "<group>"; };
 		E286B9321F918344008000B3 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
+				E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */,
 				E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */,
+				E2686DD71FAB6CD100CDA5C8 /* AccountSetupVC.swift in Sources */,
 				E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */,
 				E2F1A7C71F86926800EE7C24 /* EditItemVC.swift in Sources */,
 				E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */,

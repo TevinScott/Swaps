@@ -10,22 +10,28 @@ import Foundation
 import UIKit
 import Firebase
 import GoogleSignIn
-//NEEDS: before segue ask user for a Username
 
+//NEEDS: before segue ask user for a Username
 /// Manages the Sign In View and the Google Sign In Authentication that occurs within the view
 class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     // MARK: - Attributes
-    let coreDataManager: CoreDataManager = CoreDataManager.init()
+    @IBOutlet var noAccountBtn: UIButton!
+    let coreDataManager: CoreDataManager = CoreDataManager()
+    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     
     // MARK: - Button Action
+    /**
+     begins the sign in process to Google upon recieving the button Action
+     
+     - parameters:
+        - sender: the object reference of the Button that called this function
+     */
     @IBAction func googleBtnTapped(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
     }
     
-    
     // MARK: - Google Sign-In Functions
-
     /**
      Signs in the user to Google & Firebase
      */
@@ -35,8 +41,13 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
                 Auth.auth().signIn(with: credential, completion: { (user, error) -> Void in
                     if error == nil {
-                        //prompt for Username here, should only occur if user is logging in for the first time
-                        self.performSegue(withIdentifier: "goToFeed", sender: self)
+                        self.firebaseDataManager.isUserSetup{ (answer) -> () in
+                            if(answer){
+                                self.performSegue(withIdentifier: "skipSetupSegueToFeed", sender: self)
+                            } else {
+                                self.performSegue(withIdentifier: "goToAccountCreation", sender: self)
+                            }
+                        }
                     }
                 })
             }
@@ -70,8 +81,10 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     }
     
     // MARK: - View controller life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        noAccountBtn.titleLabel?.textAlignment = NSTextAlignment.center
         signOut()
         coreDataManager.deleteAll()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID

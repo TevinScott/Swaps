@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import GoogleSignIn
 import Firebase
+
 ///A View Controller that Manages the New Item View
 class NewItemVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextViewDelegate {
-    
     
     // MARK: - Attributes
     let cdataManager: CoreDataManager = CoreDataManager()
@@ -26,15 +26,12 @@ UINavigationControllerDelegate, UITextViewDelegate {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet var scrollView: UIScrollView!
     
-    
-    
     // MARK: - Button Actions
     /**
      Opens Camera on tap
 
      - parameters:
          - sender: the object reference of the Button that called this function
- 
      */
     @IBAction func addImgBtn(_ sender: Any) {
         if(imageAdded){
@@ -67,7 +64,7 @@ UINavigationControllerDelegate, UITextViewDelegate {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = .camera;
+            imagePicker.sourceType = .camera
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
@@ -99,9 +96,9 @@ UINavigationControllerDelegate, UITextViewDelegate {
      */
     private func checkAllFieldsCompleted() -> Bool{
         var isCompleted = false;
-        if(nameField.text!.characters.count > 0){
-            if(descField.text!.characters.count > 0){
-                if(priceField.text!.characters.count > 0){
+        if(nameField.text!.count > 0){
+            if(descField.text!.count > 0){
+                if(priceField.text!.count > 0){
                     if(imageAdded){
                         isCompleted = true;
                     }
@@ -119,7 +116,7 @@ UINavigationControllerDelegate, UITextViewDelegate {
      */
     private func createNewItemObj() -> SaleItem {
         
-        let newItem: SaleItem = SaleItem()
+        let newItem = SaleItem()
         
         newItem.category = "All"
         newItem.description = descField.text

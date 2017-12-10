@@ -31,9 +31,10 @@ class FirebaseDataManager {
         userRef = rootRef.child("UserAccounts")
     }
     
-    // MARK: - Get Data
+    // MARK: - Sale Item Functionality
+    
     /**
-     adds new items to the class variable listOfItems and removes sales items that are no longer in the database
+     Adds new items to the class variable listOfItems and removes sales items that are no longer in the database
      
      - parameters:
      - completion: on completion the escaping value [SaleItem] is instatiated from the FireBase list of Sale Items
@@ -63,17 +64,192 @@ class FirebaseDataManager {
     }
     
     /**
-     checks if the current User's account is in the Firebase database
+     Checks if the current User's account is in the Firebase database
      
      - Parameters:
          - userAccountInfo: the account for which will be checked.
          - completion:  returns true if the user already exists in firebase database
      */
-    func checkUserAccount(userInfo: UserAccountInfo, completion: @escaping(Bool) ->()){
-        userRef.queryOrdered(byChild: "name").queryStarting(atValue: userInfo.userID).queryEnding(atValue: userInfo.userID+"\u{f8ff}").observe(.value, with:
-            { snapshot in })
+    func checkUserAccount(userInfo: UserAccountInfo, answer: @escaping(Bool) ->()){
+        userRef.queryOrdered(byChild: "username").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            snapshot.hasChild(userInfo.chosenUsername) ? answer(true) : answer(false)
+        })
     }
 
+    /**
+     Uploads a SaleItem Object's values to Firebase's Webservice..
+     Firebase Storage for the item image.
+     Firebase Database for item name, price, description, category and, a URL reference to the image in Firebase Storage.
+     
+     - Parameter saleItem: the SaleItem Object for which will be Uploaded to the Firebase Webservice
+     */
+    func uploadSaleItem(inputSaleItem: SaleItem){
+
+        uploadItemImage(name: inputSaleItem.name!, image: inputSaleItem.image!){ (completedURL) -> () in //image upload
+            inputSaleItem.imageURL = completedURL
+            self.uploadSaleItemToDatabase(saleItem: inputSaleItem) //saleItem upload
+        }
+    }
+
+    /**
+     Updates the current user's saleitem and stores it within the firebase database
+     
+     - Parameters:
+         - saleItem:        a reference to the saleItem that is to be updated within the database
+         - imageChanged:    specifies if the saleItem image needs to also be updated in firebase storage should this value be true
+     */
+    func updateDatabaseSaleItem(saleItem: SaleItem, imageChanged: Bool, previousURL: String){
+        if( Auth.auth().currentUser!.uid == saleItem.userID){
+            saleRef.child(saleItem.itemID!).updateChildValues(["name": saleItem.name!,
+                                                               "price" : saleItem.price!,
+                                                               "desc" : saleItem.description!])
+                if(imageChanged){
+                    self.uploadItemImage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in
+                        self.deleteImageInFireStorage(imageURL: saleItem.imageURL!)
+                        saleItem.imageURL = completedURL
+                        self.deleteImageInFireStorage(imageURL: previousURL)
+                        self.saleRef.child(saleItem.itemID!).updateChildValues(["imageURL" : completedURL])
+                    }
+                }
+        }
+    }
+    
+    /**
+     Updates a current user account should the user decide to user their One time username Change
+     
+     - parameter userAccountInfo: a reference to the userAccountInfo that represents the modified information of a users account info
+     */
+    func updateUserAccountInfo(userAccountInfo: UserAccountInfo){
+        let query = userRef.queryOrderedByKey().queryEqual(toValue: userAccountInfo.userID)
+        query.observe(.childAdded, with: { (snapshot) in
+            snapshot.ref.updateChildValues(["chosenUsername" : userAccountInfo.chosenUsername,
+                                            "nameChangeUsed" : String(userAccountInfo.oneTimeNameChangeUsed)])
+        })
+    }
+
+    // MARK: - Delete Data
+    /**
+     Removes the given Sale Item from the firebase database
+     
+     - Parameter saleItemID: the primary ID of the saleItem that will be removed from the FireBase Database
+     
+     */
+    func deleteSaleItem(saleItemToDelete: SaleItem) {
+        saleRef = rootRef.child("Sale Items")
+        saleRef?.child(saleItemToDelete.itemID!).removeValue()
+        deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
+    }
+    
+    // MARK: - User Account Functionality
+    /**
+     Uploads a User's Account Info Object to Firebase's Webservice.
+     Firebase Storage for the user's profile image.
+     Firebase Database for the userID, chosenUsername, oneTimeNameChangeUsed, and the URL reference to the image in Firebase Storage.
+     
+     - Parameter userAccountInfo: the UserAccountInfo Object for which will be Uploaded to the Firebase Webservice
+     */
+    func uploadUserInfo(userAccountInfo: UserAccountInfo){
+        
+        uploadItemImage(name: userAccountInfo.userID!, image: userAccountInfo.profileImage!){ (completedURL) -> () in //image upload
+            userAccountInfo.profileImageURL = completedURL
+            self.uploadUserInfoToDatabase(userAccountInfo: userAccountInfo) //saleItem upload
+        }
+    }
+    
+    /**
+     Checks weither the currently signed in user has already been setup within the firebase database
+     
+     - parameters:
+        - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in Swaps
+    */
+    func isUserSetup(answer: @escaping (Bool) -> ()){
+        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            print("USER CHECK CALLED")
+            if(snapshot.exists()){
+                answer(true)
+            } else {
+                answer(false)
+            }
+        })
+    }
+    
+    /**
+     checks weither the given username is possesed by another user within the firebase database
+     
+     - parameters:
+        - nameToCheckFor: the user name that will be searched for in the Firebase Datebase
+        - userNameAvailable: returns a escaping (Bool) value, returning true or false based on wether the parameter nameToCheckFor is within the firebase Database
+    */
+    func isNameAvailable(nameToCheckFor: String, userNameAvailable: @escaping (Bool) -> ()){
+        userNameAvailable(false)
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if ( !(snapshot.hasChild(nameToCheckFor)) ){
+               userNameAvailable(true)
+            }
+        })
+    }
+    
+    // MARK: - Firebase Helper Functions
+    /**
+     removes the image from Firebase Storage from the given imageURL
+     
+     - Parameter imageURL: URL of the image that will be deleted from Firebase Storage
+     */
+    private func deleteImageInFireStorage (imageURL: String) {
+        let imageRef = Storage.storage().reference(forURL: imageURL)
+        imageRef.delete{(error)in}
+    }
+    
+    /**
+     Uploads a UserAccountInfo object to firebase database under the key value of UserAccounts
+     
+     - parameter userAccountInfo: the reference to the UserAccountInfo object that will be added to firebase
+     */
+    private func uploadUserInfoToDatabase(userAccountInfo: UserAccountInfo){
+        let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
+                                                         "chosenUsername" : userAccountInfo.chosenUsername,
+                                                         "profileImageURL" : userAccountInfo.profileImageURL,
+                                                         "oneTimeNameChangeUsed?" : String(userAccountInfo.oneTimeNameChangeUsed)]
+        rootRef.child("UserAccounts").childByAutoId().setValue(userAccountDictionary)
+    }
+    
+    /**
+     this function is to ONLY assist uploadSaleItemToAll
+     uploads a SaleItems Object's values ONLY to Firebase Database.
+     
+     - Parameter saleItem: the item for which the value of will be uploaded
+     */
+    private func uploadSaleItemToDatabase(saleItem: SaleItem){
+        
+        let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.name as AnyObject,
+                                                         "price" : saleItem.price as AnyObject,
+                                                         "desc" : saleItem.description as AnyObject,
+                                                         "imageURL" : saleItem.imageURL as AnyObject,
+                                                         "category" : saleItem.category as AnyObject,
+                                                         "userID" : saleItem.userID as AnyObject,]
+        saleRef.childByAutoId().setValue(saleItemDictionary)
+    }
+    
+    /**
+     Uploads The current image stored in the given saleItem object to Firebase Storage and returns the URL reference.
+     
+     - Parameter saleItem: a reference to the saleItem for which the containing image will be uploaded
+     - parameter completionURL: URL that references the image in firebase storage
+     
+     */
+    private func uploadItemImage(name: String,image: UIImage, completionURL: @escaping (String) -> ()){
+        let fileStorage = Storage.storage().reference().child("\(String(describing: name)).png")
+        if let imageToUpload = UIImagePNGRepresentation(image) {
+            fileStorage.putData(imageToUpload, metadata: nil, completion: {
+                (metadata, error) in
+                if(error != nil){
+                    return
+                }
+                completionURL((metadata?.downloadURL()?.absoluteString)!)
+            })
+        }
+    }
+    
     /**
      Returns the index of the saleItem that has been deleted from the firebase database
      
@@ -92,132 +268,4 @@ class FirebaseDataManager {
         return -1
     }
 
-    /**
-     uploads a SaleItem Object's values to Firebase Cloud Storage.
-     Firebase Storage for the item image.
-     Firebase Database for item name, price, description, category and, a URL reference to the image in Firebase Storage.
-     
-     - Parameter saleItem: the saleItem Object for which will be Uploaded
-     */
-    func uploadSaleItem(inputSaleItem: SaleItem){
-
-        uploadItemImage(saleItem: inputSaleItem){ (completedURL) -> () in //image upload
-            inputSaleItem.imageURL = completedURL
-            self.uploadSaleItemToDatabase(saleItem: inputSaleItem) //saleItem upload
-        }
-    }
-    
-    // MARK: - Update & Upload Data
-    /**
-     updates the current user's saleitem and stores it within the firebase database
-     
-     - Parameters:
-         - saleItem:        a reference to the saleItem that is to be updated within the database
-         - imageChanged:    specifies if the saleItem image needs to also be updated in firebase storage should this value be true
-     */
-    func updateDatabaseSaleItem(saleItem: SaleItem, imageChanged: Bool, previousURL: String){
-        if( Auth.auth().currentUser!.uid == saleItem.userID){
-            saleRef.child(saleItem.itemID!).updateChildValues(["name": saleItem.name!,
-                                                               "price" : saleItem.price!,
-                                                               "desc" : saleItem.description!])
-                if(imageChanged){
-                    self.uploadItemImage(saleItem: saleItem){ (completedURL) -> () in
-                        self.deleteImageInFireStorage(imageURL: saleItem.imageURL!)
-                        saleItem.imageURL = completedURL
-                        self.deleteImageInFireStorage(imageURL: previousURL)
-                        self.saleRef.child(saleItem.itemID!).updateChildValues(["imageURL" : completedURL])
-                    }
-                }
-        }
-    }
-    
-    /**
-     Uploads The current image stored in the given saleItem object to Firebase Storage and returns the URL reference.
-     
-     - Parameter saleItem: a reference to the saleItem for which the containing image will be uploaded
-     - parameter completionURL: URL that references the image in firebase storage
-     
-     */
-    private func uploadItemImage(saleItem: SaleItem, completionURL: @escaping (String) -> ()){
-        let fileStorage = Storage.storage().reference().child("\(String(describing: saleItem.name!)).png")
-        if let imageToUpload = UIImagePNGRepresentation(saleItem.image!) {
-            fileStorage.putData(imageToUpload, metadata: nil, completion: {
-                (metadata, error) in
-                if(error != nil){
-                    return
-                }
-                completionURL((metadata?.downloadURL()?.absoluteString)!)
-            })
-        }
-        
-    }
-    
-    /**
-     this function is to ONLY assist uploadSaleItemToAll
-     uploads a SaleItems Object's values ONLY to Firebase Database.
-     
-     - Parameter saleItem: the item for which the value of will be uploaded
- 
-     */
-    private func uploadSaleItemToDatabase(saleItem: SaleItem){
-        
-        let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.name as AnyObject,
-                                                         "price" : saleItem.price as AnyObject,
-                                                         "desc" : saleItem.description as AnyObject,
-                                                         "imageURL" : saleItem.imageURL as AnyObject,
-                                                         "category" : saleItem.category as AnyObject,
-                                                         "userID" : saleItem.userID as AnyObject,]
-        saleRef.childByAutoId().setValue(saleItemDictionary)
-    }
-    
-    /**
-     updates a current user account should the user decide to user their One time username Change
-     
-     - parameter userAccountInfo: a reference to the userAccountInfo that represents the modified information of a users account info
-     */
-    func updateUserAccountInfo(userAccountInfo: UserAccountInfo){
-        let query = userRef.queryOrderedByKey().queryEqual(toValue: userAccountInfo.userID)
-        query.observe(.childAdded, with: { (snapshot) in
-            snapshot.ref.updateChildValues(["chosenUsername" : userAccountInfo.chosenUsername,
-                                            "nameChangeUsed" : String(userAccountInfo.oneTimeNameChangeUsed)])
-        })
-    }
-    
-    /**
-     Uploads a UserAccountInfo object to firebase database under the key value of UserAccounts
-     
-     - parameter userAccountInfo: the reference to the UserAccountInfo object that will be added to firebase
-     
-     */
-    private func uploadUserInfo(userAccountInfo: UserAccountInfo){
-        let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
-                                                         "chosenUsername" : userAccountInfo.chosenUsername,
-                                                         "nameChangeUsed" : String(userAccountInfo.oneTimeNameChangeUsed)]
-        rootRef.child("UserAccounts").childByAutoId().setValue(userAccountDictionary)
-    }
-    
-    // MARK: - Delete Data
-    /**
-     removes the given Sale Item from the firebase database
-     
-     - Parameter saleItemID: the primary ID of the saleItem that will be removed from the FireBase Database
-     
-     */
-    func deleteSaleItem(saleItemToDelete: SaleItem) {
-        saleRef = rootRef.child("Sale Items")
-        saleRef?.child(saleItemToDelete.itemID!).removeValue()
-        deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
-    }
-    
-    /**
-     removes the image from Firebase Storage from the given imageURL
-     
-     - Parameter imageURL: URL of the image that will be deleted from Firebase Storage
-     
-     */
-    private func deleteImageInFireStorage (imageURL: String) {
-        let imageRef = Storage.storage().reference(forURL: imageURL)
-        imageRef.delete{(error)in}
-    }
-    
 }

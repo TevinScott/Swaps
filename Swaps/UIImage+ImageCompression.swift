@@ -5,9 +5,9 @@
 //  Created by Tevin Scott on 10/1/17.
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
-
 import Foundation
 import UIKit
+
 ///extenstion to the UIImage class that adds the .jpeg function which compresses the image to a enumerated preset
 extension UIImage {
     

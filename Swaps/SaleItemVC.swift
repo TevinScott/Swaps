@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 /// Manages the a SaleItem View
 class SaleItemVC: UIViewController {
     
@@ -37,6 +38,7 @@ class SaleItemVC: UIViewController {
     @IBAction func favoriteItemBtn(_ sender: Any) {
        //store user's favorited items by itemID into user's favorites list
     }
+    
     // MARK: - Support Functions
     /**
      updateUI sets all outletted values within this view controller to this current values in

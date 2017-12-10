@@ -11,13 +11,17 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-///A View Controller that Manages the Edit Item View
+///A View Controller that manages the Edit Item View
 class UserProfileVC: UIViewController {
     
     // MARK: - Attributes
     let coreDataManager: CoreDataManager = CoreDataManager.init()
     @IBOutlet var signOutBtn: UIButton!
     
+    /**
+     Sign out the user upon recieving the button action
+     
+     */
     @IBAction func signOutBtnPressed(_ sender: Any) {
         signOut()
     }

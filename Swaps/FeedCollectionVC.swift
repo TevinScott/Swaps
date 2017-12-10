@@ -33,7 +33,28 @@ class FeedCollectionVC: UICollectionViewController{
         }
     }
    
+    // MARK: - Button Actions
+    /**
+     Presents the newItemView to user, if they are currently signed into an account.
+     */
+    @IBAction func postItemBtnAction(_ sender: Any) {
+        if(Auth.auth().currentUser?.uid != nil) {
+            performSegue(withIdentifier: "postNewItemSegue", sender: self)
+        }
+    }
     
+    /**
+     this button action returns the user to the
+     */
+    @IBAction func profileBtnAction(_ sender: Any) {
+        if (Auth.auth().currentUser?.uid == nil){
+            self.dismiss(animated: true, completion: {})
+            self.navigationController?.popViewController(animated: true)
+
+        } else {
+            performSegue(withIdentifier: "goToProfileSegue", sender: self)
+        }
+    }
     
     // MARK: - Collection View function Overrides
     
@@ -44,8 +65,6 @@ class FeedCollectionVC: UICollectionViewController{
          -collectionView:   The collection view requesting this information
      
      - returns:             The number of sections in collectionView.
-     
-     
      */
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -59,8 +78,6 @@ class FeedCollectionVC: UICollectionViewController{
          -section:          An index number identifying a section in collectionView. This index value is 0-based.
      
      - returns:             The number of sections in collectionView.
-     
-     
      */
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  setOfItems.collectionCount //based on size of list
@@ -75,8 +92,6 @@ class FeedCollectionVC: UICollectionViewController{
          -indexPath:        The index path that specifies the location of the item.
      
      - returns:             A configured cell object. You must not return nil from this method.
-     
-     
      */
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
@@ -92,20 +107,20 @@ class FeedCollectionVC: UICollectionViewController{
      - parameters:
          -collectionView:   The collection view requesting this information.
          -indexPath:        The index path of the cell that was selected.
-     
      */
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
-            let userID = Auth.auth().currentUser!.uid
+            if let userID = Auth.auth().currentUser?.uid {
 
-            if(cell.saleItem?.userID == userID){
-                performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
-
-            }
-            else{
+                if(cell.saleItem?.userID == userID){
+                    performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
+                }else{
+                    performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+                }
+            }else{
+                //user is currently not signed in.
                 performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
-
             }
         } else {
             // Error indexPath is not on screen: this should never happen.
@@ -120,7 +135,6 @@ class FeedCollectionVC: UICollectionViewController{
      - parameters:
          -segue:    The segue object containing information about the view controllers involved in the segue.
          -sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
-     
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewSaleItemSegue"{
@@ -151,18 +165,17 @@ class FeedCollectionVC: UICollectionViewController{
         }
         //addNativeExpressAds()
     }
-    
-    /** for next feature commit
-    func addNativeExpressAds(){
-        let index = 2
-        let size = GADAdSizeFromCGSize(CGSize(width: 150, height: 150))
-        while index < setOfItems.collectionCount {
-            let adView = GADNativeExpressAdView(adSize: size)
-            //Stopping Point
-            //https://www.youtube.com/watch?v=chNb7-k6m4M 3:00 in
-        }
-    }
-   */
+    /** for future commit, google add
+     func addNativeExpressAds(){
+     let index = 2
+     let size = GADAdSizeFromCGSize(CGSize(width: 150, height: 150))
+     while index < setOfItems.collectionCount {
+     let adView = GADNativeExpressAdView(adSize: size)
+     //Stopping Point
+     //https://www.youtube.com/watch?v=chNb7-k6m4M 3:00 in
+     }
+     }
+     */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

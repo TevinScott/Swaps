@@ -11,13 +11,13 @@ import CoreData
 import UIKit
 import Firebase
 import GoogleSignIn
+
 /// a Composite Class that manages the saving, reading, & viewing of the CoreData Entities
 class CoreDataManager {
     
     //MARK: - Attributes
     let appDelegate: AppDelegate
     var context: NSManagedObjectContext 
-    
     
     // MARK: - Intializer
     /**

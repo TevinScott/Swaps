@@ -5,8 +5,8 @@
 //  Created by Tevin Scott on 9/26/17.
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
-
 import UIKit
+
 ///Managers the SaleItemViewCell and its attributes
 class SaleItemCollectionViewCell: UICollectionViewCell {
     
@@ -47,7 +47,6 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
                 let image = UIImage(data: data!)
                 self.saleItem?.image = image
                 self.saleItemImg.image = image
-                print("Image is being downloaded")
             })
             
         }).resume()

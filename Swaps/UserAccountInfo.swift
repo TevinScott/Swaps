@@ -9,11 +9,17 @@
 import Foundation
 import Firebase
 
+/// A Data Structure to manage The user's account information
 class UserAccountInfo {
+    
+    // MARK: - Attributes
     var userID : String!
     var chosenUsername: String!
     var oneTimeNameChangeUsed: Bool!
+    var profileImageURL : String!
+    var profileImage = UIImage(named: "default-placeholder")
     
+    // MARK: - Initializers
     /**
      initializes the UserAccountInfo attributes to the given parameters
      
@@ -22,10 +28,26 @@ class UserAccountInfo {
      - inputChosenUername: the chosen display name of the user currrently signed in to the app
      - inputNameChangeUsed: will always return true should the user decide to change their username
      */
-    init(inputUserID: String, inputChosenUsername: String, inputNameChangeUsed: Bool){
+    init(inputUserID: String, inputChosenUsername: String, inputNameChangeUsed: Bool, inputProfileImage: UIImage){
         userID = inputUserID
         chosenUsername = inputChosenUsername
         oneTimeNameChangeUsed = inputNameChangeUsed
+        profileImage = inputProfileImage
+    }
+    /**
+     initializes the UserAccountInfo attributes to the given parameters
+     
+     - Parameters:
+     - inputUserID: the userID of the user currrently signed in to the app
+     - inputChosenUername: the chosen display name of the user currrently signed in to the app
+     - inputNameChangeUsed: will always return true should the user decide to change their username
+     - inputProfileURL: a url Reference to the user's profile image
+     */
+    init(inputUserID: String, inputChosenUsername: String, inputNameChangeUsed: Bool, inputProfileImageURL: String){
+        userID = inputUserID
+        chosenUsername = inputChosenUsername
+        oneTimeNameChangeUsed = inputNameChangeUsed
+        profileImageURL = inputProfileImageURL
     }
     /**
      initializes the UserAccountInfo attributes to the given Firebase snapshot
@@ -35,5 +57,6 @@ class UserAccountInfo {
         userID = ((userProfileDictionary["userID"]) as? String)!
         chosenUsername = ((userProfileDictionary["chosenUsername"]) as? String)!
         oneTimeNameChangeUsed = ((userProfileDictionary["nameChanged?"]) as? String)?.toBool()!
+        profileImageURL = ((userProfileDictionary["profileImageURL"]) as? String)!
     }
 }

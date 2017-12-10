@@ -8,12 +8,12 @@
 
 import Foundation
 import UIKit
-//Needs: revert changes button
+//NEEDS: revert changes button
 
 ///A View Controller that Manages the Edit Item View
 class EditItemVC: UIViewController, UITextViewDelegate {
     
- // MARK: - Attributes
+    // MARK: - Attributes
     var fbaseDataManager = FirebaseDataManager()
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var itemNameField: UITextField!
@@ -49,7 +49,6 @@ class EditItemVC: UIViewController, UITextViewDelegate {
      
      - parameters:
          - sender: the object reference of the Button that called this function
-     
      */
     @IBAction func delBtnPressed(_ sender: Any) {
         fbaseDataManager.deleteSaleItem(saleItemToDelete: saleItem)
@@ -86,7 +85,9 @@ class EditItemVC: UIViewController, UITextViewDelegate {
         
         return answer
     }
+    
     // MARK: - Support Functions
+    
     /**
      updates this classes saleItem attributes based on the users new input
      */
@@ -101,6 +102,7 @@ class EditItemVC: UIViewController, UITextViewDelegate {
         }
         fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
     }
+    
     /**
      updateUI sets all outletted values within this view controller to this current values in
      the saleItem value
