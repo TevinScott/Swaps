@@ -24,8 +24,9 @@ UINavigationControllerDelegate, UITextViewDelegate {
     @IBOutlet var priceField: UITextField!
     @IBOutlet var descField: UITextView!
     @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet var addImgBtn: UIButton!
     @IBOutlet var scrollView: UIScrollView!
-    
+    var activeTextField: UITextField!
     // MARK: - Button Actions
     /**
      Opens Camera on tap
@@ -34,15 +35,7 @@ UINavigationControllerDelegate, UITextViewDelegate {
          - sender: the object reference of the Button that called this function
      */
     @IBAction func addImgBtn(_ sender: Any) {
-        if(imageAdded){
-            //open prompt
-            if(showInputDialog()){
-                openCamera()
-            }
-        }else{
-            openCamera()
-        }
-        
+        showCameraOrLibraryDialog()
     }
     
     /**
@@ -58,7 +51,6 @@ UINavigationControllerDelegate, UITextViewDelegate {
     // MARK: - Support Functions
     /**
      opens a camera view over the current view
-     
      */
     private func openCamera() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -69,7 +61,18 @@ UINavigationControllerDelegate, UITextViewDelegate {
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
-    
+    /**
+     opens a photo library view over the current view
+     */
+    private func openPhotoLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
     /**
      assigns the Image taking within the UIImagePickerController to a ImageView
      
@@ -132,31 +135,31 @@ UINavigationControllerDelegate, UITextViewDelegate {
      shows a dialogbox prompting the user that they are about to replaces there currently set image. They have the choice to cancel the action or proceed.
      
      - Returns
-     answer: true, if the user chooses to change their currently set image; false if they chose cancel
+     answer: a string stating the answer either a camera, library, or none
      */
-     func showInputDialog() -> Bool {
-        var answer = false
+    func showCameraOrLibraryDialog(){
+
         //Creating UIAlertController and
-        //Setting title and message for the alert dialog
-        let alertController = UIAlertController(title: "Change Image?", message: "This will replace your current Image", preferredStyle: .alert)
-        
+        //Setting title and message for the alert dialogsho
+        let alertController = UIAlertController(title: "Camera Or Libary",
+                                                message: "Would you like to use an image from your Camera or Photo Libary?",
+                                                preferredStyle: .alert)
         //the cancel action doing nothing
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         
-        let confirmAction = UIAlertAction(title: "Change", style: .default) { (_) in
-            answer = true;
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (_) in
+            self.openCamera()
         }
-        //adding textfields to our dialog box
+        let libraryAction = UIAlertAction(title: "Library", style: .default) { (_) in
+            self.openPhotoLibrary()
+        }
         //adding the action to dialogbox
+        alertController.addAction(cameraAction)
+        alertController.addAction(libraryAction)
         alertController.addAction(cancelAction)
-        alertController.addAction(confirmAction)
-        
         //finally presenting the dialog box
         self.present(alertController, animated: true, completion: nil)
-        
-        return answer
     }
-    
     /**
      creates a sale item object and uploads it to Firebase database & storage
      */
@@ -170,13 +173,91 @@ UINavigationControllerDelegate, UITextViewDelegate {
         }
     }
     
+    //MARK: - Keyboard notification observer Methods
+    
+    fileprivate func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(NewItemVC.keyboardWillShow),
+                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NewItemVC.keyboardWillHide),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    @objc fileprivate func  deRegisterKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidHide, object: nil)
+    }
+    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+        
+        if let activeTextField = activeTextField { // this method will get called even if a system generated alert with keyboard appears over the current VC.
+            let _: NSDictionary = notification.userInfo! as NSDictionary
+            let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+            let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+            scrollView.contentInset = contentInsets
+            scrollView.scrollIndicatorInsets = contentInsets
+            
+            // If active text field is hidden by keyboard, scroll it so it's visible
+            // Your app might not need or want this behavior.
+            var aRect: CGRect = self.view.frame
+            aRect.size.height -= keyboardSize.height - 20
+            let activeTextFieldRect: CGRect? = activeTextField.frame
+            let activeTextFieldOrigin: CGPoint? = activeTextFieldRect?.origin
+            if (!aRect.contains(activeTextFieldOrigin!)) {
+                scrollView.scrollRectToVisible(activeTextFieldRect!, animated:true)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInsets: UIEdgeInsets = .zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    //MARK: - UITextField Delegate Methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameField {
+            priceField.becomeFirstResponder()
+        }
+        else if textField == priceField {
+            descField.becomeFirstResponder()
+        }
+        else {
+            self.view.endEditing(true)
+        }
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addImgBtn.isEnabled = false
+        activeTextField = textField
+        if textField == descField { //descField & ActiveField interchangable inside this scope
+            if descField.textColor == UIColor.lightGray {
+                descField.text = nil
+                descField.textColor = UIColor.black
+            }
+        }
+        scrollView.isScrollEnabled = true
+
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        addImgBtn.isEnabled = true
+        activeTextField = nil
+        if descField.text.isEmpty {
+            descField.text = "Insert Description"
+            descField.textColor = UIColor.lightGray
+        }
+        scrollView.isScrollEnabled = false
+    }
+    
     //MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))  
-        view.addGestureRecognizer(tapGesture)
-        keyboardHandler = KeyboardHandler.init(view: scrollView)
         setupPlaceHolderForDescField()
+        nameField.delegate = self
+        priceField.delegate = self
+        descField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -184,7 +265,7 @@ UINavigationControllerDelegate, UITextViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHandler.addObservers()
+        registerKeyboardNotifications()
      }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -196,33 +277,17 @@ UINavigationControllerDelegate, UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHandler.removeObservers()
+        deRegisterKeyboardNotifications()
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
-   
+
     //MARK: - UITextView placeholder text functions
     private func setupPlaceHolderForDescField(){
         descField.delegate = self
         descField.text = "Insert Description"
         descField.textColor = UIColor.lightGray
     }
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Insert Description"
-            textView.textColor = UIColor.lightGray
-        }
-    }
+
+
     
 }
 

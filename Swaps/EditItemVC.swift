@@ -52,7 +52,7 @@ class EditItemVC: UIViewController, UITextViewDelegate {
      */
     @IBAction func delBtnPressed(_ sender: Any) {
         fbaseDataManager.deleteSaleItem(saleItemToDelete: saleItem)
-        _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     /**
@@ -64,7 +64,7 @@ class EditItemVC: UIViewController, UITextViewDelegate {
      */
     @IBAction func updateBtnPressed(_ sender: Any) {
         self.updateSaleItem()
-         _ = navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     /**

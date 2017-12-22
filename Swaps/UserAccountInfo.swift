@@ -18,21 +18,24 @@ class UserAccountInfo {
     var oneTimeNameChangeUsed: Bool!
     var profileImageURL : String!
     var profileImage = UIImage(named: "default-placeholder")
-    
+    var accountSetupCompleted: Bool!
     // MARK: - Initializers
     /**
      initializes the UserAccountInfo attributes to the given parameters
      
      - Parameters:
-         - inputUserID: the userID of the user currrently signed in to the app
+     - inputUserID: the userID of the user currrently signed in to the app
      - inputChosenUername: the chosen display name of the user currrently signed in to the app
      - inputNameChangeUsed: will always return true should the user decide to change their username
+     - inputProfileImage: UIImage for this userAccount
+     - accountSetupCompleted: A boolean answer to the question, is this userAccountSetup Completed?
      */
-    init(inputUserID: String, inputChosenUsername: String, inputNameChangeUsed: Bool, inputProfileImage: UIImage){
+    init(inputUserID: String, inputChosenUsername: String, inputNameChangeUsed: Bool, inputProfileImage: UIImage, accountSetupCompleted: Bool){
         userID = inputUserID
         chosenUsername = inputChosenUsername
         oneTimeNameChangeUsed = inputNameChangeUsed
         profileImage = inputProfileImage
+        self.accountSetupCompleted = accountSetupCompleted
     }
     /**
      initializes the UserAccountInfo attributes to the given parameters
@@ -50,6 +53,17 @@ class UserAccountInfo {
         profileImageURL = inputProfileImageURL
     }
     /**
+     initializes the UserAccountInfo attributes to the given parameters
+     
+     - Parameters:
+     - inputUserID: the userID of the user currrently signed in to the app
+     - accountSetupCompleted: A boolean answer to the question, is this userAccountSetup Completed?
+     */
+    init(inputUserID: String, accountSetupCompleted: Bool){
+        userID = inputUserID
+        self.accountSetupCompleted = accountSetupCompleted
+    }
+    /**
      initializes the UserAccountInfo attributes to the given Firebase snapshot
      */
     init(snapshot: DataSnapshot) {
@@ -58,5 +72,9 @@ class UserAccountInfo {
         chosenUsername = ((userProfileDictionary["chosenUsername"]) as? String)!
         oneTimeNameChangeUsed = ((userProfileDictionary["nameChanged?"]) as? String)?.toBool()!
         profileImageURL = ((userProfileDictionary["profileImageURL"]) as? String)!
+        accountSetupCompleted = ((userProfileDictionary["accountSetupCompleted"]) as? String)?.toBool()!
+    }
+    init(){
+        
     }
 }

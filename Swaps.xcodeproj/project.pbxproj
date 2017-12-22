@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E23673631FE9A2F9002CFE22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23673621FE9A2F8002CFE22 /* Assets.xcassets */; };
 		E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */; };
 		E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C561F7481AC00F2EF49 /* AppDelegate.swift */; };
 		E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C5A1F7481AC00F2EF49 /* Main.storyboard */; };
 		E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */; };
-		E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2405C601F7481AC00F2EF49 /* Assets.xcassets */; };
 		E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C621F7481AC00F2EF49 /* LaunchScreen.storyboard */; };
 		E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */; };
 		E24B8BF91F9BE8DE0008C308 /* UserAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */; };
@@ -24,6 +24,7 @@
 		E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* ItemCollection.swift */; };
 		E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */; };
 		E2686DD71FAB6CD100CDA5C8 /* AccountSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */; };
+		E27BD4531FE7576400376584 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27BD4521FE7576400376584 /* FeedVC.swift */; };
 		E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */; };
 		E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286B9321F918344008000B3 /* UserProfileVC.swift */; };
 		E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */; };
@@ -47,12 +48,12 @@
 		3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.release.xcconfig"; sourceTree = "<group>"; };
 		716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig"; sourceTree = "<group>"; };
+		E23673621FE9A2F8002CFE22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemVC.swift; sourceTree = "<group>"; };
 		E2405C531F7481AC00F2EF49 /* Swaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405C561F7481AC00F2EF49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2405C5B1F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2405C5E1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Radford_Swaps.xcdatamodel; sourceTree = "<group>"; };
-		E2405C601F7481AC00F2EF49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2405C631F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2405C651F7481AC00F2EF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
 		E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItemVC.swift; sourceTree = "<group>"; };
 		E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupVC.swift; sourceTree = "<group>"; };
+		E27BD4521FE7576400376584 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		E286B9321F918344008000B3 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -135,8 +137,8 @@
 		E2405C551F7481AC00F2EF49 /* Swaps */ = {
 			isa = PBXGroup;
 			children = (
+				E23673621FE9A2F8002CFE22 /* Assets.xcassets */,
 				E2A5AEC41F85BE6E00EE62A5 /* Extensions */,
-				E2405C601F7481AC00F2EF49 /* Assets.xcassets */,
 				E2D1BB611F99835D0063E8AA /* UI Functionality */,
 				E2CF505C1F9155C60071EAD2 /* Data Managers */,
 				E2D1DCA51F79FF8900891BA7 /* Data Structures */,
@@ -193,6 +195,7 @@
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
 				E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */,
+				E27BD4521FE7576400376584 /* FeedVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -318,7 +321,7 @@
 			files = (
 				E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */,
 				E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */,
-				E2405C611F7481AC00F2EF49 /* Assets.xcassets in Resources */,
+				E23673631FE9A2F9002CFE22 /* Assets.xcassets in Resources */,
 				E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,9 +342,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Swaps/Pods-Swaps-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Spruce/Spruce.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spruce.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -354,9 +370,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Swaps/Pods-Swaps-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -369,13 +388,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swaps-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -388,6 +410,7 @@
 				E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */,
 				E24F8EA91F913DD3008BAFAD /* KeyboardHandler.swift in Sources */,
 				E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */,
+				E27BD4531FE7576400376584 /* FeedVC.swift in Sources */,
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,

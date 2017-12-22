@@ -16,7 +16,7 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet var saleItemImg: UIImageView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     @IBOutlet var priceLabel: UILabel!
-    var saleItem: SaleItem? { didSet {updateUI() } }
+    var saleItem: SaleItem? { didSet { updateUI() } }
 
     // MARK: - Support Functions
     /**

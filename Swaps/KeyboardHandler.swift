@@ -14,12 +14,15 @@ class KeyboardHandler {
     
     // MARK: - Attributes
     var scrollViewHandle: UIScrollView?
-    
+    var parentViewHandle: UIView!
     // MARK: - Initializers
     init( view: UIScrollView){
         scrollViewHandle = view
     }
-    
+    init (scrollView: UIScrollView, parentView: UIView ){
+        scrollViewHandle = scrollView
+        parentViewHandle = parentView
+    }
     /**
      adds the observers from the viewHandle
      */
@@ -42,24 +45,20 @@ class KeyboardHandler {
         NotificationCenter.default.removeObserver(scrollViewHandle!)
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if scrollViewHandle?.frame.origin.y == 0{
-                scrollViewHandle?.frame.origin.y -= keyboardSize.height
-            }
-            else {
-                scrollViewHandle?.frame.origin.y = 0
-                scrollViewHandle?.frame.origin.y -= keyboardSize.height
-            }
-        }
+    func keyboardWillShow(notification:Notification){
+
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = parentViewHandle.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = scrollViewHandle!.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollViewHandle?.contentInset = contentInset
     }
     
-    @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if scrollViewHandle?.frame.origin.y != 0{
-                scrollViewHandle?.frame.origin.y += keyboardSize.height
-            }
-        }
+    func keyboardWillHide(notification: Notification){
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollViewHandle?.contentInset = contentInset
     }
     
 }

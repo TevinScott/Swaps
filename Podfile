@@ -12,4 +12,5 @@ target 'Swaps' do
     pod 'FirebaseAuth'
     pod 'GoogleSignIn'
     pod 'Google-Mobile-Ads-SDK'
+    pod "Spruce", '~> 1.0.0'
 end

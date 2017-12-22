@@ -36,6 +36,7 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
      Signs in the user to Google & Firebase
      */
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        /// ****INITIAL USER IS SIGNED HERE, IF THEY CANCEL THE ACCOUNT SET UP THEY ARE STILL SIGNED IN AFTER NEEEEED FIX!!!!****
         if (user != nil){
             if let authentication = user.authentication {
                 let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
@@ -52,8 +53,7 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 })
             }
         }
-    }
-    
+    } 
     /**
      Asks the delegate to open a resource specified by a URL, and provides a dictionary of launch options.
      
@@ -72,21 +72,11 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                                                      annotation: [:])
     }
     
-    /**
-     signed out the user from Firebase & Google
-     */
-    private func signOut(){
-        try! Auth.auth().signOut()
-        GIDSignIn.sharedInstance().signOut()
-    }
-    
     // MARK: - View controller life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         noAccountBtn.titleLabel?.textAlignment = NSTextAlignment.center
-        signOut()
-        coreDataManager.deleteAll()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         Auth.auth()

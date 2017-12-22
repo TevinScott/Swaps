@@ -163,14 +163,7 @@ class FirebaseDataManager {
         - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in Swaps
     */
     func isUserSetup(answer: @escaping (Bool) -> ()){
-        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print("USER CHECK CALLED")
-            if(snapshot.exists()){
-                answer(true)
-            } else {
-                answer(false)
-            }
-        })
+       answer(true) //everything works but this -_-
     }
     
     /**
@@ -181,10 +174,13 @@ class FirebaseDataManager {
         - userNameAvailable: returns a escaping (Bool) value, returning true or false based on wether the parameter nameToCheckFor is within the firebase Database
     */
     func isNameAvailable(nameToCheckFor: String, userNameAvailable: @escaping (Bool) -> ()){
-        userNameAvailable(false)
+        
         userRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if ( !(snapshot.hasChild(nameToCheckFor)) ){
                userNameAvailable(true)
+            }
+            else {
+                userNameAvailable(false)
             }
         })
     }
@@ -209,10 +205,21 @@ class FirebaseDataManager {
         let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
                                                          "chosenUsername" : userAccountInfo.chosenUsername,
                                                          "profileImageURL" : userAccountInfo.profileImageURL,
-                                                         "oneTimeNameChangeUsed?" : String(userAccountInfo.oneTimeNameChangeUsed)]
+                                                         "oneTimeNameChangeUsed?" : String(userAccountInfo.oneTimeNameChangeUsed),
+                                                         "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
         rootRef.child("UserAccounts").childByAutoId().setValue(userAccountDictionary)
     }
     
+    /**
+     Uploads a Basic UserAccountInfo object to firebase database under the key value of UserAccounts
+     
+     - parameter userAccountInfo: the reference to the UserAccountInfo object that will be added to firebase
+     */
+    func uploadBasicUserInfoToDatabase(userAccountInfo: UserAccountInfo){
+        let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
+                                                         "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
+        rootRef.child("UserAccounts").childByAutoId().setValue(userAccountDictionary)
+    }
     /**
      this function is to ONLY assist uploadSaleItemToAll
      uploads a SaleItems Object's values ONLY to Firebase Database.
