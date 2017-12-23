@@ -163,7 +163,17 @@ class FirebaseDataManager {
         - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in Swaps
     */
     func isUserSetup(answer: @escaping (Bool) -> ()){
-       answer(true) //everything works but this -_-
+        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let currentUserDataLocation = snapshot.childSnapshot(forPath: Auth.auth().currentUser!.uid)
+            if(currentUserDataLocation.exists()){
+                //user exists in firebase database and the value of "isAccountCreationCompleted?" can be de parsed to and returned as the answer parameter
+                answer(((currentUserDataLocation.childSnapshot(forPath: "isAccountCreationCompleted?").value) as! String).toBool()!)
+            }else {
+                //the current user has never signed into the firebase database and so "isAccountCreationCompleted?" can be inferred to be false
+                answer(false)
+                
+            }
+        })
     }
     
     /**
@@ -207,7 +217,7 @@ class FirebaseDataManager {
                                                          "profileImageURL" : userAccountInfo.profileImageURL,
                                                          "oneTimeNameChangeUsed?" : String(userAccountInfo.oneTimeNameChangeUsed),
                                                          "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
-        rootRef.child("UserAccounts").childByAutoId().setValue(userAccountDictionary)
+        rootRef.child("UserAccounts").child(userAccountInfo.userID).setValue(userAccountDictionary)
     }
     
     /**
@@ -218,7 +228,7 @@ class FirebaseDataManager {
     func uploadBasicUserInfoToDatabase(userAccountInfo: UserAccountInfo){
         let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
                                                          "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
-        rootRef.child("UserAccounts").childByAutoId().setValue(userAccountDictionary)
+        rootRef.child("UserAccounts").child(userAccountInfo.userID).setValue(userAccountDictionary)
     }
     /**
      this function is to ONLY assist uploadSaleItemToAll
