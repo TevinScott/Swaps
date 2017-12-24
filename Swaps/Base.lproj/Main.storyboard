@@ -768,7 +768,6 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nAV-1N-UBi"/>
         <segue reference="Ddx-oo-Ulu"/>
         <segue reference="TQr-bG-8W6"/>
     </inferredMetricsTieBreakers>

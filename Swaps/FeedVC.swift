@@ -15,8 +15,6 @@ import GoogleMobileAds
 class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     
-    
-    @IBOutlet var collectionView: UICollectionView!
 
     // MARK: - Attributes
     let coredataManager = CoreDataManager()
@@ -24,8 +22,10 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     var adsToLoad = [GADNativeExpressAdView]()
     let adInterval = 3
     @IBOutlet var searchBar: UISearchBar!
-    
+    @IBOutlet var collectionView: UICollectionView!
     //layout properties
+    var collectionViewOriginalLocation: CGFloat!
+    var extendedCollectionViewHeight: CGFloat!
     private let leftAndRightPadding: CGFloat = 32.0
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 5.0
@@ -154,7 +154,7 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             saleItemVC.saleItem = textToPass
         }
     }
-    
+
     // MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,6 +162,7 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         let width = ((collectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
+        collectionViewOriginalLocation = self.collectionView.frame.origin.y
         //keyboardHandler = KeyboardHandler.init(view: )
         firebaseDataManager.getAllItems() { (completedList) -> () in
             self.setOfItems = ItemCollection.init(inputList: completedList)
@@ -185,18 +186,43 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //keyboardHandler.addObservers()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //keyboardHandler.removeObservers()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    /**
+     A function used to hide and show the navigation bar when the user is scrolling the collectionView of this class
+    */
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if(velocity.y>0) {
+            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+            UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.navigationController?.setToolbarHidden(true, animated: true)
+                self.searchBar.frame.origin.y = 20
+                self.collectionView.frame.origin.y = (self.navigationController?.navigationBar.frame.height)! + self.searchBar.frame.height
+                
+
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.searchBar.frame.origin.y = 0
+                self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
+            }, completion: nil)
+        }
     }
     
     @objc func didTapView(gesture: UITapGestureRecognizer){
         view.endEditing(true)
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //keyboardHandler.removeObservers()
-    }
+
 }

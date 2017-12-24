@@ -29,7 +29,6 @@ extension NewItemVC: UITextFieldDelegate , UITextViewDelegate {
                                                name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewItemVC.keyboardWillHide),
                                                name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        print("keyboard register called")
     }
     /**
      deregisters the keyboard Notifications from this view controller.
@@ -37,7 +36,6 @@ extension NewItemVC: UITextFieldDelegate , UITextViewDelegate {
     func  deRegisterKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidHide, object: nil)
-        print("deregister called")
     }
     
     // MARK: - Keyboard Show & Hide Behaviors
@@ -49,7 +47,6 @@ extension NewItemVC: UITextFieldDelegate , UITextViewDelegate {
         - notification: the object that is sent when the keyboard appears within the New Item View. the notification object contains the size of the keyboard that is currently present within this view.
     */
     @objc fileprivate func keyboardDidShow(notification: NSNotification) {
-        print("Keyboard show being Called 2.")
         if let activeTextField = activeTextField { // this method will get called even if a system generated alert with keyboard appears over the current VC.
             let _: NSDictionary = notification.userInfo! as NSDictionary
             let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
@@ -85,8 +82,6 @@ extension NewItemVC: UITextFieldDelegate , UITextViewDelegate {
                 scrollView.scrollRectToVisible(activeTextViewRect!, animated:true)
             }
         }
-        print("activeTextfield values: ", activeTextField)
-        print("activeTextView values: ", activeTextView)
     }
     
     /**
@@ -96,7 +91,6 @@ extension NewItemVC: UITextFieldDelegate , UITextViewDelegate {
      - notification: the object that is sent when the keyboard appears within the New Item View. the notification object contains the size of the keyboard that has just been hidden within this view.
     */
     @objc func keyboardWillHide(notification: NSNotification) {
-        print("keyboard hide called")
         let contentInsets: UIEdgeInsets = .zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
