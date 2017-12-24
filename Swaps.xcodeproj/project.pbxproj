@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E23673631FE9A2F9002CFE22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23673621FE9A2F8002CFE22 /* Assets.xcassets */; };
+		E23673651FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */; };
+		E23673681FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */; };
+		E236736A1FEF2F57002CFE22 /* UITextField+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673691FEF2F57002CFE22 /* UITextField+DoneButton.swift */; };
 		E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */; };
 		E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C561F7481AC00F2EF49 /* AppDelegate.swift */; };
 		E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C5A1F7481AC00F2EF49 /* Main.storyboard */; };
@@ -49,6 +52,9 @@
 		716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig"; sourceTree = "<group>"; };
 		E23673621FE9A2F8002CFE22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
+		E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
+		E23673691FEF2F57002CFE22 /* UITextField+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+DoneButton.swift"; sourceTree = "<group>"; };
 		E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemVC.swift; sourceTree = "<group>"; };
 		E2405C531F7481AC00F2EF49 /* Swaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405C561F7481AC00F2EF49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +120,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */,
+				E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */,
+				E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */,
+			);
+			name = "NewItemVC & Extensions";
+			sourceTree = "<group>";
+		};
 		E2405C4A1F7481AC00F2EF49 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +179,7 @@
 			children = (
 				E2F890641F81314800CD479D /* UIImage+ImageCompression.swift */,
 				E24B8BFA1F9BEAC60008C308 /* String+ToBoolean.swift */,
+				E23673691FEF2F57002CFE22 /* UITextField+DoneButton.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -187,8 +204,8 @@
 		E2D1DCA41F79FF6600891BA7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */,
 				E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */,
-				E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */,
 				E24FAA161F7B17650073102B /* FeedCollectionVC.swift */,
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
@@ -407,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E23673681FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift in Sources */,
 				E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */,
 				E24F8EA91F913DD3008BAFAD /* KeyboardHandler.swift in Sources */,
 				E24FAA171F7B17650073102B /* FeedCollectionVC.swift in Sources */,
@@ -415,9 +433,11 @@
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
 				E24B8BFB1F9BEAC60008C308 /* String+ToBoolean.swift in Sources */,
+				E236736A1FEF2F57002CFE22 /* UITextField+DoneButton.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */,
 				E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */,
+				E23673651FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift in Sources */,
 				E2686DD71FAB6CD100CDA5C8 /* AccountSetupVC.swift in Sources */,
 				E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */,
 				E2F1A7C71F86926800EE7C24 /* EditItemVC.swift in Sources */,

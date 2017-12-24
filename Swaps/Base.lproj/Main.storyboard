@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YGR-XQ-3SU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OHd-TI-KIp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -193,7 +193,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4b-NO-bTu">
                                 <rect key="frame" x="0.0" y="-64" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Lyu-0E-L3N" userLabel="itemImgView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product image placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Lyu-0E-L3N" userLabel="itemImgView">
                                         <rect key="frame" x="25" y="88" width="325" height="325"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Lyu-0E-L3N" secondAttribute="height" multiplier="1:1" id="KyI-Ld-YlB"/>
@@ -305,7 +305,7 @@
                     <navigationItem key="navigationItem" title="New Listing" id="mCt-b4-yel"/>
                     <connections>
                         <outlet property="addImgBtn" destination="AW3-6l-Rq1" id="kSb-Au-XoE"/>
-                        <outlet property="descField" destination="kzz-4v-XgR" id="bAj-f1-4u1"/>
+                        <outlet property="descriptionTextView" destination="kzz-4v-XgR" id="bAj-f1-4u1"/>
                         <outlet property="itemImageView" destination="Lyu-0E-L3N" id="UQg-xI-R4Q"/>
                         <outlet property="nameField" destination="Far-Ml-dzo" id="GN2-cB-CUX"/>
                         <outlet property="priceField" destination="Yrq-wZ-nrA" id="N7R-sz-YfB"/>
@@ -518,7 +518,7 @@
                                             <action selector="createBtnPressed:" destination="YGR-XQ-3SU" eventType="touchUpInside" id="XfH-EM-dUd"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ufx-9Y-76m">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Ufx-9Y-76m">
                                         <rect key="frame" x="25" y="114" width="325" height="325"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cev-D5-JdN" userLabel="addImgBtn">
@@ -761,13 +761,15 @@
         <image name="default-placeholder" width="1500" height="1500"/>
         <image name="delItemIcon" width="32" height="32"/>
         <image name="favorite" width="64" height="64"/>
+        <image name="product image placeholder" width="500" height="500"/>
         <image name="profile-placeholder" width="600" height="600"/>
         <image name="ps4" width="670" height="500"/>
         <image name="uploadIcon" width="64" height="64"/>
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uFR-wf-9zT"/>
+        <segue reference="nAV-1N-UBi"/>
+        <segue reference="Ddx-oo-Ulu"/>
         <segue reference="TQr-bG-8W6"/>
     </inferredMetricsTieBreakers>
 </document>
