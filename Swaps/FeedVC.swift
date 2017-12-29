@@ -13,14 +13,14 @@ import Firebase
 import GoogleMobileAds
 import AlgoliaSearch
 
+/// A Class that manages the Feed View and its sub views
 class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
-   
     
     // MARK: - Attributes
     let coredataManager = CoreDataManager()
     let firebaseDataManager = FirebaseDataManager()
     let algoliaSearchManager = AlgoliaSearchManager.init()
-    //ad variables
+    //adMob variables
     var adsToLoad = [GADNativeExpressAdView]()
     let adInterval = 3
     // outlets
@@ -34,11 +34,7 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     private let heightAdjustment: CGFloat = 5.0
     private let cellIdentifier = "SaleCell"
     var setOfItems: ItemCollection = ItemCollection.init(){ didSet { collectionView?.reloadData() } }
-
     var searchActive : Bool = false
-
-    
-    
 
     // MARK: - Button Actions
     /**

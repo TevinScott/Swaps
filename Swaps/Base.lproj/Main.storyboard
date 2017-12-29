@@ -743,7 +743,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="itemDescField" destination="kiR-Jz-dPB" id="FcL-El-Wf7"/>
+                        <outlet property="changeImgBtn" destination="OoM-DS-aLE" id="GB6-w6-2UZ"/>
+                        <outlet property="itemDescTextView" destination="kiR-Jz-dPB" id="FcL-El-Wf7"/>
                         <outlet property="itemImageView" destination="Ejz-Zc-MgT" id="Tq4-7I-VEC"/>
                         <outlet property="itemNameField" destination="NH5-CA-R07" id="LSv-kp-5Wa"/>
                         <outlet property="itemPriceField" destination="bRl-eW-gy2" id="Wym-QY-1b6"/>

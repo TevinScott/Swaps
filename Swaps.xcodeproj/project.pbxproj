@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E223E6991FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */; };
+		E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */; };
 		E23673631FE9A2F9002CFE22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23673621FE9A2F8002CFE22 /* Assets.xcassets */; };
 		E23673651FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */; };
 		E23673681FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */; };
@@ -51,6 +53,8 @@
 		3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.release.xcconfig"; sourceTree = "<group>"; };
 		716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig"; sourceTree = "<group>"; };
+		E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
+		E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
 		E23673621FE9A2F8002CFE22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
 		E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
@@ -120,11 +124,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E223E69C1FF6841D0098F8CC /* EditItemVC & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */,
+				E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */,
+				E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */,
+			);
+			name = "EditItemVC & Extensions";
+			sourceTree = "<group>";
+		};
 		E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */,
 				E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */,
+				E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */,
 				E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */,
 			);
 			name = "NewItemVC & Extensions";
@@ -206,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */,
-				E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */,
+				E223E69C1FF6841D0098F8CC /* EditItemVC & Extensions */,
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
@@ -430,6 +444,7 @@
 				E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */,
 				E24F8EA91F913DD3008BAFAD /* KeyboardHandler.swift in Sources */,
 				E27BD4531FE7576400376584 /* FeedVC.swift in Sources */,
+				E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */,
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
@@ -447,6 +462,7 @@
 				E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */,
 				E24B8BF91F9BE8DE0008C308 /* UserAccountInfo.swift in Sources */,
 				E236736C1FF09BD0002CFE22 /* AlgoliaSearchManager.swift in Sources */,
+				E223E6991FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift in Sources */,
 				E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

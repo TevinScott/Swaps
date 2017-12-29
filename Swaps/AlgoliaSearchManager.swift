@@ -9,6 +9,7 @@
 import Foundation
 import AlgoliaSearch
 
+/// A Class Manager for Algolia Search API Functionality
 class AlgoliaSearchManager {
     
     // MARK: - Attributes

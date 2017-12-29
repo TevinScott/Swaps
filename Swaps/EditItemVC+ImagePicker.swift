@@ -1,17 +1,16 @@
 //
-//  NewItemVC+ImagePicker.swift
+//  EditItemVC+ImagePicker.swift
 //  Swaps
 //
-//  Created by Tevin Scott on 12/23/17.
+//  Created by Tevin Scott on 12/29/17.
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-/// An Extension of the NewItemVC that allows the usage of the system camera & Photo Library
-extension NewItemVC: UIImagePickerControllerDelegate {
-    
+/// An Extension of the EditItemVC that allows the usage of the system camera & Photo Library
+extension EditItemVC: UIImagePickerControllerDelegate {
     /**
      opens the Camera View Finder view over the current view
      */
@@ -49,7 +48,7 @@ extension NewItemVC: UIImagePickerControllerDelegate {
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         itemImageView.image = UIImage(data: (image .jpeg(.low))!)
-        imageAdded = true;
+        imageHasBeenChanged = true;
         dismiss(animated:true, completion: nil)
         
     }

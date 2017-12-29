@@ -11,18 +11,20 @@ import UIKit
 //NEEDS: revert changes button
 
 ///A View Controller that Manages the Edit Item View
-class EditItemVC: UIViewController, UITextViewDelegate {
+class EditItemVC: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - Attributes
     var fbaseDataManager = FirebaseDataManager()
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var itemNameField: UITextField!
     @IBOutlet var itemPriceField: UITextField!
-    @IBOutlet var itemDescField: UITextView!
+    @IBOutlet var itemDescTextView: UITextView!
+    @IBOutlet var changeImgBtn: UIButton!
     @IBOutlet var scrollView: UIScrollView!
     var imageHasBeenChanged : Bool = false;
     var saleItem: SaleItem! = SaleItem()
-    var keyboardHandler : KeyboardHandler!
+    var activeTextField: UITextField!
+    var activeTextView: UITextView!
     
     // MARK: - Button Actions
     /**
@@ -36,12 +38,8 @@ class EditItemVC: UIViewController, UITextViewDelegate {
 
         //open prompt as if user would like to change current image
         //if prompt true execute below
-        if(showDialog()){
-            openCamera()
-            if(itemImageView.image != saleItem.image){
-                imageHasBeenChanged = true
-            }
-        }
+        showCameraOrLibraryDialog()
+
     }
     
     /**
@@ -68,22 +66,33 @@ class EditItemVC: UIViewController, UITextViewDelegate {
     }
     
     /**
-     creates a dialog overlay, asking the user if they would like to proceed to replace their currently set image
+     shows a dialogbox prompting the user that they are about to replaces there currently set image. They have the choice to cancel the action or proceed.
      
-     - returns: User's response to dialog: True if they would like to replace current image, False if not.
+     - Returns
+     answer: a string stating the answer either a camera, library, or none
      */
-    private func showDialog() -> Bool {
-        var answer = false
-        let alertController = UIAlertController(title: "Change Image?", message: "This will replace your current Image", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-        let continueAction = UIAlertAction(title: "Continue", style: .default) { (_) in
-            answer = true;
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(continueAction)
-        self.present(alertController, animated: true, completion: nil)
+    func showCameraOrLibraryDialog(){
         
-        return answer
+        //Creating UIAlertController and
+        //Setting title and message for the alert dialogsho
+        let alertController = UIAlertController(title: "Camera Or Libary",
+                                                message: "Would you like to replace your current Item image using your Camera or, Photo Libary?",
+                                                preferredStyle: .alert)
+        //the cancel action doing nothing
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (_) in
+            self.openCamera()
+        }
+        let libraryAction = UIAlertAction(title: "Library", style: .default) { (_) in
+            self.openPhotoLibrary()
+        }
+        //adding the action to dialogbox
+        alertController.addAction(cameraAction)
+        alertController.addAction(libraryAction)
+        alertController.addAction(cancelAction)
+        //finally presenting the dialog box
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Support Functions
@@ -95,7 +104,7 @@ class EditItemVC: UIViewController, UITextViewDelegate {
         var oldImageURL : String = ""
         saleItem.name = itemNameField.text
         saleItem.price = itemPriceField.text
-        saleItem.description = itemDescField.text
+        saleItem.description = itemDescTextView.text
         if(imageHasBeenChanged){
             saleItem.image = itemImageView.image
             oldImageURL = saleItem.imageURL!
@@ -115,41 +124,13 @@ class EditItemVC: UIViewController, UITextViewDelegate {
             itemPriceField.text = (saleItem?.price)!
         }
         if(saleItem?.description! != nil){
-            itemDescField.text = saleItem?.description!
+            itemDescTextView.text = saleItem?.description!
         }
         if (saleItem?.image != nil){
             itemImageView.image = saleItem?.image!
         }
     }
     
-    /**
-     opens a camera view over the current view
-     */
-    private func openCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            imagePicker.sourceType = .camera;
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    /**
-     assigns the Image taking within the UIImagePickerController to a ImageView
-     
-     - parameters:
-         - picker:  The controller object managing the image picker interface.
-         - info:    A dictionary containing the original image and the edited image, if an image was picked; or a filesystem URL for the movie,
-                    if a movie was picked. The dictionary also contains any relevant editing information.
-                    The keys for this dictionary are listed in Editing Information Keys.
-     */
-    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        itemImageView.image = UIImage(data: (image .jpeg(.low))!)
-        dismiss(animated:true, completion: nil)
-        
-    }
     
     // MARK: - View controller life cycle
     override func viewDidLoad(){
@@ -157,17 +138,17 @@ class EditItemVC: UIViewController, UITextViewDelegate {
         imageHasBeenChanged = false;
         let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))
         view.addGestureRecognizer(tapGesture)
-        keyboardHandler = KeyboardHandler.init(view: scrollView)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHandler.addObservers()
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        registerKeyboardNotifications()
     }
     
     @objc func didTapView(gesture: UITapGestureRecognizer){
@@ -176,9 +157,15 @@ class EditItemVC: UIViewController, UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardHandler.removeObservers()
+
     }
     
+    /**
+     this deinit is used to remove the keyboard observers. removal was previously handled by the viewWillDisappear function, however the uiImagePickerController can trigger the removal prematurely.
+     */
+    deinit {
+        deRegisterKeyboardNotifications()
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x != 0 {
             scrollView.contentOffset.x = 0

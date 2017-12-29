@@ -17,7 +17,6 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
     // MARK: - Attributes
     let cdataManager: CoreDataManager = CoreDataManager()
     let fbaseDataManager: FirebaseDataManager = FirebaseDataManager()
-    var keyboardHandler : KeyboardHandler!
     var imageAdded: Bool = false;
     @IBOutlet var nameField: UITextField!
     @IBOutlet var priceField: UITextField!
