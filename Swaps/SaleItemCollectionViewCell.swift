@@ -16,7 +16,7 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet var saleItemImg: UIImageView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     @IBOutlet var priceLabel: UILabel!
-    var saleItem: SaleItem? { didSet { updateUI() } }
+    var saleItem: SaleItem? { didSet { updateUIFromJson()} }
 
     // MARK: - Support Functions
     /**
@@ -29,19 +29,49 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
         }
 
         if (saleItem?.imageURL != nil){
-            setImageFromURL(imgURL: (saleItem?.imageURL)!)
+            setImageFromURLString(imgURL: (saleItem?.imageURL)!)
         }
         else {
             saleItemImg.image = (saleItem?.placeholderImage)!
         }
     }
-    
+    /**
+     updates this cell to the current SaleItem's JSON attributes.
+     */
+    func updateUIFromJson(){
+        //places dollarsign in front of sale item price
+        if let priceVal: String = saleItem?.jsonPrice! {
+            priceLabel.text = "$\(priceVal)"
+        }
+        
+        if (saleItem?.jsonImageURL != nil){
+            setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
+        }
+        else {
+            saleItemImg.image = (saleItem?.placeholderImage)!
+        }
+    }
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.
      
      - Parameter imgURL: URL of the image to be downloaded
      */
-    private func setImageFromURL(imgURL: String){
+    private func setImageFromURL(imgURL: NSURL){
+        URLSession.shared.dataTask(with: imgURL as URL, completionHandler: { (data, response, error) -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.saleItem?.image = image
+                self.saleItemImg.image = image
+            })
+            
+        }).resume()
+    }
+    /**
+     sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.
+     
+     - Parameter imgURL: URL of the image to be downloaded
+     */
+    private func setImageFromURLString(imgURL: String){
         URLSession.shared.dataTask(with: NSURL(string: imgURL)! as URL, completionHandler: { (data, response, error) -> Void in
             DispatchQueue.main.async(execute: { () -> Void in
                 let image = UIImage(data: data!)

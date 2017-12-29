@@ -19,6 +19,14 @@ class UserAccountInfo {
     var profileImageURL : String!
     var profileImage = UIImage(named: "default-placeholder")
     var accountSetupCompleted: Bool!
+    var totalStars = 0 // 1-5 added each time this user is rated
+    var averageRating: Int = 0 //total /
+    var amountOfRatings: Int = 0 { didSet { averageRating = totalStars/amountOfRatings } }
+    func updateRating(newRating: Int){
+        totalStars += newRating
+        amountOfRatings += 1
+    }
+    
     // MARK: - Initializers
     /**
      initializes the UserAccountInfo attributes to the given parameters

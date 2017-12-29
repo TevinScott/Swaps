@@ -11,16 +11,19 @@ import UIKit
 import GoogleSignIn
 import Firebase
 import GoogleMobileAds
+import AlgoliaSearch
 
-class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
+   
     
-
     // MARK: - Attributes
     let coredataManager = CoreDataManager()
     let firebaseDataManager = FirebaseDataManager()
+    let algoliaSearchManager = AlgoliaSearchManager.init()
+    //ad variables
     var adsToLoad = [GADNativeExpressAdView]()
     let adInterval = 3
+    // outlets
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var collectionView: UICollectionView!
     //layout properties
@@ -30,12 +33,13 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 5.0
     private let cellIdentifier = "SaleCell"
-    var setOfItems: ItemCollection = ItemCollection.init() {
-        didSet {
-            collectionView?.reloadData()
-        }
-    }
+    var setOfItems: ItemCollection = ItemCollection.init(){ didSet { collectionView?.reloadData() } }
+
+    var searchActive : Bool = false
+
     
+    
+
     // MARK: - Button Actions
     /**
      Presents the newItemView to user, if they are currently signed into an account.
@@ -156,19 +160,7 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
 
     // MARK: - View controller life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //constrains the layout to the layout property attributes
-        let width = ((collectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
-        collectionViewOriginalLocation = self.collectionView.frame.origin.y
-        //keyboardHandler = KeyboardHandler.init(view: )
-        firebaseDataManager.getAllItems() { (completedList) -> () in
-            self.setOfItems = ItemCollection.init(inputList: completedList)
-        }
-        //addNativeExpressAds()
-    }
+   
 
     /** for future commit, google add
      func addNativeExpressAds(){
@@ -195,12 +187,50 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //search and database init
+        searchBar.delegate = self
+        algoliaSearchManager.getAllItems() { (escapingList) -> () in
+            self.setOfItems = ItemCollection.init(inputList: escapingList)
+        }
+        //constrains the layout to the layout property attributes
+        let width = ((collectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
+        collectionViewOriginalLocation = self.collectionView.frame.origin.y
+        //addNativeExpressAds()
+    }
+    // MARK: - Search bar functionality
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        algoliaSearchManager.searchDatabase(searchString: searchText) {
+            (escapingList) -> () in
+            self.setOfItems = ItemCollection.init(inputList: escapingList)
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    // MARK: - Navigation Bar Hide and Show Functions
     
     /**
      A function used to hide and show the navigation bar when the user is scrolling the collectionView of this class
     */
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
         if(velocity.y>0) {
             //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
             UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions(), animations: {
@@ -216,6 +246,7 @@ class FeedVC : UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
                 self.searchBar.frame.origin.y = 0
+                
                 self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
             }, completion: nil)
         }

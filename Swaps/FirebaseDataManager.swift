@@ -36,9 +36,8 @@ class FirebaseDataManager {
     /**
      Adds new items to the class variable listOfItems and removes sales items that are no longer in the database
      
-     - parameters:
-     - completion: on completion the escaping value [SaleItem] is instatiated from the FireBase list of Sale Items
-     
+    - parameters:
+        - completion: On completion the escaping value [SaleItem] is instatiated from the FireBase list of Sale Items.
      */
     func getAllItems(completion: @escaping ([SaleItem]) -> ()){
         saleRef?.observe(DataEventType.value, with: { (snapshot:DataSnapshot) in
@@ -66,9 +65,9 @@ class FirebaseDataManager {
     /**
      Checks if the current User's account is in the Firebase database
      
-     - Parameters:
-         - userAccountInfo: the account for which will be checked.
-         - completion:  returns true if the user already exists in firebase database
+     - parameters:
+        - userInfo: the account for which will be checked.
+        - answer:  returns true if the user already exists in firebase database
      */
     func checkUserAccount(userInfo: UserAccountInfo, answer: @escaping(Bool) ->()){
         userRef.queryOrdered(byChild: "username").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -81,7 +80,8 @@ class FirebaseDataManager {
      Firebase Storage for the item image.
      Firebase Database for item name, price, description, category and, a URL reference to the image in Firebase Storage.
      
-     - Parameter saleItem: the SaleItem Object for which will be Uploaded to the Firebase Webservice
+     - parameters:
+        - saleItem: the SaleItem Object for which will be Uploaded to the Firebase Webservice
      */
     func uploadSaleItem(inputSaleItem: SaleItem){
 
@@ -95,8 +95,9 @@ class FirebaseDataManager {
      Updates the current user's saleitem and stores it within the firebase database
      
      - Parameters:
-         - saleItem:        a reference to the saleItem that is to be updated within the database
-         - imageChanged:    specifies if the saleItem image needs to also be updated in firebase storage should this value be true
+        - saleItem:        a reference to the saleItem that is to be updated within the database
+        - imageChanged:    specifies if the saleItem image needs to also be updated in firebase storage should this value be true
+        - previousURL:      the saleItems old image URL will be used to delete the old image from firebase storage
      */
     func updateDatabaseSaleItem(saleItem: SaleItem, imageChanged: Bool, previousURL: String){
         if( Auth.auth().currentUser!.uid == saleItem.userID){
@@ -128,11 +129,11 @@ class FirebaseDataManager {
     }
 
     // MARK: - Delete Data
+    
     /**
      Removes the given Sale Item from the firebase database
      
-     - Parameter saleItemID: the primary ID of the saleItem that will be removed from the FireBase Database
-     
+     - parameter saleItemToDelete: the primary ID of the saleItem that will be removed from the FireBase Database
      */
     func deleteSaleItem(saleItemToDelete: SaleItem) {
         saleRef = rootRef.child("Sale Items")
@@ -250,12 +251,15 @@ class FirebaseDataManager {
     /**
      Uploads The current image stored in the given saleItem object to Firebase Storage and returns the URL reference.
      
-     - Parameter saleItem: a reference to the saleItem for which the containing image will be uploaded
-     - parameter completionURL: URL that references the image in firebase storage
+     - parameters:
+        - name: the name of the saleItem for which the image will be saved as
+        - image: a reference to the saleItem for which the containing image will be uploaded
+        - completionURL: URL that references the image in firebase storage
      
      */
     private func uploadItemImage(name: String,image: UIImage, completionURL: @escaping (String) -> ()){
         let fileStorage = Storage.storage().reference().child("\(String(describing: name)).png")
+        // NEEDS: TEST - may cause insertion conflicts if two items have the same name
         if let imageToUpload = UIImagePNGRepresentation(image) {
             fileStorage.putData(imageToUpload, metadata: nil, completion: {
                 (metadata, error) in
