@@ -278,7 +278,6 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         activeTextField = textField
         scrollView.isScrollEnabled = true
     }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         addProfileImgBtn.isEnabled = true
         activeTextField = nil
@@ -287,11 +286,9 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     // MARK: - View controller life cycle
     override func viewDidLoad(){
-        
         firebaseDataManager = FirebaseDataManager()
         usernameField.delegate = self
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -302,8 +299,6 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deRegisterKeyboardNotifications()

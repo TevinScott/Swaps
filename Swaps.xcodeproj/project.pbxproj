@@ -32,6 +32,7 @@
 		E27BD4531FE7576400376584 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27BD4521FE7576400376584 /* FeedVC.swift */; };
 		E27D0A471F86F7B600E20617 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */; };
 		E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E286B9321F918344008000B3 /* UserProfileVC.swift */; };
+		E29B61DB1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29B61DA1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift */; };
 		E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */; };
 		E2D1DCA11F79FCEA00891BA7 /* SaleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */; };
 		E2F1A7C71F86926800EE7C24 /* EditItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */; };
@@ -82,6 +83,7 @@
 		E27BD4521FE7576400376584 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		E286B9321F918344008000B3 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		E28D6FBF1F86F700007601F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E29B61DA1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedVC+CollectionView.swift"; sourceTree = "<group>"; };
 		E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItem.swift; sourceTree = "<group>"; };
 		E2F1A7C61F86926800EE7C24 /* EditItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemVC.swift; sourceTree = "<group>"; };
@@ -188,6 +190,15 @@
 			path = SwapsTests;
 			sourceTree = "<group>";
 		};
+		E29B61DE1FFAC7CE00F9D98F /* FeedVC & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E27BD4521FE7576400376584 /* FeedVC.swift */,
+				E29B61DA1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift */,
+			);
+			name = "FeedVC & Extensions";
+			sourceTree = "<group>";
+		};
 		E2A5AEC41F85BE6E00EE62A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,12 +232,12 @@
 			children = (
 				E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */,
 				E223E69C1FF6841D0098F8CC /* EditItemVC & Extensions */,
+				E29B61DE1FFAC7CE00F9D98F /* FeedVC & Extensions */,
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
 				E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */,
-				E27BD4521FE7576400376584 /* FeedVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -446,6 +457,7 @@
 				E27BD4531FE7576400376584 /* FeedVC.swift in Sources */,
 				E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */,
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
+				E29B61DB1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift in Sources */,
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
 				E24B8BFB1F9BEAC60008C308 /* String+ToBoolean.swift in Sources */,
