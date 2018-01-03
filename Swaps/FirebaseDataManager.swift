@@ -61,19 +61,6 @@ class FirebaseDataManager {
         })
         
     }
-    
-    /**
-     Checks if the current User's account is in the Firebase database
-     
-     - parameters:
-        - userInfo: the account for which will be checked.
-        - answer:  returns true if the user already exists in firebase database
-     */
-    func checkUserAccount(userInfo: UserAccountInfo, answer: @escaping(Bool) ->()){
-        userRef.queryOrdered(byChild: "username").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            snapshot.hasChild(userInfo.chosenUsername) ? answer(true) : answer(false)
-        })
-    }
 
     /**
      Uploads a SaleItem Object's values to Firebase's Webservice..
@@ -158,7 +145,7 @@ class FirebaseDataManager {
     }
     
     /**
-     Checks weither the currently signed in user has already been setup within the firebase database
+     Checks wether the currently signed in user has already been setup within the firebase database
      
      - parameters:
         - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in Swaps
@@ -178,7 +165,21 @@ class FirebaseDataManager {
     }
     
     /**
-     checks weither the given username is possesed by another user within the firebase database
+     gets the Username from a given userID in the firebase database
+     
+     - parameters:
+     - userInfo: the account for which will be checked.
+     - answer:  returns true if the user already exists in firebase database
+     */
+    func getUsernameFromUserID(userID: String, username: @escaping(String) ->()){
+        let query = userRef.queryOrderedByKey().queryEqual(toValue: userID)
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
+            username(snapshot.childSnapshot(forPath: userID).childSnapshot(forPath: "username").value as! String)
+        })
+    }
+    
+    /**
+     checks wether the given username is possesed by another user within the firebase database
      
      - parameters:
         - nameToCheckFor: the user name that will be searched for in the Firebase Datebase
