@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E223E6991FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */; };
 		E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */; };
+		E234CE991FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234CE981FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift */; };
 		E23673631FE9A2F9002CFE22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23673621FE9A2F8002CFE22 /* Assets.xcassets */; };
 		E23673651FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */; };
 		E23673681FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */; };
@@ -56,6 +57,7 @@
 		BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig"; sourceTree = "<group>"; };
 		E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
 		E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
+		E234CE981FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSetupVC+ImagePicker.swift"; sourceTree = "<group>"; };
 		E23673621FE9A2F8002CFE22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
 		E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,15 @@
 				E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */,
 			);
 			name = "EditItemVC & Extensions";
+			sourceTree = "<group>";
+		};
+		E234CE9A1FFF3D5D00AD5C9D /* AccountSetupVC & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */,
+				E234CE981FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift */,
+			);
+			name = "AccountSetupVC & Extensions";
 			sourceTree = "<group>";
 		};
 		E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */ = {
@@ -233,11 +244,11 @@
 				E23673661FEF1EA9002CFE22 /* NewItemVC & Extensions */,
 				E223E69C1FF6841D0098F8CC /* EditItemVC & Extensions */,
 				E29B61DE1FFAC7CE00F9D98F /* FeedVC & Extensions */,
+				E234CE9A1FFF3D5D00AD5C9D /* AccountSetupVC & Extensions */,
 				E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
-				E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -457,6 +468,7 @@
 				E27BD4531FE7576400376584 /* FeedVC.swift in Sources */,
 				E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */,
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
+				E234CE991FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift in Sources */,
 				E29B61DB1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift in Sources */,
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
