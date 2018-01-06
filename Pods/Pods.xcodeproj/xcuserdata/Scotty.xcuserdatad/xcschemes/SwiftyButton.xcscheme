@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1558672369D389092D3B3C4A640E8E4E"
-               BuildableName = "Spruce.framework"
-               BlueprintName = "Spruce"
+               BlueprintIdentifier = "D5465E307595562B5E97F03AE0625C32"
+               BuildableName = "SwiftyButton.framework"
+               BlueprintName = "SwiftyButton"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1558672369D389092D3B3C4A640E8E4E"
-            BuildableName = "Spruce.framework"
-            BlueprintName = "Spruce"
+            BlueprintIdentifier = "D5465E307595562B5E97F03AE0625C32"
+            BuildableName = "SwiftyButton.framework"
+            BlueprintName = "SwiftyButton"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

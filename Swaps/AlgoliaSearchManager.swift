@@ -77,4 +77,17 @@ class AlgoliaSearchManager {
         })
     }
     
+    func uploadIndex(saleItem: SaleItem){
+        let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.jsonName as AnyObject,
+                                                         "price" : saleItem.jsonPrice as AnyObject,
+                                                         "desc" : saleItem.jsonDesc as AnyObject,
+                                                         "imageURL" : saleItem.jsonImageURL as AnyObject,
+                                                         "category" : saleItem.jsonCategory as AnyObject,
+                                                         "userID" : saleItem.jsonUserID as AnyObject]
+        saleItemIndex.addObjects([saleItemDictionary], completionHandler: { (content, error) -> Void in
+            if error == nil {
+                print("Object IDs: \(content!)")
+            }
+        })
+    }
 }

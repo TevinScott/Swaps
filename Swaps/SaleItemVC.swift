@@ -28,7 +28,6 @@ class SaleItemVC: UIViewController {
     // MARK: - View controller life cycle
     override func viewDidLoad(){
         updateUIFromJson()
-        setupPickupBtnStyling()
     }
     
     // MARK: - Button Actions
@@ -51,16 +50,6 @@ class SaleItemVC: UIViewController {
     }
     
     // MARK: - Support Functions
-    
-    /**
-    sets up the pickup button's border styling
-    */
-    private func setupPickupBtnStyling(){
-        pickupBtn.backgroundColor = .clear
-        pickupBtn.layer.cornerRadius = 5
-        pickupBtn.layer.borderWidth = 1
-        pickupBtn.layer.borderColor = UIColor(red: 0, green: 122.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
-    }
     
     /**
      updateUIFrom sets all outletted values within this view controller to this current json values in

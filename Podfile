@@ -14,6 +14,7 @@ target 'Swaps' do
     pod 'Google-Mobile-Ads-SDK'
     pod 'AlgoliaSearch-Client-Swift'
     pod "Spruce", '~> 1.0.0'
+    pod 'SwiftyButton'
     #pod google image recognition api
     #pod stripe payment api
 end

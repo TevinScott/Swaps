@@ -25,6 +25,8 @@ class SaleItem {
     var Timecreated: Date! //days
     var saleDuration: Int!
     var userID: String!
+    var creationLocation: (longitude :Double, latitude: Double)!
+    var pickupLocation: (longitude :Double, latitude: Double)!
     private var json: [String: AnyObject]!
     
     // MARK: - JSON Attributes

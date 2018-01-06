@@ -74,12 +74,18 @@ class FeedVC : UIViewController, UISearchBarDelegate{
             let textToPass = selectedSaleItem
             let saleItemVC = segue.destination as! SaleItemVC
             saleItemVC.saleItem = textToPass
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.searchBar.frame.origin.y = 0
+            self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
         }
         if segue.identifier == "EditSaleItemSegue"{
             let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
             let textToPass = selectedSaleItem
             let saleItemVC = segue.destination as! EditItemVC
             saleItemVC.saleItem = textToPass
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.searchBar.frame.origin.y = 0
+            self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
         }
     }
 
