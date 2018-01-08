@@ -10,6 +10,8 @@
 		E223E6991FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */; };
 		E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */; };
 		E234CE991FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234CE981FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift */; };
+		E234CE9C2000C6CC00AD5C9D /* PickupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234CE9B2000C6CC00AD5C9D /* PickupVC.swift */; };
+		E234CE9E2001E47900AD5C9D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E234CE9D2001E47800AD5C9D /* CoreLocation.framework */; };
 		E23673631FE9A2F9002CFE22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E23673621FE9A2F8002CFE22 /* Assets.xcassets */; };
 		E23673651FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */; };
 		E23673681FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */; };
@@ -58,6 +60,8 @@
 		E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
 		E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
 		E234CE981FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSetupVC+ImagePicker.swift"; sourceTree = "<group>"; };
+		E234CE9B2000C6CC00AD5C9D /* PickupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupVC.swift; sourceTree = "<group>"; };
+		E234CE9D2001E47800AD5C9D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E23673621FE9A2F8002CFE22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E23673641FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
 		E23673671FEF1EF1002CFE22 /* NewItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E234CE9E2001E47900AD5C9D /* CoreLocation.framework in Frameworks */,
 				F8615FEFEAFEE55B6530EA9B /* Pods_Swaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +128,7 @@
 		13E60030EAB86342218CB0B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E234CE9D2001E47800AD5C9D /* CoreLocation.framework */,
 				716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */,
 			);
 			name = Frameworks;
@@ -249,6 +255,7 @@
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
+				E234CE9B2000C6CC00AD5C9D /* PickupVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -476,6 +483,7 @@
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,
 				E24B8BFB1F9BEAC60008C308 /* String+ToBoolean.swift in Sources */,
 				E236736A1FEF2F57002CFE22 /* UITextField+DoneButton.swift in Sources */,
+				E234CE9C2000C6CC00AD5C9D /* PickupVC.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
 				E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */,
 				E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */,

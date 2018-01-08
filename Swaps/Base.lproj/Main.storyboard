@@ -68,9 +68,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z0A-3i-HcF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="z0A-3i-HcF">
                                 <rect key="frame" x="0.0" y="56" width="375" height="547"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XmH-hf-2e1">
                                     <size key="itemSize" width="150" height="150"/>
@@ -143,13 +142,21 @@
                                     <outlet property="delegate" destination="tFc-K4-vh5" id="dTt-gp-yn3"/>
                                 </connections>
                             </collectionView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wih-Tv-u5T">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wih-Tv-u5T">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.58431372550000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wih-Tv-u5T" firstAttribute="top" secondItem="5pY-y6-LtQ" secondAttribute="bottom" id="7dk-0P-iB9"/>
+                            <constraint firstItem="Wih-Tv-u5T" firstAttribute="trailing" secondItem="z0A-3i-HcF" secondAttribute="trailing" id="CRk-ot-oJC"/>
+                            <constraint firstItem="z0A-3i-HcF" firstAttribute="top" secondItem="Wih-Tv-u5T" secondAttribute="bottom" id="GpY-sr-5CE"/>
+                            <constraint firstItem="z0A-3i-HcF" firstAttribute="bottom" secondItem="feZ-R4-gtX" secondAttribute="top" id="N4X-hU-LZg"/>
+                            <constraint firstItem="Wih-Tv-u5T" firstAttribute="leading" secondItem="8tg-WR-qSi" secondAttribute="leading" id="jAx-hb-TwS"/>
+                            <constraint firstAttribute="trailing" secondItem="Wih-Tv-u5T" secondAttribute="trailing" id="vH1-Du-6dd"/>
+                            <constraint firstItem="Wih-Tv-u5T" firstAttribute="leading" secondItem="z0A-3i-HcF" secondAttribute="leading" id="vYc-BM-Uck"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Feed" id="bEj-uZ-VL4">
@@ -316,6 +323,76 @@
             </objects>
             <point key="canvasLocation" x="-2217" y="1341"/>
         </scene>
+        <!--Pickup Location-->
+        <scene sceneID="nif-up-o6i">
+            <objects>
+                <viewController title="Pickup Location" id="Lf9-ht-G71" customClass="PickupVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hoo-Oh-JhA"/>
+                        <viewControllerLayoutGuide type="bottom" id="jKH-jC-z0e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0NF-dq-kCj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wlL-3I-T2y">
+                                <rect key="frame" x="16" y="20" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="343" id="FWF-6a-iOg"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Lf9-ht-G71" id="s36-f2-wQp"/>
+                                </connections>
+                            </mapView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="z7I-bQ-atJ">
+                                <rect key="frame" x="16" y="371" width="343" height="95"/>
+                                <date key="date" timeIntervalSinceReferenceDate="536921105.144719">
+                                    <!--2018-01-06 08:45:05 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="536497200">
+                                    <!--2018-01-01 11:00:00 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="537706800">
+                                    <!--2018-01-15 11:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eby-qJ-13a" customClass="PressableButton" customModule="SwiftyButton">
+                                <rect key="frame" x="16" y="474" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="d6f-cE-fNc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Send Meet Up Request"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="trailing" secondItem="eby-qJ-13a" secondAttribute="trailing" id="2tJ-KR-Sma"/>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="trailing" secondItem="z7I-bQ-atJ" secondAttribute="trailing" id="5fb-ut-USY"/>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="leading" secondItem="0NF-dq-kCj" secondAttribute="leadingMargin" id="Hx7-og-Zxd"/>
+                            <constraint firstItem="z7I-bQ-atJ" firstAttribute="top" secondItem="wlL-3I-T2y" secondAttribute="bottom" constant="8" symbolic="YES" id="JAn-I6-ibc"/>
+                            <constraint firstItem="jKH-jC-z0e" firstAttribute="top" secondItem="eby-qJ-13a" secondAttribute="bottom" constant="85" id="NHe-gX-psu"/>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="leading" secondItem="eby-qJ-13a" secondAttribute="leading" id="TA7-yz-0Y3"/>
+                            <constraint firstItem="eby-qJ-13a" firstAttribute="top" secondItem="z7I-bQ-atJ" secondAttribute="bottom" constant="8" symbolic="YES" id="VPB-uy-Q1G"/>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="top" secondItem="0NF-dq-kCj" secondAttribute="top" constant="20" symbolic="YES" id="drG-cN-v80"/>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="trailing" secondItem="0NF-dq-kCj" secondAttribute="trailingMargin" id="hTd-gr-piW"/>
+                            <constraint firstItem="wlL-3I-T2y" firstAttribute="leading" secondItem="z7I-bQ-atJ" secondAttribute="leading" id="vLZ-MY-QeR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="wlL-3I-T2y" id="gjH-oS-FR2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HYf-JD-NmO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3791.1999999999998" y="2885.307346326837"/>
+        </scene>
         <!--View Item-->
         <scene sceneID="OnQ-sS-YaA">
             <objects>
@@ -343,10 +420,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsG-x5-9Wr" customClass="PressableButton" customModule="SwiftyButton">
-                                <rect key="frame" x="147" y="403" width="203" height="47"/>
-                                <state key="normal" title="Set Pickup Location"/>
-                            </button>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGe-cJ-gGH">
                                 <rect key="frame" x="93" y="552" width="124" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -377,29 +450,43 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsG-x5-9Wr" customClass="PressableButton" customModule="SwiftyButton">
+                                <rect key="frame" x="150" y="407" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gsG-x5-9Wr" secondAttribute="height" multiplier="5:1" id="90H-57-Hv7"/>
+                                </constraints>
+                                <state key="normal" title="Set Pickup Location"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Lf9-ht-G71" kind="show" id="6dW-Tl-irk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Rzl-gC-3M8" firstAttribute="leading" secondItem="1Yj-qC-zAN" secondAttribute="leading" id="3YF-kZ-tbP"/>
-                            <constraint firstItem="gsG-x5-9Wr" firstAttribute="leading" secondItem="Rzl-gC-3M8" secondAttribute="trailing" constant="16" id="3qL-xB-Lm0"/>
+                            <constraint firstItem="gsG-x5-9Wr" firstAttribute="leading" secondItem="Rzl-gC-3M8" secondAttribute="trailing" constant="19" id="3qL-xB-Lm0"/>
                             <constraint firstItem="1Yj-qC-zAN" firstAttribute="top" secondItem="Niy-Fq-BXu" secondAttribute="bottom" constant="22" id="4qy-r6-GoD"/>
-                            <constraint firstItem="GOj-z7-Gs0" firstAttribute="top" secondItem="gsG-x5-9Wr" secondAttribute="bottom" constant="9" id="9XI-iX-V3r"/>
-                            <constraint firstItem="SdY-Pn-JbU" firstAttribute="leading" secondItem="GOj-z7-Gs0" secondAttribute="leading" id="Bad-eJ-sxD"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XGe-cJ-gGH" secondAttribute="trailing" constant="20" symbolic="YES" id="Dbf-aT-PwM"/>
+                            <constraint firstItem="GOj-z7-Gs0" firstAttribute="top" secondItem="gsG-x5-9Wr" secondAttribute="bottom" constant="12" id="9XI-iX-V3r"/>
+                            <constraint firstItem="SdY-Pn-JbU" firstAttribute="leading" secondItem="GOj-z7-Gs0" secondAttribute="leading" id="Ak9-Hi-Jxa"/>
+                            <constraint firstItem="XGe-cJ-gGH" firstAttribute="baseline" secondItem="SdY-Pn-JbU" secondAttribute="baseline" id="Dge-7L-mda"/>
+                            <constraint firstItem="XGe-cJ-gGH" firstAttribute="leading" secondItem="SdY-Pn-JbU" secondAttribute="trailing" constant="5" id="J8c-mF-9ct"/>
                             <constraint firstItem="Niy-Fq-BXu" firstAttribute="leading" secondItem="1Yj-qC-zAN" secondAttribute="leading" constant="-6" id="MA4-os-9Jd"/>
-                            <constraint firstItem="lS0-zV-8Jl" firstAttribute="top" secondItem="SdY-Pn-JbU" secondAttribute="bottom" constant="30" id="OBN-X5-ZEf"/>
                             <constraint firstItem="Niy-Fq-BXu" firstAttribute="leading" secondItem="uBO-aS-2uQ" secondAttribute="leadingMargin" constant="9" id="Tsl-5p-ldL"/>
                             <constraint firstItem="Niy-Fq-BXu" firstAttribute="centerX" secondItem="uBO-aS-2uQ" secondAttribute="centerX" id="YqO-uj-Th1"/>
-                            <constraint firstItem="SdY-Pn-JbU" firstAttribute="baseline" secondItem="XGe-cJ-gGH" secondAttribute="baseline" id="aQB-1Y-Aoi"/>
                             <constraint firstItem="Rzl-gC-3M8" firstAttribute="top" secondItem="1Yj-qC-zAN" secondAttribute="bottom" constant="23" id="eE0-7a-2Qh"/>
                             <constraint firstItem="Niy-Fq-BXu" firstAttribute="trailing" secondItem="1Yj-qC-zAN" secondAttribute="trailing" constant="6" id="fM3-qo-gks"/>
-                            <constraint firstItem="XGe-cJ-gGH" firstAttribute="leading" secondItem="SdY-Pn-JbU" secondAttribute="trailing" constant="5" id="h0u-Dn-t3B"/>
-                            <constraint firstItem="gsG-x5-9Wr" firstAttribute="top" secondItem="1Yj-qC-zAN" secondAttribute="bottom" constant="10" id="hcF-3m-gcG"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XGe-cJ-gGH" secondAttribute="trailing" constant="20" symbolic="YES" id="hC3-Ab-4Pz"/>
+                            <constraint firstItem="gsG-x5-9Wr" firstAttribute="top" secondItem="1Yj-qC-zAN" secondAttribute="bottom" constant="14" id="hcF-3m-gcG"/>
                             <constraint firstItem="GOj-z7-Gs0" firstAttribute="leading" secondItem="1Yj-qC-zAN" secondAttribute="leading" constant="-6" id="jur-dP-WvA"/>
                             <constraint firstItem="Niy-Fq-BXu" firstAttribute="top" secondItem="EXY-Db-hnc" secondAttribute="bottom" constant="25" id="lI6-rh-C18"/>
-                            <constraint firstItem="SdY-Pn-JbU" firstAttribute="top" secondItem="GOj-z7-Gs0" secondAttribute="bottom" constant="18" id="o1g-nj-fdt"/>
                             <constraint firstItem="gsG-x5-9Wr" firstAttribute="trailing" secondItem="GOj-z7-Gs0" secondAttribute="trailing" id="p3k-a6-z0i"/>
                             <constraint firstItem="gsG-x5-9Wr" firstAttribute="trailing" secondItem="Niy-Fq-BXu" secondAttribute="trailing" id="pZW-O6-nM7"/>
+                            <constraint firstItem="SdY-Pn-JbU" firstAttribute="top" secondItem="GOj-z7-Gs0" secondAttribute="bottom" constant="18" id="uaa-Q4-8Z3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="View Item" id="w8p-Wt-u9c">
@@ -451,7 +538,13 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-vq-2Ea" customClass="GIDSignInButton">
                                 <rect key="frame" x="86" y="448" width="202" height="51"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GoogleSignInBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-RB-vdh">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="googleBtnTapped:" destination="OHd-TI-KIp" eventType="valueChanged" id="KAR-rK-GZH"/>
                                 </connections>
@@ -493,7 +586,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kw3-w2-Q9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4647" y="515"/>
+            <point key="canvasLocation" x="-4647.1999999999998" y="514.99250374812596"/>
         </scene>
         <!--Account SetupVC-->
         <scene sceneID="bdj-Tz-68B">
@@ -614,7 +707,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.40080741534068864" green="0.58626270875326592" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.40000000000000002" green="0.58431372549019611" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -779,6 +872,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="GoogleSignInBtnImg" width="410" height="85"/>
         <image name="SwapsLogo" width="256" height="256"/>
         <image name="completeIcon" width="64" height="64"/>
         <image name="default-placeholder" width="1500" height="1500"/>

@@ -27,6 +27,7 @@ class SaleItemVC: UIViewController {
     
     // MARK: - View controller life cycle
     override func viewDidLoad(){
+        itemImageView.layer.cornerRadius = 6.0
         updateUIFromJson()
     }
     
@@ -56,10 +57,10 @@ class SaleItemVC: UIViewController {
      the saleItem value
      */
     func updateUIFromJson() {
-        if(saleItem?.jsonName != nil){  itemNameLabel.text = saleItem?.jsonName!            }
-        if(saleItem?.jsonPrice != nil){ itemPriceLabel.text =  "$\((saleItem?.jsonPrice)!)" }
-        if(saleItem?.jsonDesc != nil){  itemDescLabel.text = saleItem?.jsonDesc!            }
-        if(saleItem?.image != nil){     itemImageView.image = saleItem?.image!              }
+        if(saleItem?.jsonName != nil)  { itemNameLabel.text = saleItem?.jsonName!            }
+        if(saleItem?.jsonPrice != nil) { itemPriceLabel.text =  "$\((saleItem?.jsonPrice)!)" }
+        if(saleItem?.jsonDesc != nil)  { itemDescLabel.text = saleItem?.jsonDesc!            }
+        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!              }
         if(saleItem?.jsonUserID != nil){
             dbManager.getUsernameFromUserID(userID: (saleItem?.jsonUserID)!) {
                 (username) -> () in self.usernameLabel.text = username}

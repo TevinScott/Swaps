@@ -151,15 +151,12 @@ class FeedVC : UIViewController, UISearchBarDelegate{
             UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                 self.navigationController?.setToolbarHidden(true, animated: true)
-                self.searchBar.frame.origin.y = 20
-                self.collectionView.frame.origin.y = (self.navigationController?.navigationBar.frame.height)! + self.searchBar.frame.height
+
             }, completion: nil)
             
         } else {
             UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
-                self.searchBar.frame.origin.y = 0
-                self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
             }, completion: nil)
         }
     }

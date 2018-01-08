@@ -2,8 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Use your current location to route you to your Item pickup location 3</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Use your current location to route you to your Item pickup location 2</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use your current location to route you to your Item pickup location 1</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Set Your Profile Photo</string>
+	<string>Use your Camera or Photo Library to set Images of your choosing</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
