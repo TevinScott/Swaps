@@ -14,7 +14,7 @@ import FirebaseStorage
 import GoogleSignIn
 
 /// An Interace for accessing the FireBase Database
-class FirebaseDataManager {
+class FirebaseManager {
     
     // MARK: - Attributes
     private let rootRef = Database.database().reference()
@@ -59,7 +59,6 @@ class FirebaseDataManager {
             self.listOfItems.remove(at: index)
             completion(self.listOfItems)
         })
-        
     }
 
     /**
@@ -258,7 +257,7 @@ class FirebaseDataManager {
         - completionURL: URL that references the image in firebase storage
      
      */
-    private func uploadItemImage(name: String,image: UIImage, completionURL: @escaping (String) -> ()){
+    func uploadItemImage(name: String,image: UIImage, completionURL: @escaping (String) -> ()){
         let fileStorage = Storage.storage().reference().child("\(String(describing: name)).png")
         // NEEDS: TEST - may cause insertion conflicts if two items have the same name
         if let imageToUpload = UIImagePNGRepresentation(image) {

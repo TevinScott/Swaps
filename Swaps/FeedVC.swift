@@ -18,7 +18,7 @@ class FeedVC : UIViewController, UISearchBarDelegate{
     
     // MARK: - Attributes
     let coredataManager = CoreDataManager()
-    let firebaseDataManager = FirebaseDataManager()
+    let firebaseDataManager = FirebaseManager()
     let algoliaSearchManager = AlgoliaSearchManager.init()
     //adMob variables
     var adsToLoad = [GADNativeExpressAdView]()
@@ -33,8 +33,9 @@ class FeedVC : UIViewController, UISearchBarDelegate{
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 5.0
     let cellIdentifier = "SaleCell"
-    var setOfItems: ItemCollection = ItemCollection.init(){ didSet { collectionView?.reloadData() } }
+    var setOfItems: SaleItemCollection = SaleItemCollection.init(){ didSet { collectionView?.reloadData() } }
     var searchActive : Bool = false
+    var refreshControl: UIRefreshControl!
 
     // MARK: - Button Actions
     /**
@@ -109,7 +110,7 @@ class FeedVC : UIViewController, UISearchBarDelegate{
         //search and database init
         searchBar.delegate = self
         algoliaSearchManager.getAllItems() { (escapingList) -> () in
-            self.setOfItems = ItemCollection.init(inputList: escapingList)
+            self.setOfItems = SaleItemCollection.init(inputList: escapingList)
         }
         //constrains the layout to the layout property attributes
         let width = ((collectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
@@ -117,14 +118,28 @@ class FeedVC : UIViewController, UISearchBarDelegate{
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
         collectionViewOriginalLocation = self.collectionView.frame.origin.y
         //addNativeExpressAds()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        collectionView.addSubview(refreshControl) // not required when using UITableViewController
     }
     
+    /**
+     
+     */
+    @objc func refresh(sender:AnyObject) {
+        algoliaSearchManager.getAllItems() { (escapingList) -> () in
+            self.setOfItems = SaleItemCollection.init(inputList: escapingList)
+            self.refreshControl.endRefreshing()
+        }
+    }
     // MARK: - Search bar functionality
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         algoliaSearchManager.searchDatabase(searchString: searchText) {
             (escapingList) -> () in
-            self.setOfItems = ItemCollection.init(inputList: escapingList)
+            self.setOfItems = SaleItemCollection.init(inputList: escapingList)
         }
     }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

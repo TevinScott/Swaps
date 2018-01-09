@@ -13,7 +13,7 @@ import UIKit
 class SaleItemVC: UIViewController {
     
     // MARK: - Attributes
-    var dbManager = FirebaseDataManager()
+    var dbManager = FirebaseManager()
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var itemNameLabel: UILabel!
     @IBOutlet var itemPriceLabel: UILabel!
@@ -27,7 +27,6 @@ class SaleItemVC: UIViewController {
     
     // MARK: - View controller life cycle
     override func viewDidLoad(){
-        itemImageView.layer.cornerRadius = 6.0
         updateUIFromJson()
     }
     
@@ -53,6 +52,25 @@ class SaleItemVC: UIViewController {
     // MARK: - Support Functions
     
     /**
+     updateUI sets all outletted values within this view controller to this current values in
+     updateUIFrom sets all outletted values within this view controller to this current json values in
+     the saleItem value
+     */
+    func updateUI() {
+        if(saleItem?.name! != nil){
+            itemNameLabel.text = saleItem?.name!
+        }
+        if(saleItem?.price! != nil){
+            itemPriceLabel.text =  "$\((saleItem?.price)!)"
+        }
+        if(saleItem?.description! != nil){
+            itemDescLabel.text = saleItem?.description!
+        }
+        if (saleItem?.image != nil){
+            itemImageView.image = saleItem?.image!
+        }
+    }
+    /**
      updateUIFrom sets all outletted values within this view controller to this current json values in
      the saleItem value
      */
@@ -65,6 +83,8 @@ class SaleItemVC: UIViewController {
             dbManager.getUsernameFromUserID(userID: (saleItem?.jsonUserID)!) {
                 (username) -> () in self.usernameLabel.text = username}
         }
+        itemImageView.layer.cornerRadius = 8.0
+        itemImageView.clipsToBounds = true
     }
     
 }

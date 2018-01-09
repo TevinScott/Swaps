@@ -17,7 +17,7 @@ class AccountSetupVC: UIViewController, UITextFieldDelegate{
     
     // MARK: - Class Attributes
     var userAccountInfo: UserAccountInfo!
-    var firebaseDataManager: FirebaseDataManager!
+    var firebaseDataManager: FirebaseManager!
     var imageAdded: Bool = false
     @IBOutlet var usernameField: UITextField!
     @IBOutlet var createBtn: UIButton!
@@ -243,7 +243,7 @@ class AccountSetupVC: UIViewController, UITextFieldDelegate{
 
     // MARK: - View controller life cycle
     override func viewDidLoad(){
-        firebaseDataManager = FirebaseDataManager()
+        firebaseDataManager = FirebaseManager()
         usernameField.delegate = self
     }
     override func didReceiveMemoryWarning() {

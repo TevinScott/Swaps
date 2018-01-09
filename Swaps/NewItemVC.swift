@@ -16,7 +16,7 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
     
     // MARK: - Attributes
     let cdataManager: CoreDataManager = CoreDataManager()
-    let fbaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    let algoliaHandle = AlgoliaSearchManager()
     var imageAdded: Bool = false;
     @IBOutlet var nameField: UITextField!
     @IBOutlet var priceField: UITextField!
@@ -126,7 +126,7 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
     private func createAndUpload(){
         if(true/*checkAllFieldsCompleted()*/){
             let newItem: SaleItem = createNewItemObj()
-            fbaseDataManager.uploadSaleItem(inputSaleItem: newItem)
+            algoliaHandle.uploadToIndex(saleItem: newItem)
             _ = navigationController?.popViewController(animated: true)
         }else{
             // need to do a prompt overlay specifying that not all fields have been completed

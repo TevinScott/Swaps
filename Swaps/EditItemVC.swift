@@ -14,7 +14,7 @@ import UIKit
 class EditItemVC: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - Attributes
-    var fbaseDataManager = FirebaseDataManager()
+    var fbaseDataManager = FirebaseManager()
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var itemNameField: UITextField!
     @IBOutlet var itemPriceField: UITextField!

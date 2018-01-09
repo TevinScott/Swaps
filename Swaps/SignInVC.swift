@@ -18,7 +18,7 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     // MARK: - Attributes
     @IBOutlet var noAccountBtn: UIButton!
     let coreDataManager: CoreDataManager = CoreDataManager()
-    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    let firebaseDataManager: FirebaseManager = FirebaseManager()
     
     // MARK: - Button Action
     /**

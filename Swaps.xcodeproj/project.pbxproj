@@ -22,14 +22,14 @@
 		E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C5A1F7481AC00F2EF49 /* Main.storyboard */; };
 		E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */; };
 		E2405C641F7481AC00F2EF49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C621F7481AC00F2EF49 /* LaunchScreen.storyboard */; };
-		E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */; };
+		E2405C701F75715100F2EF49 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C6F1F75715100F2EF49 /* FirebaseManager.swift */; };
 		E24B8BF91F9BE8DE0008C308 /* UserAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */; };
 		E24B8BFB1F9BEAC60008C308 /* String+ToBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8BFA1F9BEAC60008C308 /* String+ToBoolean.swift */; };
 		E24B8C031F9D01330008C308 /* SwapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B8C021F9D01330008C308 /* SwapsTests.swift */; };
 		E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F8EA61F906038008BAFAD /* SignInVC.swift */; };
 		E24F8EA91F913DD3008BAFAD /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */; };
 		E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */; };
-		E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* ItemCollection.swift */; };
+		E24FAA1D1F7C80740073102B /* SaleItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FAA1C1F7C80740073102B /* SaleItemCollection.swift */; };
 		E25BC4AD1F83285E0054D6F5 /* SaleItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */; };
 		E2686DD71FAB6CD100CDA5C8 /* AccountSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */; };
 		E27BD4531FE7576400376584 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27BD4521FE7576400376584 /* FeedVC.swift */; };
@@ -74,7 +74,7 @@
 		E2405C5E1F7481AC00F2EF49 /* Radford_Swaps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Radford_Swaps.xcdatamodel; sourceTree = "<group>"; };
 		E2405C631F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2405C651F7481AC00F2EF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
+		E2405C6F1F75715100F2EF49 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountInfo.swift; sourceTree = "<group>"; };
 		E24B8BFA1F9BEAC60008C308 /* String+ToBoolean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ToBoolean.swift"; sourceTree = "<group>"; };
 		E24B8C001F9D01330008C308 /* SwapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +83,7 @@
 		E24F8EA61F906038008BAFAD /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		E24F8EA81F913DD3008BAFAD /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		E24FAA1A1F7B40160073102B /* SaleItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		E24FAA1C1F7C80740073102B /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollection.swift; sourceTree = "<group>"; };
+		E24FAA1C1F7C80740073102B /* SaleItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleItemCollection.swift; sourceTree = "<group>"; };
 		E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItemVC.swift; sourceTree = "<group>"; };
 		E2686DD61FAB6CD100CDA5C8 /* AccountSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupVC.swift; sourceTree = "<group>"; };
 		E27BD4521FE7576400376584 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */,
-				E2405C6F1F75715100F2EF49 /* FirebaseDataManager.swift */,
+				E2405C6F1F75715100F2EF49 /* FirebaseManager.swift */,
 				E236736B1FF09BD0002CFE22 /* AlgoliaSearchManager.swift */,
 			);
 			name = "Data Managers";
@@ -264,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				E2D1DCA01F79FCEA00891BA7 /* SaleItem.swift */,
-				E24FAA1C1F7C80740073102B /* ItemCollection.swift */,
+				E24FAA1C1F7C80740073102B /* SaleItemCollection.swift */,
 				E24B8BF81F9BE8DE0008C308 /* UserAccountInfo.swift */,
 			);
 			name = "Data Structures";
@@ -485,11 +485,11 @@
 				E236736A1FEF2F57002CFE22 /* UITextField+DoneButton.swift in Sources */,
 				E234CE9C2000C6CC00AD5C9D /* PickupVC.swift in Sources */,
 				E24FAA1B1F7B40160073102B /* SaleItemCollectionViewCell.swift in Sources */,
-				E2405C701F75715100F2EF49 /* FirebaseDataManager.swift in Sources */,
+				E2405C701F75715100F2EF49 /* FirebaseManager.swift in Sources */,
 				E286B9331F918344008000B3 /* UserProfileVC.swift in Sources */,
 				E23673651FEF19A9002CFE22 /* NewItemVC+KeyboardFunctionality.swift in Sources */,
 				E2686DD71FAB6CD100CDA5C8 /* AccountSetupVC.swift in Sources */,
-				E24FAA1D1F7C80740073102B /* ItemCollection.swift in Sources */,
+				E24FAA1D1F7C80740073102B /* SaleItemCollection.swift in Sources */,
 				E2F1A7C71F86926800EE7C24 /* EditItemVC.swift in Sources */,
 				E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */,
 				E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */,

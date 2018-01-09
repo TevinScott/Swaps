@@ -12,15 +12,18 @@ import AlgoliaSearch
 /// A Class Manager for Algolia Search API Functionality
 class AlgoliaSearchManager {
     
+
     // MARK: - Attributes
     let query = Query()
     var saleItemIndex: Index!
-    var initialSaleIndex: Index!
+    var adminSaleIndex: Index!
     var searchId = 0
     var displayedSearchId = -1
     var loadedPage: UInt = 0
     var nbPages: UInt = 0
     var searchActive : Bool = false
+    let firebaseHandle = FirebaseManager()
+    var refreshControl: UIRefreshControl!
     
     // MARK: - Intializer
     /**
@@ -30,7 +33,7 @@ class AlgoliaSearchManager {
         let client = Client(appID: "KJBTLKM9VP", apiKey: "336ec5d2a6f528a23c73482a3d657643")
         saleItemIndex = client.index(withName: "Skill-Trader")
         let initialClient = Client(appID: "KJBTLKM9VP", apiKey: "5309d1fc99008e074cf9af0cbcfbe87e")
-        initialSaleIndex = initialClient.index(withName: "Skill-Trader")
+        adminSaleIndex = initialClient.index(withName: "Skill-Trader")
         query.hitsPerPage = 15
         query.attributesToRetrieve = ["name", "desc", "category"]
 
@@ -43,7 +46,7 @@ class AlgoliaSearchManager {
      - parameter escapingList: returns 15 of the most recent entries in the Algolia database
     */
     func getAllItems(escapingList: @escaping ([SaleItem]) -> ()){
-        initialSaleIndex.browse(from: "", completionHandler: { (content, error) -> Void in
+        adminSaleIndex.browse(from: "", completionHandler: { (content, error) -> Void in
             if error == nil {
                 guard let hits = content!["hits"] as? [[String: AnyObject]] else { return }
                 var tmp = [SaleItem]()
@@ -53,7 +56,7 @@ class AlgoliaSearchManager {
                 escapingList(tmp)
             } else if error != nil{ print(error as Any) }
         })
-        
+
     }
     
     /**
@@ -76,18 +79,27 @@ class AlgoliaSearchManager {
             } else if error != nil{ print(error as Any) }
         })
     }
-    
-    func uploadIndex(saleItem: SaleItem){
-        let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.jsonName as AnyObject,
-                                                         "price" : saleItem.jsonPrice as AnyObject,
-                                                         "desc" : saleItem.jsonDesc as AnyObject,
-                                                         "imageURL" : saleItem.jsonImageURL as AnyObject,
-                                                         "category" : saleItem.jsonCategory as AnyObject,
-                                                         "userID" : saleItem.jsonUserID as AnyObject]
-        saleItemIndex.addObjects([saleItemDictionary], completionHandler: { (content, error) -> Void in
-            if error == nil {
-                print("Object IDs: \(content!)")
-            }
-        })
+
+    func uploadToIndex(saleItem: SaleItem){
+        firebaseHandle.uploadItemImage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in //image upload
+            saleItem.imageURL = completedURL
+            let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.name as AnyObject,
+                                                             "price" : saleItem.price as AnyObject,
+                                                             "desc" : saleItem.description as AnyObject,
+                                                             "imageURL" : saleItem.imageURL as AnyObject,
+                                                             "category" : saleItem.category as AnyObject,
+                                                             "userID" : saleItem.userID as AnyObject]
+            self.adminSaleIndex.addObject(saleItemDictionary, withID: "myID", completionHandler: { (content, error) -> Void in
+                if error != nil {
+                    print(error!)
+                }
+                if error == nil {
+                    if let objectID = content!["objectID"] as? String {
+                        print("Object ID: \(objectID)")
+                    }
+                    print("Object IDs: \(content!)")
+                }
+            })
+        }
     }
 }

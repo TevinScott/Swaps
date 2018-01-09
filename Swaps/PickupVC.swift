@@ -32,9 +32,16 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     /**
      called once user allows location permissions. will move the map view to the user's current location should the move.
     */
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    internal func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //should really only center once when the view is onpened, this locks the mapview to where the user is currently located
+        panToCurrentLocation()
+    }
+    
+    /**
+     Pans the current mapView to this user's GPS location
+    */
+    private func panToCurrentLocation(){
+        let center = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         self.mapView.setRegion(region, animated: true)
         self.mapView.showsUserLocation = true

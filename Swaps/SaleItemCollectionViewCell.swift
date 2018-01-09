@@ -50,6 +50,8 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
         else {
             saleItemImg.image = (saleItem?.placeholderImage)!
         }
+        self.layer.cornerRadius = 8.0
+        self.clipsToBounds = true
     }
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.
