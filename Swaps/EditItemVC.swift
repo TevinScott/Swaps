@@ -117,24 +117,29 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
      the saleItem value
      */
     private func updateUI() {
-        if(saleItem?.name! != nil){
-            itemNameField.text = saleItem?.name!
-        }
-        if(saleItem?.price! != nil){
-            itemPriceField.text = (saleItem?.price)!
-        }
-        if(saleItem?.description! != nil){
-            itemDescTextView.text = saleItem?.description!
-        }
-        if (saleItem?.image != nil){
-            itemImageView.image = saleItem?.image!
-        }
+        if(saleItem?.name! != nil)       { itemNameField.text = saleItem?.name!           }
+        if(saleItem?.price! != nil)      { itemPriceField.text = (saleItem?.price)!       }
+        if(saleItem?.description! != nil){ itemDescTextView.text = saleItem?.description! }
+        if (saleItem?.image != nil)      { itemImageView.image = saleItem?.image!         }
+    }
+    
+    /**
+     updateUIFrom sets all outletted values within this view controller to this current json values in
+     the saleItem value
+     */
+    func updateUIFromJson() {
+        if(saleItem?.jsonName != nil)  { itemNameField.text = saleItem?.jsonName!            }
+        if(saleItem?.jsonPrice != nil) { itemPriceField.text =  "$\((saleItem?.jsonPrice)!)" }
+        if(saleItem?.jsonDesc != nil)  { itemDescTextView.text = saleItem?.jsonDesc!         }
+        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!              }
+        itemImageView.layer.cornerRadius = 8.0
+        itemImageView.clipsToBounds = true
     }
     
     
     // MARK: - View controller life cycle
     override func viewDidLoad(){
-        updateUI()
+        updateUIFromJson()
         imageHasBeenChanged = false;
         let tapGesture = UITapGestureRecognizer(target: self, action : #selector(didTapView(gesture:)))
         view.addGestureRecognizer(tapGesture)

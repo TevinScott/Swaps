@@ -68,14 +68,17 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
         if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             if let userID = Auth.auth().currentUser?.uid {
-                if(cell.saleItem?.userID == userID){
+                if(cell.saleItem?.jsonUserID == userID){
                     performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
                 }else{
                     performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+                    print("Failed the current Users ID is: ", userID)
+                    print("Failed the item userID is: ", cell.saleItem?.jsonUserID as Any)
                 }
             }else{
                 //user is currently not signed in.
                 performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+                print("this condition is being executed as the user is assumed to not be signed in currently")
             }
         }
     }

@@ -16,6 +16,7 @@ class UserProfileVC: UIViewController {
     
     // MARK: - Attributes
     let coreDataManager: CoreDataManager = CoreDataManager.init()
+    let firebaseHandle = FirebaseManager()
     @IBOutlet var signOutBtn: UIButton!
     
     /**
@@ -49,6 +50,12 @@ class UserProfileVC: UIViewController {
     // MARK: - View controller life cycle
     override func viewDidLoad(){
         roundSignOutBtnCorners()
+        firebaseHandle.getUsernameFromUserID(userID: Auth.auth().currentUser!.uid) {
+            (username) -> () in
+            self.navigationItem.title = username
+        }
+
+       //
     }
     
     
