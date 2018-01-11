@@ -15,6 +15,7 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - Attributes
     var fbaseDataManager = FirebaseManager()
+    var algoliaHandle = AlgoliaSearchManager()
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var itemNameField: UITextField!
     @IBOutlet var itemPriceField: UITextField!
@@ -109,7 +110,8 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
             saleItem.image = itemImageView.image
             oldImageURL = saleItem.imageURL!
         }
-        fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
+        algoliaHandle.updateItemIndexValues(modifiedSaleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
+        //fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
     }
     
     /**
@@ -128,10 +130,10 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
      the saleItem value
      */
     func updateUIFromJson() {
-        if(saleItem?.jsonName != nil)  { itemNameField.text = saleItem?.jsonName!            }
-        if(saleItem?.jsonPrice != nil) { itemPriceField.text =  "$\((saleItem?.jsonPrice)!)" }
-        if(saleItem?.jsonDesc != nil)  { itemDescTextView.text = saleItem?.jsonDesc!         }
-        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!              }
+        if(saleItem?.jsonName != nil)  { itemNameField.text = saleItem?.jsonName!           }
+        if(saleItem?.jsonPrice != nil) { itemPriceField.text = saleItem?.jsonPrice!         }
+        if(saleItem?.jsonDesc != nil)  { itemDescTextView.text = saleItem?.jsonDesc!        }
+        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!             }
         itemImageView.layer.cornerRadius = 8.0
         itemImageView.clipsToBounds = true
     }

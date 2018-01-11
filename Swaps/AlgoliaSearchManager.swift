@@ -60,6 +60,24 @@ class AlgoliaSearchManager {
     }
     
     /**
+     updates a saleItem that is stored in the Algolia JSON Index
+     
+     - parameters:
+        - modifiedSaleItem: the swift data structure representation of the updated version of the Sale Item to be changed in the Algolia Index
+        - imageChanged:     a boolean answer to weither the current sale item image has been changed by the user in the app
+        - previousURL:      the previous Image URL which will be used to delete the previous image from Firebase Storage
+     */
+    func updateItemIndexValues(modifiedSaleItem: SaleItem, imageChanged: Bool, previousURL: String){
+        let newObject: [String: String] = [
+            "desc": modifiedSaleItem.description,
+            "price": modifiedSaleItem.price,
+            "name": modifiedSaleItem.name,
+        ]
+        adminSaleIndex.partialUpdateObject(newObject, withID: modifiedSaleItem.jsonObjectID)
+        //NEEDS: if statement to handle the imageChanged Condition
+    }
+    
+    /**
      gets the first 15 values matching the search parameter within the Algolia JSON Database
      
      - parameters:
@@ -80,6 +98,11 @@ class AlgoliaSearchManager {
         })
     }
     
+    /**
+     uploads The given saleItem to the Algolia Index as a Key: value list
+     
+     - parameter saleItem: the swift data structure representation of the sale item that will be uploaded
+    */
     func uploadToIndex(saleItem: SaleItem){
         firebaseHandle.uploadImageToFirebaseStorage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in //image upload
             saleItem.imageURL = completedURL

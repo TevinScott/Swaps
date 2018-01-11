@@ -16,13 +16,17 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet var saleItemImg: UIImageView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     @IBOutlet var priceLabel: UILabel!
-    var saleItem: SaleItem? { didSet { updateUIFromJson()} }
-
+    
+    private var currentCellImageURL:NSURL!
+    private var imageDownloadSession: URLSessionDataTask!
+    public var saleItem: SaleItem? { didSet { updateUIFromJson()} }
+    
     // MARK: - Support Functions
     /**
      updates this cell to the current values of the SaleItem.
     */
-    func updateUI(){
+    private func updateUI(){
+       
         //places dollarsign in front of sale item price
         if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
@@ -30,6 +34,7 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
 
         if (saleItem?.imageURL != nil){
             setImageFromURLString(imgURL: (saleItem?.imageURL)!)
+            
         }
         else {
             saleItemImg.image = (saleItem?.placeholderImage)!
@@ -38,54 +43,86 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     /**
      updates this cell to the current SaleItem's JSON attributes.
      */
-    func updateUIFromJson(){
+    
+    private func updateUIFromJson(){
         //places dollarsign in front of sale item price
         if let priceVal: String = saleItem?.jsonPrice! {
             priceLabel.text = "$\(priceVal)"
         }
-        // if the sale image is equal to the currently set cell image do nothing
-        if(saleItemImg?.image?.isEqualToImage(image: (saleItem?.image)!))!{
-            
-        }
-        // else if the images dont match, try to parse from the non-nil imageURL of the sale item
-        else if (saleItem?.jsonImageURL != nil){
-            setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
-        }
-        // final case senario the cell is set to a default placeholder image
-        else {
-            saleItemImg.image = (saleItem?.placeholderImage)!
-        }
+        setImageWhenNeeded()
         self.layer.cornerRadius = 8.0
         self.clipsToBounds = true
     }
+    
+    /**
+     This function is used to set the saleitem cell Image efficiently. Swift re-uses cells in collections and tables. Thus, if the new sale item's downloaded image will match a reused cell's image, the download is skipped.
+    */
+    private func setImageWhenNeeded(){
+        // if the current cell URL is nil set it to the saleItem URL
+        if(currentCellImageURL == nil){
+            saleItemImg.image = UIImage(named: "default-placeholder")
+            currentCellImageURL = saleItem?.jsonImageURL
+            setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
+        }
+            // if the current Image URL has been set
+        else if(currentCellImageURL != nil){
+            //if current cell URL doesnt match the newly set saleItem URL set the default place holder
+            if((currentCellImageURL != saleItem?.jsonImageURL)){
+                saleItemImg.image = UIImage(named: "default-placeholder")
+                currentCellImageURL = saleItem?.jsonImageURL
+                setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
+            }
+            /* if the URLs' Match it is assumed that the sale item's
+             image, if downloaded, will match this recycled cell's image */
+        }
+            // final case senario the cell is set to a default placeholder image
+        else {
+            saleItemImg.image = UIImage(named: "default-placeholder")
+        }
+    }
+    
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.
      
      - Parameter imgURL: URL of the image to be downloaded
      */
     private func setImageFromURL(imgURL: NSURL){
-        URLSession.shared.dataTask(with: imgURL as URL, completionHandler: { (data, response, error) -> Void in
+        //NEEDS: Try Catch here , if this fails just set the image to the default-placeholder and display a network error message
+        if(self.imageDownloadSession != nil){
+            self.imageDownloadSession.cancel()
+        }
+        let task = URLSession.shared.dataTask(with: imgURL as URL, completionHandler: { (data, response, error) -> Void in
             DispatchQueue.main.async(execute: { () -> Void in
-                let image = UIImage(data: data!)
-                self.saleItem?.image = image
-                self.saleItemImg.image = image
+                if(data != nil){
+                    let image = UIImage(data: data!)
+                    self.saleItem?.image = image
+                    self.saleItemImg.image = image
+                }
             })
             
-        }).resume()
+        })
+        task.resume()
+        imageDownloadSession = task
     }
+    
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.
      
      - Parameter imgURL: URL of the image to be downloaded
      */
     private func setImageFromURLString(imgURL: String){
-        URLSession.shared.dataTask(with: NSURL(string: imgURL)! as URL, completionHandler: { (data, response, error) -> Void in
+        if(self.imageDownloadSession != nil){
+            self.imageDownloadSession.cancel()
+            print("cancelling previous download")
+        }
+        let task = URLSession.shared.dataTask(with: NSURL(string: imgURL)! as URL, completionHandler: { (data, response, error) -> Void in
             DispatchQueue.main.async(execute: { () -> Void in
                 let image = UIImage(data: data!)
                 self.saleItem?.image = image
                 self.saleItemImg.image = image
             })
-            
-        }).resume()
+        })
+        task.resume()
+        imageDownloadSession = task
     }
 }

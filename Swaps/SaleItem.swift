@@ -34,6 +34,7 @@ class SaleItem {
     var jsonDesc: String! { return json["desc"] as? String }
     var jsonImageURL: NSURL! {
         guard let jsonUrlString = json["imageURL"] as? String else { return nil }
+        imageURL = jsonUrlString
         return NSURL(string: jsonUrlString)
     }
     var jsonName: String! { return json["name"] as? String }

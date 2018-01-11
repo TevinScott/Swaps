@@ -52,7 +52,6 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
         let cellSaleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
-        cell.saleItemImg.image = UIImage(named: "default-placeholder")
         cell.saleItem = cellSaleItem
         return cell
     }
