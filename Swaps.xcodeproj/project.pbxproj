@@ -18,6 +18,7 @@
 		E236736A1FEF2F57002CFE22 /* UITextField+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23673691FEF2F57002CFE22 /* UITextField+DoneButton.swift */; };
 		E236736C1FF09BD0002CFE22 /* AlgoliaSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236736B1FF09BD0002CFE22 /* AlgoliaSearchManager.swift */; };
 		E236C9FC1F76CEF5002EB791 /* NewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */; };
+		E23F43062006AB2800FD041D /* FirebaseManager+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23F43052006AB2800FD041D /* FirebaseManager+UserData.swift */; };
 		E2405C571F7481AC00F2EF49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2405C561F7481AC00F2EF49 /* AppDelegate.swift */; };
 		E2405C5C1F7481AC00F2EF49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2405C5A1F7481AC00F2EF49 /* Main.storyboard */; };
 		E2405C5F1F7481AC00F2EF49 /* Swaps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2405C5D1F7481AC00F2EF49 /* Swaps.xcdatamodeld */; };
@@ -68,6 +69,7 @@
 		E23673691FEF2F57002CFE22 /* UITextField+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+DoneButton.swift"; sourceTree = "<group>"; };
 		E236736B1FF09BD0002CFE22 /* AlgoliaSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaSearchManager.swift; sourceTree = "<group>"; };
 		E236C9FB1F76CEF5002EB791 /* NewItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemVC.swift; sourceTree = "<group>"; };
+		E23F43052006AB2800FD041D /* FirebaseManager+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseManager+UserData.swift"; sourceTree = "<group>"; };
 		E2405C531F7481AC00F2EF49 /* Swaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2405C561F7481AC00F2EF49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2405C5B1F7481AC00F2EF49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -163,6 +165,15 @@
 			name = "NewItemVC & Extensions";
 			sourceTree = "<group>";
 		};
+		E23F43072006B02500FD041D /* FirebaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				E2405C6F1F75715100F2EF49 /* FirebaseManager.swift */,
+				E23F43052006AB2800FD041D /* FirebaseManager+UserData.swift */,
+			);
+			name = FirebaseManager;
+			sourceTree = "<group>";
+		};
 		E2405C4A1F7481AC00F2EF49 = {
 			isa = PBXGroup;
 			children = (
@@ -229,8 +240,8 @@
 		E2CF505C1F9155C60071EAD2 /* Data Managers */ = {
 			isa = PBXGroup;
 			children = (
+				E23F43072006B02500FD041D /* FirebaseManager */,
 				E2CF505D1F9156770071EAD2 /* CoreDataManager.swift */,
-				E2405C6F1F75715100F2EF49 /* FirebaseManager.swift */,
 				E236736B1FF09BD0002CFE22 /* AlgoliaSearchManager.swift */,
 			);
 			name = "Data Managers";
@@ -476,6 +487,7 @@
 				E24F8EA91F913DD3008BAFAD /* KeyboardHandler.swift in Sources */,
 				E27BD4531FE7576400376584 /* FeedVC.swift in Sources */,
 				E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */,
+				E23F43062006AB2800FD041D /* FirebaseManager+UserData.swift in Sources */,
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
 				E234CE991FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift in Sources */,
 				E29B61DB1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift in Sources */,

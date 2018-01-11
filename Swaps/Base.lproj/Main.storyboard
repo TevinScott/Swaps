@@ -40,6 +40,20 @@
                                     <segue destination="OHd-TI-KIp" kind="presentation" identifier="signOutSegue" id="4nf-ti-2HC"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1fP-Rj-Es6">
+                                <rect key="frame" x="96" y="156" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgp-Ag-jzp">
+                                <rect key="frame" x="96" y="127" width="150" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96827034932102651" green="0.96827034932102651" blue="0.96827034932102651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -54,7 +68,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhP-26-Jti" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dLb-Iy-Qxq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5436" y="1341"/>
+            <point key="canvasLocation" x="-5436" y="1340.7796101949027"/>
         </scene>
         <!--Feed-->
         <scene sceneID="YcE-oA-FoX">
@@ -538,12 +552,6 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCf-vq-2Ea" customClass="GIDSignInButton">
                                 <rect key="frame" x="86" y="448" width="202" height="51"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="GoogleSignInBtnImg" translatesAutoresizingMaskIntoConstraints="NO" id="h6l-RB-vdh">
-                                        <rect key="frame" x="0.0" y="0.0" width="202" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="googleBtnTapped:" destination="OHd-TI-KIp" eventType="valueChanged" id="KAR-rK-GZH"/>
@@ -872,7 +880,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="GoogleSignInBtnImg" width="410" height="85"/>
         <image name="SwapsLogo" width="256" height="256"/>
         <image name="completeIcon" width="64" height="64"/>
         <image name="default-placeholder" width="1500" height="1500"/>

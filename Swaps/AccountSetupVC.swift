@@ -93,7 +93,7 @@ class AccountSetupVC: UIViewController, UITextFieldDelegate{
         let proceedAction = UIAlertAction(title: "Skip Setup", style: .default) { (_) in
             self.performSegue(withIdentifier: "goToFeedFromSetup", sender: self)
             self.userAccountInfo = self.createBasicAccount()
-            self.firebaseDataManager.uploadBasicUserInfoToDatabase(userAccountInfo: self.userAccountInfo)
+            self.firebaseDataManager.uploadBasicUserInfo(userAccountInfo: self.userAccountInfo)
         }
         //adding the action to dialogbox
         alertController.addAction(cancelAction)

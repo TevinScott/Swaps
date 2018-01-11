@@ -51,7 +51,9 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
-        cell.saleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
+        let cellSaleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
+        cell.saleItemImg.image = UIImage(named: "default-placeholder")
+        cell.saleItem = cellSaleItem
         return cell
     }
     
@@ -70,15 +72,11 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
             if let userID = Auth.auth().currentUser?.uid {
                 if(cell.saleItem?.jsonUserID == userID){
                     performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
-                }else{
-                    performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
-                    print("Failed the current Users ID is: ", userID)
-                    print("Failed the item userID is: ", cell.saleItem?.jsonUserID as Any)
                 }
-            }else{
+            }
+                else{
                 //user is currently not signed in.
                 performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
-                print("this condition is being executed as the user is assumed to not be signed in currently")
             }
         }
     }

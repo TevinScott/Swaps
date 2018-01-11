@@ -17,12 +17,12 @@ import GoogleSignIn
 class FirebaseManager {
     
     // MARK: - Attributes
-    private let rootRef = Database.database().reference()
-    private var saleRef: DatabaseReference!
-    private var userRef: DatabaseReference!
-    private var databaseHandle: DatabaseHandle!
-    private var itemKeyDictionary = [String: Int]()
-    private var hashIndex = 0;
+    internal let rootRef = Database.database().reference()
+    internal var saleRef: DatabaseReference!
+    internal var userRef: DatabaseReference!
+    internal var databaseHandle: DatabaseHandle!
+    internal var itemKeyDictionary = [String: Int]()
+    internal var hashIndex = 0;
     var listOfItems = [SaleItem]()
     
     // MARK: - Initializer
@@ -71,7 +71,7 @@ class FirebaseManager {
      */
     func uploadSaleItem(inputSaleItem: SaleItem){
 
-        uploadItemImage(name: inputSaleItem.name!, image: inputSaleItem.image!){ (completedURL) -> () in //image upload
+        uploadImageToFirebaseStorage(name: inputSaleItem.name!, image: inputSaleItem.image!){ (completedURL) -> () in //image upload
             inputSaleItem.imageURL = completedURL
             self.uploadSaleItemToDatabase(saleItem: inputSaleItem) //saleItem upload
         }
@@ -91,7 +91,7 @@ class FirebaseManager {
                                                                "price" : saleItem.price!,
                                                                "desc" : saleItem.description!])
                 if(imageChanged){
-                    self.uploadItemImage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in
+                    self.uploadImageToFirebaseStorage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in
                         self.deleteImageInFireStorage(imageURL: saleItem.imageURL!)
                         saleItem.imageURL = completedURL
                         self.deleteImageInFireStorage(imageURL: previousURL)
@@ -127,74 +127,9 @@ class FirebaseManager {
         deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
     }
     
-    // MARK: - User Account Functionality
-    /**
-     Uploads a User's Account Info Object to Firebase's Webservice.
-     Firebase Storage for the user's profile image.
-     Firebase Database for the userID, chosenUsername, oneTimeNameChangeUsed, and the URL reference to the image in Firebase Storage.
-     
-     - Parameter userAccountInfo: the UserAccountInfo Object for which will be Uploaded to the Firebase Webservice
-     */
-    func uploadUserInfo(userAccountInfo: UserAccountInfo){
-        
-        uploadItemImage(name: userAccountInfo.userID!, image: userAccountInfo.profileImage!){ (completedURL) -> () in //image upload
-            userAccountInfo.profileImageURL = completedURL
-            self.uploadUserInfoToDatabase(userAccountInfo: userAccountInfo) //saleItem upload
-        }
-    }
     
-    /**
-     Checks wether the currently signed in user has already been setup within the firebase database
-     
-     - parameters:
-        - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in Swaps
-    */
-    func isUserSetup(answer: @escaping (Bool) -> ()){
-        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            let currentUserDataLocation = snapshot.childSnapshot(forPath: Auth.auth().currentUser!.uid)
-            if(currentUserDataLocation.exists()){
-                //user exists in firebase database and the value of "isAccountCreationCompleted?" can be de parsed to and returned as the answer parameter
-                answer(((currentUserDataLocation.childSnapshot(forPath: "isAccountCreationCompleted?").value) as! String).toBool()!)
-            }else {
-                //the current user has never signed into the firebase database and so "isAccountCreationCompleted?" can be inferred to be false
-                answer(false)
-                
-            }
-        })
-    }
     
-    /**
-     gets the Username from a given userID in the firebase database
-     
-     - parameters:
-     - userInfo: the account for which will be checked.
-     - answer:  returns true if the user already exists in firebase database
-     */
-    func getUsernameFromUserID(userID: String, username: @escaping(String) ->()){
-        let query = userRef.queryOrderedByKey().queryEqual(toValue: userID)
-        query.observeSingleEvent(of: .value, with: { (snapshot) in
-            username(snapshot.childSnapshot(forPath: userID).childSnapshot(forPath: "username").value as! String)
-        })
-    }
     
-    /**
-     checks wether the given username is possesed by another user within the firebase database
-     
-     - parameters:
-        - nameToCheckFor: the user name that will be searched for in the Firebase Datebase
-        - userNameAvailable: returns a escaping (Bool) value, returning true or false based on wether the parameter nameToCheckFor is within the firebase Database
-    */
-    func isNameAvailable(nameToCheckFor: String, userNameAvailable: @escaping (Bool) -> ()){
-        
-        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if ( !(snapshot.hasChild(nameToCheckFor)) ){
-               userNameAvailable(true)
-            }
-            else {
-                userNameAvailable(false)
-            }
-        })
-    }
     
     // MARK: - Firebase Helper Functions
     /**
@@ -207,30 +142,7 @@ class FirebaseManager {
         imageRef.delete{(error)in}
     }
     
-    /**
-     Uploads a UserAccountInfo object to firebase database under the key value of UserAccounts
-     
-     - parameter userAccountInfo: the reference to the UserAccountInfo object that will be added to firebase
-     */
-    private func uploadUserInfoToDatabase(userAccountInfo: UserAccountInfo){
-        let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
-                                                         "chosenUsername" : userAccountInfo.chosenUsername,
-                                                         "profileImageURL" : userAccountInfo.profileImageURL,
-                                                         "oneTimeNameChangeUsed?" : String(userAccountInfo.oneTimeNameChangeUsed),
-                                                         "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
-        rootRef.child("UserAccounts").child(userAccountInfo.userID).setValue(userAccountDictionary)
-    }
     
-    /**
-     Uploads a Basic UserAccountInfo object to firebase database under the key value of UserAccounts
-     
-     - parameter userAccountInfo: the reference to the UserAccountInfo object that will be added to firebase
-     */
-    func uploadBasicUserInfoToDatabase(userAccountInfo: UserAccountInfo){
-        let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
-                                                         "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
-        rootRef.child("UserAccounts").child(userAccountInfo.userID).setValue(userAccountDictionary)
-    }
     /**
      this function is to ONLY assist uploadSaleItemToAll
      uploads a SaleItems Object's values ONLY to Firebase Database.
@@ -257,7 +169,7 @@ class FirebaseManager {
         - completionURL: URL that references the image in firebase storage
      
      */
-    func uploadItemImage(name: String,image: UIImage, completionURL: @escaping (String) -> ()){
+    func uploadImageToFirebaseStorage(name: String,image: UIImage, completionURL: @escaping (String) -> ()){
         let fileStorage = Storage.storage().reference().child("\(String(describing: name)).png")
         // NEEDS: TEST - may cause insertion conflicts if two items have the same name
         if let imageToUpload = UIImagePNGRepresentation(image) {

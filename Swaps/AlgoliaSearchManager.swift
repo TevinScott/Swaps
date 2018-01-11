@@ -79,9 +79,9 @@ class AlgoliaSearchManager {
             } else if error != nil{ print(error as Any) }
         })
     }
-
+    
     func uploadToIndex(saleItem: SaleItem){
-        firebaseHandle.uploadItemImage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in //image upload
+        firebaseHandle.uploadImageToFirebaseStorage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in //image upload
             saleItem.imageURL = completedURL
             let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.name as AnyObject,
                                                              "price" : saleItem.price as AnyObject,

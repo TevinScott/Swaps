@@ -31,4 +31,11 @@ extension UIImage {
         return UIImageJPEGRepresentation(self, quality.rawValue)
     }
     
+    func isEqualToImage(image: UIImage) -> Bool {
+        let data1: NSData = UIImagePNGRepresentation(self)! as NSData
+        let data2: NSData = UIImagePNGRepresentation(image)! as NSData
+        return data1.isEqual(data2)
+    }
+
+    
 }

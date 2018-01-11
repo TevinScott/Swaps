@@ -43,10 +43,15 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
         if let priceVal: String = saleItem?.jsonPrice! {
             priceLabel.text = "$\(priceVal)"
         }
-        
-        if (saleItem?.jsonImageURL != nil){
+        // if the sale image is equal to the currently set cell image do nothing
+        if(saleItemImg?.image?.isEqualToImage(image: (saleItem?.image)!))!{
+            
+        }
+        // else if the images dont match, try to parse from the non-nil imageURL of the sale item
+        else if (saleItem?.jsonImageURL != nil){
             setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
         }
+        // final case senario the cell is set to a default placeholder image
         else {
             saleItemImg.image = (saleItem?.placeholderImage)!
         }
