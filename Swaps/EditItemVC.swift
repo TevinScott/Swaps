@@ -102,16 +102,13 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
      updates this classes saleItem attributes based on the users new input
      */
     private func updateSaleItem(){
-        var oldImageURL : String = ""
         saleItem.name = itemNameField.text
         saleItem.price = itemPriceField.text
         saleItem.description = itemDescTextView.text
         if(imageHasBeenChanged){
             saleItem.image = itemImageView.image
-            oldImageURL = saleItem.imageURL!
         }
-        algoliaHandle.updateItemIndexValues(modifiedSaleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
-        //fbaseDataManager.updateDatabaseSaleItem(saleItem: saleItem, imageChanged: imageHasBeenChanged, previousURL: oldImageURL)
+        algoliaHandle.updateItemIndexValues(modifiedSaleItem: saleItem, imageChanged: imageHasBeenChanged)
     }
     
     /**

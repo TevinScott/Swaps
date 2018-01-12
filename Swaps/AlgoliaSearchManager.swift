@@ -67,13 +67,23 @@ class AlgoliaSearchManager {
         - imageChanged:     a boolean answer to weither the current sale item image has been changed by the user in the app
         - previousURL:      the previous Image URL which will be used to delete the previous image from Firebase Storage
      */
-    func updateItemIndexValues(modifiedSaleItem: SaleItem, imageChanged: Bool, previousURL: String){
-        let newObject: [String: String] = [
+    func updateItemIndexValues(modifiedSaleItem: SaleItem, imageChanged: Bool){
+        var saleItemDictionary: [String: String] = [
             "desc": modifiedSaleItem.description,
             "price": modifiedSaleItem.price,
             "name": modifiedSaleItem.name,
         ]
-        adminSaleIndex.partialUpdateObject(newObject, withID: modifiedSaleItem.jsonObjectID)
+        if(imageChanged) {
+            self.firebaseHandle.uploadImageToFirebaseStorage(name: modifiedSaleItem.name!, image: modifiedSaleItem.image!) {
+                (completionURL) -> () in
+                self.firebaseHandle.deleteImageInFireStorage(imageURL: modifiedSaleItem.jsonImageURL.absoluteString!)
+                saleItemDictionary["imageURL"] = completionURL
+                self.adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.jsonObjectID)
+            }
+        } else {
+            adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.jsonObjectID)
+        }
+        
         //NEEDS: if statement to handle the imageChanged Condition
     }
     
