@@ -138,7 +138,6 @@ class FirebaseManager {
      - Parameter imageURL: URL of the image that will be deleted from Firebase Storage
      */
     func deleteImageInFireStorage (imageURL: String) {
-        print("image deletion called with old image url", imageURL)
         let imageRef = Storage.storage().reference(forURL: imageURL)
         imageRef.delete{(error) in }
     }

@@ -113,7 +113,6 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     private func setImageFromURLString(imgURL: String){
         if(self.imageDownloadSession != nil){
             self.imageDownloadSession.cancel()
-            print("cancelling previous download")
         }
         let task = URLSession.shared.dataTask(with: NSURL(string: imgURL)! as URL, completionHandler: { (data, response, error) -> Void in
             DispatchQueue.main.async(execute: { () -> Void in

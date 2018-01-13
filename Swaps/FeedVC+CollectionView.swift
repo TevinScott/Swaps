@@ -72,9 +72,12 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
                 if(cell.saleItem?.jsonUserID == userID){
                     performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
                 }
-            }
                 else{
-                //user is currently not signed in.
+                    //user is currently signed in but their userID does not match that of the sale item's userID.
+                    performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+                }
+            } else {
+                //user is not currently signed in.
                 performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
             }
         }

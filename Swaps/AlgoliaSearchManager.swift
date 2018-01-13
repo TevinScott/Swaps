@@ -135,4 +135,13 @@ class AlgoliaSearchManager {
             })
         }
     }
+    
+    /**
+     Deletes the saleItem Index at a given ID
+    */
+    func deleteAlgoliaSaleItem(saleItemToDelete: SaleItem){
+        adminSaleIndex.deleteObject(withID: saleItemToDelete.jsonObjectID)
+        firebaseHandle.deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
+    
+    }
 }

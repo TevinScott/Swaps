@@ -50,7 +50,7 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
          - sender: the object reference of the Button that called this function
      */
     @IBAction func delBtnPressed(_ sender: Any) {
-        fbaseDataManager.deleteSaleItem(saleItemToDelete: saleItem)
+        algoliaHandle.deleteAlgoliaSaleItem(saleItemToDelete: saleItem)
         navigationController?.popViewController(animated: true)
     }
     

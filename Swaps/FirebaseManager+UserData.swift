@@ -92,7 +92,7 @@ extension FirebaseManager {
      */
     private func uploadFullUserInfoToDatabase(userAccountInfo: UserAccountInfo){
         let userAccountDictionary : [String : String] = ["userID" : userAccountInfo.userID,
-                                                         "chosenUsername" : userAccountInfo.chosenUsername,
+                                                         "username" : userAccountInfo.chosenUsername,
                                                          "profileImageURL" : userAccountInfo.profileImageURL,
                                                          "oneTimeNameChangeUsed?" : String(userAccountInfo.oneTimeNameChangeUsed),
                                                          "isAccountCreationCompleted?" : String(userAccountInfo.accountSetupCompleted)]
