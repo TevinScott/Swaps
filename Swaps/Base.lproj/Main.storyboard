@@ -599,7 +599,7 @@
         <!--Account SetupVC-->
         <scene sceneID="bdj-Tz-68B">
             <objects>
-                <viewController id="YGR-XQ-3SU" customClass="AccountSetupVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountSetupView" id="YGR-XQ-3SU" customClass="AccountSetupVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M6d-JR-gFx"/>
                         <viewControllerLayoutGuide type="bottom" id="0iT-WL-nlt"/>
@@ -892,7 +892,7 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ddx-oo-Ulu"/>
-        <segue reference="4nf-ti-2HC"/>
+        <segue reference="uFR-wf-9zT"/>
+        <segue reference="TQr-bG-8W6"/>
     </inferredMetricsTieBreakers>
 </document>

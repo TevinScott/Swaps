@@ -16,7 +16,7 @@ extension FirebaseManager {
      Checks wether the currently signed in user has already been setup within the firebase database
      
      - parameters:
-     - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in Swaps
+        - answer: on completion the escaping (Bool) value returns true or false based on wether the user has completed their account creation in the Swaps Database.
      */
     func isUserSetup(answer: @escaping (Bool) -> ()){
         userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -32,18 +32,41 @@ extension FirebaseManager {
         })
     }
     
+    /**
+     Checks wether the currently signed in, has been added to the firebase database
+     
+     - parameters:
+        - answer: on completion the escaping (Bool) value returns true or false based on wether the user has already created an account in the Swaps Database.
+     */
+    func isUserInDatabase(answer: @escaping (Bool) ->()) {
+        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let currentUserDataLocation = snapshot.childSnapshot(forPath: Auth.auth().currentUser!.uid)
+            if(currentUserDataLocation.exists()){
+                answer(true)
+            } else {
+                answer(false)
+            }
+        })
+    }
+    
     // MARK: - Username Functions
     /**
      gets the Username from a given userID in the firebase database
      
      - parameters:
-     - userInfo: the account for which will be checked.
-     - answer:  returns true if the user already exists in firebase database
+        - userID: the account for which will be checked.
+        - username:  returns true if the user already exists in firebase database
      */
     func getUsernameFromUserID(userID: String, username: @escaping(String) ->()){
         let query = userRef.queryOrderedByKey().queryEqual(toValue: userID)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
-            username(snapshot.childSnapshot(forPath: userID).childSnapshot(forPath: "username").value as! String)
+            self.isUserSetup{ (answer) -> () in
+                if(answer) {
+                    username(snapshot.childSnapshot(forPath: userID).childSnapshot(forPath: "username").value as! String)
+                } else {
+                    username("Username not yet chosen")
+                }
+            }
         })
     }
     
@@ -51,19 +74,18 @@ extension FirebaseManager {
      checks wether the given username is possesed by another user within the firebase database
      
      - parameters:
-     - nameToCheckFor: the user name that will be searched for in the Firebase Datebase
-     - userNameAvailable: returns a escaping (Bool) value, returning true or false based on wether the parameter nameToCheckFor is within the firebase Database
+        - nameToCheckFor: the user name that will be searched for in the Firebase Datebase
+        - userNameAvailable: returns a escaping (Bool) value, returning true or false based on wether the parameter nameToCheckFor is within the firebase Database
      */
     func isNameAvailable(nameToCheckFor: String, userNameAvailable: @escaping (Bool) -> ()){
-        
-        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if ( !(snapshot.hasChild(nameToCheckFor)) ){
-                userNameAvailable(true)
-            }
-            else {
-                userNameAvailable(false)
-            }
-        })
+        let nameQuery = userRef.queryOrdered(byChild: "username").queryEqual(toValue: nameToCheckFor.lowercased())
+            nameQuery.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    userNameAvailable(true)
+                } else {
+                    userNameAvailable(false)
+                }
+            })
     }
     
     // MARK: - Upload Functions
@@ -72,7 +94,8 @@ extension FirebaseManager {
      Firebase Storage for the user's profile image.
      Firebase Database for the userID, chosenUsername, oneTimeNameChangeUsed, and the URL reference to the image in Firebase Storage.
      
-     - Parameter userAccountInfo: the UserAccountInfo Object for which will be Uploaded to the Firebase Webservice
+     - parameters:
+        - userAccountInfo: the UserAccountInfo Object for which will be Uploaded to the Firebase Webservice
      */
     func uploadUserInfo(userAccountInfo: UserAccountInfo){
         
@@ -82,8 +105,14 @@ extension FirebaseManager {
         }
     }
     
+    /**
+     Changes the username of the currently signed in user to the passed in value, and sets the oneTimeNameChangeUsed? to used
+     
+     - parameters:
+        - newUsername: the new username for which the user's username will be set to
+     */
     func changeUsername(newUsername: String){
-        userRef.child((Auth.auth().currentUser?.uid)!).updateChildValues(["chosenUsername" : newUsername])
+        userRef.child((Auth.auth().currentUser?.uid)!).updateChildValues(["chosenUsername" : newUsername, "oneTimeNameChangeUsed?" : "true"])
     }
     /**
      Uploads a UserAccountInfo object to firebase database under the key value of UserAccounts

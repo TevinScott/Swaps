@@ -92,8 +92,14 @@ class AccountSetupVC: UIViewController, UITextFieldDelegate{
         let cancelAction = UIAlertAction(title: "Continue Setup", style: .cancel) { (_) in }
         let proceedAction = UIAlertAction(title: "Skip Setup", style: .default) { (_) in
             self.performSegue(withIdentifier: "goToFeedFromSetup", sender: self)
-            self.userAccountInfo = self.createBasicAccount()
-            self.firebaseDataManager.uploadBasicUserInfo(userAccountInfo: self.userAccountInfo)
+            self.firebaseDataManager.isUserInDatabase() {(answer) ->() in
+                if(answer == false) {
+                    self.userAccountInfo = self.createBasicAccount()
+                    self.firebaseDataManager.uploadBasicUserInfo(userAccountInfo: self.userAccountInfo)
+                }
+            }
+                
+            
         }
         //adding the action to dialogbox
         alertController.addAction(cancelAction)
@@ -153,7 +159,7 @@ class AccountSetupVC: UIViewController, UITextFieldDelegate{
      */
     private func createBasicAccount() -> UserAccountInfo {
         let newAccount = UserAccountInfo.init(inputUserID: Auth.auth().currentUser!.uid,
-                                                               accountSetupCompleted: false)
+                                              accountSetupCompleted: false)
         return newAccount
     }
     
