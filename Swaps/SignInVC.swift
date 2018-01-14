@@ -42,7 +42,7 @@ class SignInVC : UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
                 Auth.auth().signIn(with: credential, completion: { (user, error) -> Void in
                     if error == nil {
-                        self.firebaseDataManager.isUserSetup{ (answer) -> () in
+                        self.firebaseDataManager.isUserSetup(userID: (Auth.auth().currentUser?.uid)!){ (answer) -> () in
                             if(answer){
                                 self.performSegue(withIdentifier: "skipSetupSegueToFeed", sender: self)
                             } else {

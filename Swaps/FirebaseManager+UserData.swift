@@ -18,9 +18,9 @@ extension FirebaseManager {
      - parameters:
         - answer: on completion the escaping (Bool) value returns true or false based on wether the user has completed their account creation in the Swaps Database.
      */
-    func isUserSetup(answer: @escaping (Bool) -> ()){
-        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            let currentUserDataLocation = snapshot.childSnapshot(forPath: Auth.auth().currentUser!.uid)
+    func isUserSetup(userID: String, answer: @escaping (Bool) -> ()){
+        userRef.queryOrdered(byChild: "userID").queryEqual(toValue: userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            let currentUserDataLocation = snapshot.childSnapshot(forPath: userID)
             if(currentUserDataLocation.exists()){
                 //user exists in firebase database and the value of "isAccountCreationCompleted?" can be de parsed to and returned as the answer parameter
                 answer(((currentUserDataLocation.childSnapshot(forPath: "isAccountCreationCompleted?").value) as! String).toBool()!)
@@ -60,7 +60,7 @@ extension FirebaseManager {
     func getUsernameFromUserID(userID: String, username: @escaping(String) ->()){
         let query = userRef.queryOrderedByKey().queryEqual(toValue: userID)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
-            self.isUserSetup{ (answer) -> () in
+            self.isUserSetup(userID: userID){ (answer) -> () in
                 if(answer) {
                     username(snapshot.childSnapshot(forPath: userID).childSnapshot(forPath: "username").value as! String)
                 } else {
