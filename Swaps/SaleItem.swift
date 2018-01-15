@@ -24,7 +24,8 @@ class SaleItem {
     let placeholderImage = UIImage(named: "default-placeholder")
     var Timecreated: Date! //days
     var saleDuration: Int!
-    var userID: String!
+    var creatorUserID: String!
+    
     var creationLocation: (longitude :Double, latitude: Double)!
     var pickupLocation: (longitude :Double, latitude: Double)!
     private var json: [String: AnyObject]!
@@ -65,7 +66,7 @@ class SaleItem {
         price = ((saleAttribute["price"]) as? String)!
         description = ((saleAttribute["desc"]) as? String)!
         imageURL = ((saleAttribute["imageURL"]) as? String)!
-        userID = ((saleAttribute["userID"]) as? String)!
+        creatorUserID = ((saleAttribute["userID"]) as? String)!
     }
    
 

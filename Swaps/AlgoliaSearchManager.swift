@@ -71,7 +71,7 @@ class AlgoliaSearchManager {
         var saleItemDictionary: [String: String] = [
             "desc": modifiedSaleItem.description,
             "price": modifiedSaleItem.price,
-            "name": modifiedSaleItem.name,
+            "name": modifiedSaleItem.name
         ]
         if(imageChanged) {
             self.firebaseHandle.uploadImageToFirebaseStorage(name: modifiedSaleItem.name!, image: modifiedSaleItem.image!) {
@@ -121,7 +121,7 @@ class AlgoliaSearchManager {
                                                              "desc" : saleItem.description as AnyObject,
                                                              "imageURL" : saleItem.imageURL as AnyObject,
                                                              "category" : saleItem.category as AnyObject,
-                                                             "userID" : saleItem.userID as AnyObject]
+                                                             "userID" : saleItem.creatorUserID as AnyObject]
             self.adminSaleIndex.addObject(saleItemDictionary, withID: "myID", completionHandler: { (content, error) -> Void in
                 if error != nil {
                     print(error!)
@@ -138,10 +138,25 @@ class AlgoliaSearchManager {
     
     /**
      Deletes the saleItem Index at a given ID
+     
+     - Parameter saleItemToDelete: the handle for a particular sale Item that will be deleted from
+                                    the Algolia index and it's image from the the firebase Storage.
     */
     func deleteAlgoliaSaleItem(saleItemToDelete: SaleItem){
         adminSaleIndex.deleteObject(withID: saleItemToDelete.jsonObjectID)
         firebaseHandle.deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
     
+    }
+    
+    /**
+     Adds Pickup location co-ordinates to the Index of the corresponding Algolia SaleItem
+     
+     - Parameter saleItem: A swift data structure representing the corresponding Algolia Sale Item Index.
+     */
+    func addPickupLocationToItem(saleItem: SaleItem) {
+        let saleItemDictionary: [String: [String:String]] = [
+            "pickupLocation": ["long": "123", "lat":"123"]
+        ]
+        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: saleItem.jsonObjectID)
     }
 }

@@ -86,7 +86,7 @@ class FirebaseManager {
         - previousURL:      the saleItems old image URL will be used to delete the old image from firebase storage
      */
     func updateDatabaseSaleItem(saleItem: SaleItem, imageChanged: Bool, previousURL: String){
-        if( Auth.auth().currentUser!.uid == saleItem.userID){
+        if( Auth.auth().currentUser!.uid == saleItem.creatorUserID){
             saleRef.child(saleItem.itemID!).updateChildValues(["name": saleItem.name!,
                                                                "price" : saleItem.price!,
                                                                "desc" : saleItem.description!])
@@ -156,7 +156,7 @@ class FirebaseManager {
                                                          "desc" : saleItem.description as AnyObject,
                                                          "imageURL" : saleItem.imageURL as AnyObject,
                                                          "category" : saleItem.category as AnyObject,
-                                                         "userID" : saleItem.userID as AnyObject,]
+                                                         "userID" : saleItem.creatorUserID as AnyObject]
         saleRef.childByAutoId().setValue(saleItemDictionary)
     }
     

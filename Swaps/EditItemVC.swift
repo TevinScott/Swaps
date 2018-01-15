@@ -135,7 +135,6 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
         itemImageView.clipsToBounds = true
     }
     
-    
     // MARK: - View controller life cycle
     override func viewDidLoad(){
         updateUIFromJson()

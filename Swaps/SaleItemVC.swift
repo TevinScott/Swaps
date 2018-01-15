@@ -49,6 +49,14 @@ class SaleItemVC: UIViewController {
         }
     }
     
+    /**
+     Executes the function body upon pickupBtn being pressed.
+     This function should trigger a segue to the PickupVC
+     */
+    @IBAction func pickupBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "PickupViewSegue", sender: self)
+    }
+    
     // MARK: - Support Functions
     
     /**
@@ -70,6 +78,7 @@ class SaleItemVC: UIViewController {
             itemImageView.image = saleItem?.image!
         }
     }
+   
     /**
      updateUIFrom sets all outletted values within this view controller to this current json values in
      the saleItem value
@@ -85,6 +94,22 @@ class SaleItemVC: UIViewController {
         }
         itemImageView.layer.cornerRadius = 8.0
         itemImageView.clipsToBounds = true
+    }
+    
+    // MARK: - Segue Override
+    /**
+     Notifies the view controller that a segue is about to be performed.
+     
+     - parameters:
+     - segue:    The segue object containing information about the view controllers involved in the segue.
+     - sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
+     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PickupViewSegue"{
+            let pickupView = segue.destination as! PickupVC
+            pickupView.saleItem = self.saleItem
+        }
     }
     
 }

@@ -86,7 +86,7 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
         newItem.image =  itemImageView.image
         newItem.price = priceField.text
         newItem.name = nameField.text
-        newItem.userID = Auth.auth().currentUser!.uid
+        newItem.creatorUserID = Auth.auth().currentUser!.uid
         
         return newItem
     }

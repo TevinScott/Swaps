@@ -59,7 +59,6 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
     /**
      Tells the delegate that the item at the specified index path was selected.
      The collection view calls this method when the user successfully selects an item in the collection view.
-     It does not call this method when you programmatically set the selection.
      
      - parameters:
      -collectionView:   The collection view requesting this information.
@@ -80,6 +79,35 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
                 //user is not currently signed in.
                 performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
             }
+        }
+    }
+    
+    // MARK: - Segue Override
+    /**
+     Notifies the view controller that a segue is about to be performed.
+     
+     - parameters:
+        - segue:    The segue object containing information about the view controllers involved in the segue.
+        - sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewSaleItemSegue"{
+            let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
+            let textToPass = selectedSaleItem
+            let saleItemVC = segue.destination as! SaleItemVC
+            saleItemVC.saleItem = textToPass
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.searchBar.frame.origin.y = 0
+            self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
+        }
+        if segue.identifier == "EditSaleItemSegue"{
+            let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
+            let textToPass = selectedSaleItem
+            let saleItemVC = segue.destination as! EditItemVC
+            saleItemVC.saleItem = textToPass
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.searchBar.frame.origin.y = 0
+            self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
         }
     }
 
