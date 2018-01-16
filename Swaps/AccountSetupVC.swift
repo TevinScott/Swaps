@@ -193,9 +193,9 @@ class AccountSetupVC: UIViewController, UITextFieldDelegate{
     //MARK: - Keyboard notification observer Methods
     
     fileprivate func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(AccountSetupVC.keyboardWillShow),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AccountSetupVC.keyboardWillHide),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     @objc fileprivate func  deRegisterKeyboardNotifications() {

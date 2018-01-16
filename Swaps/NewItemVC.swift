@@ -141,7 +141,7 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
         super.viewDidLoad()
         setDelegates()
         setupDescField()
-        priceField.addDoneButtonToKeyboard(myAction:  #selector(self.priceField.resignFirstResponder))
+        priceField.addDoneButtonToKeyboard(myAction:  #selector(priceField.resignFirstResponder))
     }
     
     override func didReceiveMemoryWarning() {

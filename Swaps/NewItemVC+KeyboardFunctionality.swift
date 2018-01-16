@@ -25,9 +25,9 @@ extension NewItemVC: UITextFieldDelegate , UITextViewDelegate {
      registers the keyboard Notifications to this view controller.
     */
     func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(NewItemVC.keyboardDidShow),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow),
                                                name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NewItemVC.keyboardWillHide),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     /**

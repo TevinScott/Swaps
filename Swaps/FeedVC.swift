@@ -93,7 +93,7 @@ class FeedVC : UIViewController, UISearchBarDelegate{
         
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         collectionView.addSubview(refreshControl) // not required when using UITableViewController
     }
     
