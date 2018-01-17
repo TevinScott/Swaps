@@ -19,6 +19,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     var locationManager = CLLocationManager()
     var algoliaHandle = AlgoliaSearchManager()
     var saleItem : SaleItem!
+    var locCoord : CLLocationCoordinate2D!
     
     // MARK: - View controller life cycle
     override func viewDidLoad() {
@@ -36,9 +37,11 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
         super.viewDidAppear(animated)
         panToCurrentLocation()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -62,10 +65,17 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
      this button currently sets the pick up location of the Sale Item in the algolia database
     */
     @IBAction func meetupBtnPressed(_ sender: Any) {
-        saleItem.pickupLocation = (Double((locationManager.location?.coordinate.latitude)!),
-                                   Double((locationManager.location?.coordinate.longitude)!))
         //NEEDS: Dialog Box & Location needs to match the annotation/pin placed by user
-        algoliaHandle.addPickupLocationToItem(saleItem: saleItem)
+        if(self.locCoord != nil && saleItem != nil){
+            print(locCoord.longitude)
+            saleItem.pickupLocation = (longitude: locCoord.longitude, latitude: locCoord.latitude)
+            //saleItem.pickupLocation.latitude = locCoord.latitude
+            algoliaHandle.addPickupLocationToItem(saleItem: saleItem)
+        } else {
+            print("saleItem is nil")
+        }
+        
+        
     }
     
     /**
@@ -73,7 +83,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     */
     @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: mapView)
-        let locCoord = mapView.convert(location, toCoordinateFrom: mapView)
+        locCoord = mapView.convert(location, toCoordinateFrom: mapView)
         let annotation = MKPointAnnotation()
         annotation.coordinate = locCoord
         annotation.title = "Meet Up Location"

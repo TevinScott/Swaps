@@ -154,9 +154,10 @@ class AlgoliaSearchManager {
      - Parameter saleItem: A swift data structure representing the corresponding Algolia Sale Item Index.
      */
     func addPickupLocationToItem(saleItem: SaleItem) {
-        let saleItemDictionary: [String: [String:String]] = [
-            "pickupLocation": ["long": "123", "lat":"123"]
-        ]
+        let saleItemDictionary: [String: [String: AnyObject]] =
+            ["pickupLocation": ["long": saleItem.pickupLocation.longitude as AnyObject,
+                               "lat" : saleItem.pickupLocation.latitude as AnyObject]
+            ]
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: saleItem.jsonObjectID)
     }
 }
