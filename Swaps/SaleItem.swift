@@ -22,7 +22,8 @@ class SaleItem {
     var imageURL: String! // only instantiated after this saleItem is uploaded
     var category : String!
     let placeholderImage = UIImage(named: "default-placeholder")
-    var Timecreated: Date! //days
+    var timecreated: Double! //days
+    var requestedPickupDate: Double!
     var saleDuration: Int!
     var creatorUserID: String!
     

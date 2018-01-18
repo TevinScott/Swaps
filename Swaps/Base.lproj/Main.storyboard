@@ -346,16 +346,13 @@
                                     <outletCollection property="gestureRecognizers" destination="dIh-dK-gsq" appends="YES" id="6JV-QQ-JfM"/>
                                 </connections>
                             </mapView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="z7I-bQ-atJ">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="z7I-bQ-atJ">
                                 <rect key="frame" x="16" y="363" width="343" height="103"/>
                                 <date key="date" timeIntervalSinceReferenceDate="536921105.144719">
                                     <!--2018-01-06 08:45:05 +0000-->
                                 </date>
                                 <date key="minimumDate" timeIntervalSinceReferenceDate="536497200">
                                     <!--2018-01-01 11:00:00 +0000-->
-                                </date>
-                                <date key="maximumDate" timeIntervalSinceReferenceDate="537706800">
-                                    <!--2018-01-15 11:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eby-qJ-13a" customClass="PressableButton" customModule="SwiftyButton">
@@ -405,6 +402,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="z7I-bQ-atJ" id="rNY-Ww-jWZ"/>
                         <outlet property="mapView" destination="wlL-3I-T2y" id="gjH-oS-FR2"/>
                         <outlet property="toggleFollowBtn" destination="omK-L7-Pe9" id="aEv-SR-6mx"/>
                     </connections>

@@ -15,6 +15,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     
     // MARK: - Attributes
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var toggleFollowBtn: UIButton!
     var locationManager = CLLocationManager()
     var algoliaHandle = AlgoliaSearchManager()
@@ -67,10 +68,10 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     @IBAction func meetupBtnPressed(_ sender: Any) {
         //NEEDS: Dialog Box & Location needs to match the annotation/pin placed by user
         if(self.locCoord != nil && saleItem != nil){
-            print(locCoord.longitude)
+            saleItem.requestedPickupDate = floor(datePicker.date.timeIntervalSince1970)
             saleItem.pickupLocation = (longitude: locCoord.longitude, latitude: locCoord.latitude)
-            //saleItem.pickupLocation.latitude = locCoord.latitude
-            algoliaHandle.addPickupLocationToItem(saleItem: saleItem)
+            algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
+            algoliaHandle.addBuyerRequestedPickupDate(toIndex: saleItem)
         } else {
             print("saleItem is nil")
         }

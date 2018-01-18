@@ -59,7 +59,7 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     */
     private func setImageWhenNeeded(){
         // if the current cell URL is nil set it to the saleItem URL
-        if(currentCellImageURL == nil){
+        if(currentCellImageURL == nil && saleItem?.jsonImageURL != nil){
             saleItemImg.image = UIImage(named: "default-placeholder")
             currentCellImageURL = saleItem?.jsonImageURL
             setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
