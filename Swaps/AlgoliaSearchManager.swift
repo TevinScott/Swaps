@@ -83,8 +83,6 @@ class AlgoliaSearchManager {
         } else {
             adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.jsonObjectID)
         }
-        
-        //NEEDS: if statement to handle the imageChanged Condition
     }
     
     /**

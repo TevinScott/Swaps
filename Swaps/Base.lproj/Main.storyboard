@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Account-->
+        <!--My Listings-->
         <scene sceneID="HBS-rO-C6N">
             <objects>
-                <viewController title="My Account" id="Gvs-pP-Xr1" customClass="UserProfileVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Listings" id="Gvs-pP-Xr1" customClass="UserProfileVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nbp-ZC-trg"/>
                         <viewControllerLayoutGuide type="bottom" id="D7S-Le-Qiy"/>
@@ -22,37 +22,18 @@
                     <view key="view" contentMode="scaleToFill" id="Qqe-8d-7ji">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRX-49-CEv">
-                                <rect key="frame" x="147" y="281" width="81" height="41"/>
-                                <color key="backgroundColor" red="0.84313725490000002" green="0.35294117650000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="81" id="3TZ-ZR-58G"/>
-                                    <constraint firstAttribute="height" constant="41" id="hE6-Tq-pee"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Sign Out">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="signOutBtn:" destination="dLb-Iy-Qxq" eventType="touchUpInside" id="I55-Jf-wrL"/>
-                                    <action selector="signOutBtnPressed:" destination="Gvs-pP-Xr1" eventType="touchUpInside" id="M7W-gM-0nW"/>
-                                    <segue destination="OHd-TI-KIp" kind="presentation" identifier="signOutSegue" id="4nf-ti-2HC"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.96827034932102651" green="0.96827034932102651" blue="0.96827034932102651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="BRX-49-CEv" firstAttribute="centerX" secondItem="Qqe-8d-7ji" secondAttribute="centerX" id="gdw-7v-fRf"/>
-                            <constraint firstItem="BRX-49-CEv" firstAttribute="centerY" secondItem="Qqe-8d-7ji" secondAttribute="centerY" id="kvf-G0-AND"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="signOutBtn" destination="BRX-49-CEv" id="9Tj-Nl-bGM"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="My Listings" id="DGT-Zf-sPm">
+                        <barButtonItem key="rightBarButtonItem" title="sign out" id="3B1-eh-J9O" userLabel="sign out">
+                            <connections>
+                                <action selector="signOutBtnPressed:" destination="Gvs-pP-Xr1" id="k2B-U5-6Wn"/>
+                                <segue destination="OHd-TI-KIp" kind="presentation" id="YQ1-A0-DQ4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhP-26-Jti" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="dLb-Iy-Qxq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-5436" y="1340.7796101949027"/>
         </scene>
@@ -904,6 +885,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uFR-wf-9zT"/>
-        <segue reference="4nf-ti-2HC"/>
+        <segue reference="YQ1-A0-DQ4"/>
     </inferredMetricsTieBreakers>
 </document>
