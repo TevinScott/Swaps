@@ -8,7 +8,7 @@
 
 import Foundation
 import AlgoliaSearch
-
+import FirebaseAuth
 /// A Class Manager for Algolia Search API Functionality
 class AlgoliaSearchManager {
     
@@ -35,17 +35,16 @@ class AlgoliaSearchManager {
         let initialClient = Client(appID: "KJBTLKM9VP", apiKey: "5309d1fc99008e074cf9af0cbcfbe87e")
         adminSaleIndex = initialClient.index(withName: "Skill-Trader")
         query.hitsPerPage = 15
-        query.attributesToRetrieve = ["name", "desc", "category"]
-
     }
     
     // MARK: - Database Query Functions
     /**
-     gets the first 15 values within the Algolia JSON Database
+     gets the first 15 indexes listed within the Algolia JSON Database
      
      - parameter escapingList: returns 15 of the most recent entries in the Algolia database
     */
     func getAllItems(escapingList: @escaping ([SaleItem]) -> ()){
+        query.attributesToRetrieve = ["name", "desc", "category"]
         adminSaleIndex.browse(from: "", completionHandler: { (content, error) -> Void in
             if error == nil {
                 guard let hits = content!["hits"] as? [[String: AnyObject]] else { return }
@@ -59,6 +58,26 @@ class AlgoliaSearchManager {
 
     }
     
+    /**
+     gets the first 15 indexes listed by the currently signed in user, from the Algolia JSON Database
+     
+     - parameter escapingList: returns 15 of the most recent entries in the Algolia database
+     */
+    func getUserItems(escapingList: @escaping ([SaleItem]) -> ()){
+        query.attributesToRetrieve = ["userID"]
+        query.query = Auth.auth().currentUser?.uid
+        saleItemIndex.search(Query(query: query.query), completionHandler: { (content, error) -> Void in
+            if error == nil {
+                guard let hits = content!["hits"] as? [[String: AnyObject]] else { return }
+                var tmp = [SaleItem]()
+                for hit in hits {
+                    tmp.append(SaleItem(json: hit))
+                }
+                escapingList(tmp)
+            } else if error != nil{ print(error as Any) }
+        })
+        
+    }
     /**
      updates a saleItem that is stored in the Algolia JSON Index
      
@@ -93,6 +112,7 @@ class AlgoliaSearchManager {
         - escapingList: returns 15 of the best matching indices in the Algolia database
      */
     func searchDatabase(searchString: String, escapingList: @escaping ([SaleItem]) -> ()){
+        query.attributesToRetrieve = ["name", "desc", "category"]
         query.query = searchString
         saleItemIndex.search(Query(query: query.query), completionHandler: { (content, error) -> Void in
             if error == nil {

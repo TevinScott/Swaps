@@ -79,7 +79,7 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
         else {
             saleItemImg.image = UIImage(named: "default-placeholder")
         }
-    }
+    } 
     
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.

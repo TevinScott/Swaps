@@ -15,8 +15,16 @@ import GoogleSignIn
 class UserProfileVC: UIViewController {
     
     // MARK: - Attributes
-    let coreDataManager: CoreDataManager = CoreDataManager.init()
+    let coreDataManager = CoreDataManager()
+    let algoliaSearchManager = AlgoliaSearchManager()
     let firebaseHandle = FirebaseManager()
+    var myListedItems: SaleItemCollection! = SaleItemCollection(){ didSet { myListingsCollectionView?.reloadData() } }
+    let cellIdentifier = "SaleCell"
+    
+    private let leftAndRightPadding: CGFloat = 32.0
+    private let numberOfItemsPerRow: CGFloat = 2.0
+    private let heightAdjustment: CGFloat = 5.0
+    @IBOutlet weak var myListingsCollectionView: UICollectionView!
     
     /**
      Sign out the user upon recieving the button action
@@ -35,13 +43,19 @@ class UserProfileVC: UIViewController {
         try! Auth.auth().signOut()
         GIDSignIn.sharedInstance().signOut()
         coreDataManager.deleteAll()
+        self.performSegue(withIdentifier: "SegueToSignIn", sender: self)
     }
 
     // MARK: - View controller life cycle
     override func viewDidLoad(){
-
+        //constrains the layout to the layout property attributes
+        let width = ((myListingsCollectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
+        let layout = myListingsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
+        
+        algoliaSearchManager.getUserItems() { (ListOfUsersItems) -> () in
+            self.myListedItems = SaleItemCollection.init(inputList: ListOfUsersItems)
+        }
     }
-    
-    
 }
 

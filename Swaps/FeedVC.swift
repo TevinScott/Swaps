@@ -17,25 +17,28 @@ import AlgoliaSearch
 class FeedVC : UIViewController, UISearchBarDelegate{
     
     // MARK: - Attributes
-    let coredataManager = CoreDataManager()
-    let firebaseDataManager = FirebaseManager()
-    let algoliaSearchManager = AlgoliaSearchManager.init()
+    //data structures
+    private let coredataManager = CoreDataManager()
+    private let firebaseDataManager = FirebaseManager()
+    private let algoliaSearchManager = AlgoliaSearchManager.init()
+    internal var setOfItems: SaleItemCollection = SaleItemCollection.init(){ didSet { collectionView?.reloadData() } }
     //adMob variables
-    var adsToLoad = [GADNativeExpressAdView]()
-    let adInterval = 3
-    // outlets
+    private var adsToLoad = [GADNativeExpressAdView]()
+    private let adInterval = 3
+    // outlet variables
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var collectionView: UICollectionView!
-    //layout properties
-    var collectionViewOriginalLocation: CGFloat!
-    var extendedCollectionViewHeight: CGFloat!
+    //layout variables
     private let leftAndRightPadding: CGFloat = 32.0
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 5.0
-    let cellIdentifier = "SaleCell"
-    var setOfItems: SaleItemCollection = SaleItemCollection.init(){ didSet { collectionView?.reloadData() } }
-    var searchActive : Bool = false
-    var refreshControl: UIRefreshControl!
+    private var extendedCollectionViewHeight: CGFloat!
+    //search bar variables
+    private var searchActive : Bool = false
+    // collection View variables
+    private var refreshControl: UIRefreshControl!
+    internal var collectionViewOriginalLocation: CGFloat!
+    internal let cellIdentifier = "SaleCell"
 
     // MARK: - Button Actions
     /**
@@ -48,20 +51,19 @@ class FeedVC : UIViewController, UISearchBarDelegate{
     }
     
     /**
-     this button action returns the user to the
+     this button action returns the user to the Profile Account View unless the user
+     is not Signed in, in which case they are returned to the Sign In View.
      */
     @IBAction func profileBtnAction(_ sender: Any) {
-        //if user is currently signed in the profile view is presented
+        //if user is currently signed in the profile view is presented.
         if (Auth.auth().currentUser?.uid != nil){
            performSegue(withIdentifier: "goToProfileSegue", sender: self)
-        } else { // else the user is returned to the sign in view
+        } else { // else the user is returned to the sign in view.
             self.dismiss(animated: true, completion: {})
             self.navigationController?.popViewController(animated: true)
         }
     }
     
-    
-
     // MARK: - View controller life cycle
     
     override func didReceiveMemoryWarning() {
@@ -79,12 +81,12 @@ class FeedVC : UIViewController, UISearchBarDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //search and database init
+        //search and database init.
         searchBar.delegate = self
         algoliaSearchManager.getAllItems() { (escapingList) -> () in
             self.setOfItems = SaleItemCollection.init(inputList: escapingList)
         }
-        //constrains the layout to the layout property attributes
+        //constrains the layout to the layout property attributes.
         let width = ((collectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
@@ -98,7 +100,7 @@ class FeedVC : UIViewController, UISearchBarDelegate{
     }
     
     /**
-     
+     Refreshes this class's List of items, pulling from the Algolia Index.
      */
     @objc func refresh(sender:AnyObject) {
         algoliaSearchManager.getAllItems() { (escapingList) -> () in
@@ -106,8 +108,9 @@ class FeedVC : UIViewController, UISearchBarDelegate{
             self.refreshControl.endRefreshing()
         }
     }
-    // MARK: - Search bar functionality
+    // MARK: - Search bar functionality.
     
+    //functions are already documented by Apple.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         algoliaSearchManager.searchDatabase(searchString: searchText) {
             (escapingList) -> () in
@@ -127,10 +130,10 @@ class FeedVC : UIViewController, UISearchBarDelegate{
         searchActive = false;
     }
     
-    // MARK: - Navigation Bar Hide and Show Functions
+    // MARK: - Navigation Bar Hide and Show Functions.
     
     /**
-     A function used to hide and show the navigation bar when the user is scrolling the collectionView of this class
+     A function used to hide and show the navigation bar when the user is scrolling the collectionView of this class.
     */
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if(velocity.y>0) {
@@ -147,7 +150,9 @@ class FeedVC : UIViewController, UISearchBarDelegate{
             }, completion: nil)
         }
     }
-    
+    /**
+     Ends editing when user taps anywhere outside of the displayed keyboard.
+    */
     @objc func didTapView(gesture: UITapGestureRecognizer){
         view.endEditing(true)
     }

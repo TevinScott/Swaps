@@ -1,15 +1,15 @@
 //
-//  FeedVC+CollectionView.swift
+//  UserProfileVC+CollectionView.swift
 //  Swaps
 //
-//  Created by Tevin Scott on 1/1/18.
+//  Created by Tevin Scott on 1/19/18.
 //  Copyright © 2018 Tevin Scott. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import FirebaseAuth
 
-extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: - Collection View function Overrides
     
@@ -35,7 +35,7 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      - returns:             The number of sections in collectionView.
      */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  setOfItems.collectionCount //based on size of list
+        return  myListedItems.collectionCount //based on size of list
     }
     
     /**
@@ -50,7 +50,7 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
-        let cellSaleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
+        let cellSaleItem = myListedItems.getSaleItemAtIndexPath(indexPath: indexPath)
         cell.saleItem = cellSaleItem
         return cell
     }
@@ -64,21 +64,21 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      -indexPath:        The index path of the cell that was selected.
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+       /*
         if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
+            
             if let userID = Auth.auth().currentUser?.uid {
                 if(cell.saleItem?.jsonUserID == userID){
-                    performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
+                    performSegue(withIdentifier: "EditFromMyListings", sender: cell)
                 }
-                else{
-                    //user is currently signed in but their userID does not match that of the sale item's userID.
-                    performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
-                }
+                
             } else {
-                //user is not currently signed in.
-                performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+                print("something went wrong with the user's UserID from Auth")
             }
         }
+         */
+        print("This cell action has not currently been completed")
     }
     
     // MARK: - Segue Override
@@ -86,28 +86,22 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      Notifies the view controller that a segue is about to be performed.
      
      - parameters:
-        - segue:    The segue object containing information about the view controllers involved in the segue.
-        - sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
+     - segue:    The segue object containing information about the view controllers involved in the segue.
+     - sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewSaleItemSegue"{
-            let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
-            let textToPass = selectedSaleItem
-            let saleItemVC = segue.destination as! SaleItemVC
-            saleItemVC.saleItem = textToPass
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.searchBar.frame.origin.y = 0
-            self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
-        }
         if segue.identifier == "EditSaleItemSegue"{
             let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
             let textToPass = selectedSaleItem
             let saleItemVC = segue.destination as! EditItemVC
             saleItemVC.saleItem = textToPass
             self.navigationController?.setNavigationBarHidden(false, animated: true)
+            /**
             self.searchBar.frame.origin.y = 0
             self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
+             */
         }
     }
-
+    
 }
+
