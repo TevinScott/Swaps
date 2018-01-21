@@ -64,7 +64,6 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
      -indexPath:        The index path of the cell that was selected.
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-       /*
         if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             
@@ -72,13 +71,9 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
                 if(cell.saleItem?.jsonUserID == userID){
                     performSegue(withIdentifier: "EditFromMyListings", sender: cell)
                 }
-                
             } else {
-                print("something went wrong with the user's UserID from Auth")
             }
         }
-         */
-        print("This cell action has not currently been completed")
     }
     
     // MARK: - Segue Override
@@ -90,7 +85,7 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
      - sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EditSaleItemSegue"{
+        if segue.identifier == "EditFromMyListings"{
             let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
             let textToPass = selectedSaleItem
             let saleItemVC = segue.destination as! EditItemVC
