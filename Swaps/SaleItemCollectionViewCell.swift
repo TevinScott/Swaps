@@ -16,6 +16,7 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet var saleItemImg: UIImageView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     @IBOutlet var priceLabel: UILabel!
+    @IBOutlet weak var itemStatus: UILabel!
     
     private var currentCellImageURL:NSURL!
     private var imageDownloadSession: URLSessionDataTask!
@@ -45,7 +46,10 @@ class SaleItemCollectionViewCell: UICollectionViewCell {
      */
     
     private func updateUIFromJson(){
+        
         //places dollarsign in front of sale item price
+        itemStatus.text = "Listed"
+        
         if let priceVal: String = saleItem?.jsonPrice! {
             priceLabel.text = "$\(priceVal)"
         }

@@ -71,7 +71,6 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
                 if(cell.saleItem?.jsonUserID == userID){
                     performSegue(withIdentifier: "EditFromMyListings", sender: cell)
                 }
-            } else {
             }
         }
     }

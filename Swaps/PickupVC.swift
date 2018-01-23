@@ -72,8 +72,6 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
             saleItem.pickupLocation = (longitude: locCoord.longitude, latitude: locCoord.latitude)
             algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
             algoliaHandle.addBuyerRequestedPickupDate(toIndex: saleItem)
-        } else {
-            print("saleItem is nil")
         }
         
         
@@ -89,7 +87,6 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
         annotation.coordinate = locCoord
         annotation.title = "Meet Up Location"
         annotation.subtitle = "Initial Request"
-        print("pinFunction Called")
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(annotation)
     }

@@ -25,6 +25,8 @@ class UserProfileVC: UIViewController {
     private let numberOfItemsPerRow: CGFloat = 2.0
     private let heightAdjustment: CGFloat = 5.0
     @IBOutlet weak var myListingsCollectionView: UICollectionView!
+   
+    
     
     /**
      Sign out the user upon recieving the button action
