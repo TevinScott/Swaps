@@ -49,7 +49,7 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
      - returns:             A configured cell object. You must not return nil from this method.
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SaleItemCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! MyListingCollectionViewCell
         let cellSaleItem = myListedItems.getSaleItemAtIndexPath(indexPath: indexPath)
         cell.saleItem = cellSaleItem
         return cell
@@ -64,7 +64,7 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
      -indexPath:        The index path of the cell that was selected.
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        if let cell = collectionView.cellForItem(at: indexPath) as? SaleItemCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             
             if let userID = Auth.auth().currentUser?.uid {
@@ -85,7 +85,7 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditFromMyListings"{
-            let selectedSaleItem = (sender as! SaleItemCollectionViewCell).saleItem!
+            let selectedSaleItem = (sender as! MyListingCollectionViewCell).saleItem!
             let textToPass = selectedSaleItem
             let saleItemVC = segue.destination as! EditItemVC
             saleItemVC.saleItem = textToPass

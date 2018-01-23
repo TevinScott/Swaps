@@ -1,16 +1,16 @@
 //
-//  SaleItemCollectionViewCell.swift
-//  Radford Swaps
+//  MyListingCollectionViewCell.swift
+//  Swaps
 //
-//  Created by Tevin Scott on 9/26/17.
-//  Copyright © 2017 Tevin Scott. All rights reserved.
+//  Created by Tevin Scott on 1/23/18.
+//  Copyright © 2018 Tevin Scott. All rights reserved.
 //
+
 import UIKit
-
 ///Managers the SaleItemViewCell and its attributes
-class FeedCollectionViewCell: UICollectionViewCell {
+class MyListingCollectionViewCell: UICollectionViewCell {
     
-
+    
     // MARK: - Attributes
     //cell component references
     @IBOutlet var saleItemImg: UIImageView!
@@ -27,14 +27,14 @@ class FeedCollectionViewCell: UICollectionViewCell {
     // MARK: - Support Functions
     /**
      updates this cell to the current values of the SaleItem.
-    */
+     */
     private func updateUI(){
-       
+        
         //places dollarsign in front of sale item price
         if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
         }
-
+        
         if (saleItem?.imageURL != nil){
             setImageFromURLString(imgURL: (saleItem?.imageURL)!)
             
@@ -71,7 +71,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     /**
      This function is used to set the saleitem cell Image efficiently. Swift re-uses cells in collections and tables. Thus, if the new sale item's downloaded image will match a reused cell's image, the download is skipped.
-    */
+     */
     private func setImageWhenNeeded(){
         // if the current cell URL is nil set it to the saleItem URL
         if(currentCellImageURL == nil && saleItem?.jsonImageURL != nil){
@@ -94,7 +94,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         else {
             saleItemImg.image = UIImage(named: "default-placeholder")
         }
-    } 
+    }
     
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.

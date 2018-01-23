@@ -16,10 +16,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet var saleItemImg: UIImageView!
     @IBOutlet var visualEffectView: UIVisualEffectView!
     @IBOutlet var priceLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var statusBlur: UIVisualEffectView!
-    
+
     private var currentCellImageURL:NSURL!
     private var imageDownloadSession: URLSessionDataTask!
     public var saleItem: SaleItem? { didSet { updateUIFromJson()} }
@@ -41,15 +38,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
         }
         else {
             saleItemImg.image = (saleItem?.placeholderImage)!
-        }
-    }
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        if superview != nil {
-            if(statusLabel != nil) {
-                statusLabel.text = "Listed"
-            }
-            
         }
     }
     
