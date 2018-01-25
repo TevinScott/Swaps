@@ -43,26 +43,16 @@ class MyListingCollectionViewCell: UICollectionViewCell {
             saleItemImg.image = (saleItem?.placeholderImage)!
         }
     }
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        if superview != nil {
-            if(statusLabel != nil) {
-                statusLabel.text = "Listed"
-            }
-            
-        }
-    }
     
     /**
      updates this cell to the current SaleItem's JSON attributes.
      */
-    
     private func updateUIFromJson(){
-        //places dollarsign in front of sale item price
-        
-        
         if let priceVal: String = saleItem?.jsonPrice! {
             priceLabel.text = "$\(priceVal)"
+        }
+        if let status: String = saleItem?.jsonStatus! {
+            statusLabel.text = status
         }
         setImageWhenNeeded()
         self.layer.cornerRadius = 8.0
@@ -70,7 +60,8 @@ class MyListingCollectionViewCell: UICollectionViewCell {
     }
     
     /**
-     This function is used to set the saleitem cell Image efficiently. Swift re-uses cells in collections and tables. Thus, if the new sale item's downloaded image will match a reused cell's image, the download is skipped.
+     This function is used to set the saleitem cell Image efficiently. Swift re-uses cells in collections and tables.
+     Thus, if the new sale item's downloaded image will match a reused cell's image, the download is skipped.
      */
     private func setImageWhenNeeded(){
         // if the current cell URL is nil set it to the saleItem URL

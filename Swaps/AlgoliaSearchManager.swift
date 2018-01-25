@@ -176,11 +176,13 @@ class AlgoliaSearchManager {
             ["pickupLocation"    :  ["long": toIndex.pickupLocation.longitude as AnyObject,
                                      "lat" : toIndex.pickupLocation.latitude as AnyObject],
             ]
+        
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.jsonObjectID)
     }
     func addBuyerRequestedPickupDate(toIndex: SaleItem) {
         let saleItemDictionary: [String: AnyObject] =
-            ["BuyerRequestedTime":  toIndex.requestedPickupDate as AnyObject ]
+            ["BuyerRequestedTime":  toIndex.requestedPickupDate as AnyObject,
+             "status":"Requested Meet-up" as AnyObject]
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.jsonObjectID)
         
     }

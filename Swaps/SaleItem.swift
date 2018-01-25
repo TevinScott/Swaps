@@ -32,12 +32,13 @@ class SaleItem {
     private var json: [String: AnyObject]!
     
     // MARK: - JSON Attributes
-    var jsonCategory: String!   { return json["category"] as? String }
-    var jsonDesc: String!       { return json["desc"] as? String }
-    var jsonName: String!       { return json["name"] as? String }
-    var jsonPrice: String!      { return json["price"] as? String }
-    var jsonUserID: String!     { return json["userID"] as? String }
-    var jsonObjectID: String!   { return json["objectID"] as? String }
+    var jsonCategory: String!   { return json["category"] as? String    }
+    var jsonDesc: String!       { return json["desc"] as? String        }
+    var jsonName: String!       { return json["name"] as? String        }
+    var jsonPrice: String!      { return json["price"] as? String       }
+    var jsonUserID: String!     { return json["userID"] as? String      }
+    var jsonObjectID: String!   { return json["objectID"] as? String    }
+    var jsonStatus: String!     { return json["status"] as? String      }
     var jsonImageURL: NSURL!    {
         guard let jsonUrlString = json["imageURL"] as? String else { return nil }
         imageURL = jsonUrlString

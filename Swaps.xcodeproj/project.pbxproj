@@ -218,6 +218,7 @@
 				E2D1DCA61F79FFB300891BA7 /* Important Stuff */,
 				E2D1DCA71F79FFE400891BA7 /* StoryBoards */,
 				E2D1DCA41F79FF6600891BA7 /* View Controllers */,
+				E2CE8095201A0F2300117582 /* Custom CollectionView Cells */,
 			);
 			path = Swaps;
 			sourceTree = "<group>";
@@ -250,6 +251,15 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		E2CE8095201A0F2300117582 /* Custom CollectionView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E24FAA1A1F7B40160073102B /* FeedCollectionViewCell.swift */,
+				E2F88FD32017965C0049E494 /* MyListingCollectionViewCell.swift */,
+			);
+			name = "Custom CollectionView Cells";
+			sourceTree = "<group>";
+		};
 		E2CF505C1F9155C60071EAD2 /* Data Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,10 +287,8 @@
 				E234CE9A1FFF3D5D00AD5C9D /* AccountSetupVC & Extensions */,
 				E203971B2013ACE50068B196 /* UserProfileVC & Extensions */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
-				E24FAA1A1F7B40160073102B /* FeedCollectionViewCell.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E234CE9B2000C6CC00AD5C9D /* PickupVC.swift */,
-				E2F88FD32017965C0049E494 /* MyListingCollectionViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

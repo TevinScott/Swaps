@@ -87,7 +87,7 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
         newItem.price = priceField.text
         newItem.name = nameField.text
         newItem.creatorUserID = Auth.auth().currentUser!.uid
-        
+        //NEEDS: - intialize creation date here
         return newItem
     }
     
