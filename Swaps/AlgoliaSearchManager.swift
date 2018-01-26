@@ -139,7 +139,8 @@ class AlgoliaSearchManager {
                                                              "desc" : saleItem.description as AnyObject,
                                                              "imageURL" : saleItem.imageURL as AnyObject,
                                                              "category" : saleItem.category as AnyObject,
-                                                             "userID" : saleItem.creatorUserID as AnyObject]
+                                                             "userID" : saleItem.creatorUserID as AnyObject,
+                                                             "status": "listed" as AnyObject]
             self.adminSaleIndex.addObject(saleItemDictionary, withID: "myID", completionHandler: { (content, error) -> Void in
                 if error != nil {
                     print(error!)

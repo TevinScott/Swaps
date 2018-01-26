@@ -29,15 +29,12 @@ class MyListingCollectionViewCell: UICollectionViewCell {
      updates this cell to the current values of the SaleItem.
      */
     private func updateUI(){
-        
         //places dollarsign in front of sale item price
         if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
         }
-        
         if (saleItem?.imageURL != nil){
             setImageFromURLString(imgURL: (saleItem?.imageURL)!)
-            
         }
         else {
             saleItemImg.image = (saleItem?.placeholderImage)!
@@ -53,6 +50,9 @@ class MyListingCollectionViewCell: UICollectionViewCell {
         }
         if let status: String = saleItem?.jsonStatus! {
             statusLabel.text = status
+            if status == "Requested Meet Up" {
+                statusView.backgroundColor = UIColor(red: 224/255, green: 191/255, blue: 66/255, alpha: 1.0)
+            }
         }
         setImageWhenNeeded()
         self.layer.cornerRadius = 8.0
@@ -105,7 +105,6 @@ class MyListingCollectionViewCell: UICollectionViewCell {
                     self.saleItemImg.image = image
                 }
             })
-            
         })
         task.resume()
         imageDownloadSession = task
