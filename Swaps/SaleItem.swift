@@ -30,7 +30,7 @@ class SaleItem {
     var creationLocation: (longitude :Double, latitude: Double)!
     var pickupLocation: (longitude :Double, latitude: Double)!
     private var json: [String: AnyObject]!
-    
+    var jsonPickupLoc: [String: AnyObject]!
     // MARK: - JSON Attributes
     var jsonCategory: String!   { return json["category"] as? String    }
     var jsonDesc: String!       { return json["desc"] as? String        }
@@ -39,6 +39,8 @@ class SaleItem {
     var jsonUserID: String!     { return json["userID"] as? String      }
     var jsonObjectID: String!   { return json["objectID"] as? String    }
     var jsonStatus: String!     { return json["status"] as? String      }
+    var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)}
+    var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)}
     var jsonImageURL: NSURL!    {
         guard let jsonUrlString = json["imageURL"] as? String else { return nil }
         imageURL = jsonUrlString
@@ -59,6 +61,7 @@ class SaleItem {
     */
     init(json: [String: AnyObject]) {
         self.json = json
+        jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
     }
     /**
     intializes variables to default placeholder values for testing.

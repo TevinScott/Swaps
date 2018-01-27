@@ -32,11 +32,12 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startMonitoringSignificantLocationChanges()
         self.locationManager.startUpdatingLocation()
-        panToCurrentLocation()
+        placeMeetupPin()
+        panToMeetupLocation()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        panToCurrentLocation()
+        panToMeetupLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,21 +80,33 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      adds a pin to the location the user last tapped on inside this class's mapView
      */
     @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
-        let location = sender.location(in: mapView)
-        locCoord = mapView.convert(location, toCoordinateFrom: mapView)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locCoord
-        annotation.title = "Meet Up Location"
-        annotation.subtitle = "Initial Request"
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.addAnnotation(annotation)
+        if(mapView.isScrollEnabled){
+            print("add new location called")
+            let location = sender.location(in: mapView)
+            locCoord = mapView.convert(location, toCoordinateFrom: mapView)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = locCoord
+            annotation.title = "Meet Up Location"
+            annotation.subtitle = "Initial Request"
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.addAnnotation(annotation)
+        }
     }
-    
+    private func placeMeetupPin(){
+        var meetupLoc = CLLocationCoordinate2D(latitude : saleItem.jsonLatitude,
+                                               longitude: saleItem.jsonLongitude)
+        let RequestedMeetupPin = MKPointAnnotation()
+        RequestedMeetupPin.coordinate = meetupLoc
+        RequestedMeetupPin.title = "Meet Up Location"
+        RequestedMeetupPin.subtitle = "Request For Approval"
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotation(RequestedMeetupPin)
+    }
     /**
      Pans the current mapView to this user's GPS location
      */
-    private func panToCurrentLocation(){
-        let center = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+    private func panToMeetupLocation(){
+        let center = CLLocationCoordinate2D(latitude: saleItem.jsonLatitude, longitude: saleItem.jsonLongitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
