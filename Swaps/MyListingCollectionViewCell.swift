@@ -53,6 +53,9 @@ class MyListingCollectionViewCell: UICollectionViewCell {
             if status == "Requested Meet Up" {
                 statusView.backgroundColor = UIColor(red: 224/255, green: 191/255, blue: 66/255, alpha: 1.0)
             }
+            else if status == "listed" {
+                statusView.backgroundColor = UIColor(red:66/255,green: 134/255,blue: 244/255, alpha:1.0)
+            }
         }
         setImageWhenNeeded()
         self.layer.cornerRadius = 8.0

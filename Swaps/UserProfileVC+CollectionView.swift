@@ -66,12 +66,12 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
-            
-            if let userID = Auth.auth().currentUser?.uid {
-                if(cell.saleItem?.jsonUserID == userID){
-                    performSegue(withIdentifier: "EditFromMyListings", sender: cell)
-                }
+            if(cell.saleItem?.jsonStatus == "listed"){
+                performSegue(withIdentifier: "EditFromMyListings", sender: cell)
+            } else if (cell.saleItem?.jsonStatus == "Requested Meet Up") {
+                performSegue(withIdentifier: "segueToPendingMeetupVC", sender: cell)
             }
+
         }
     }
     
@@ -86,13 +86,23 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditFromMyListings"{
             let selectedSaleItem = (sender as! MyListingCollectionViewCell).saleItem!
-            let textToPass = selectedSaleItem
+            let saleItemToPass = selectedSaleItem
             let saleItemVC = segue.destination as! EditItemVC
-            saleItemVC.saleItem = textToPass
+            saleItemVC.saleItem = saleItemToPass
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             /**
             self.searchBar.frame.origin.y = 0
             self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
+             */
+        }else if segue.identifier == "segueToPendingMeetupVC"{
+            let selectedSaleItem = (sender as! MyListingCollectionViewCell).saleItem!
+            let saleItemToPass = selectedSaleItem
+            let saleItemVC = segue.destination as! PendingMeetupVC
+            saleItemVC.saleItem = saleItemToPass
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            /**
+             self.searchBar.frame.origin.y = 0
+             self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
              */
         }
     }
