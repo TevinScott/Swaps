@@ -10,6 +10,11 @@ import UIKit
 import MapKit
 import CoreLocation
 
+//NEEDS: - Zoom out to fit both the meet up location pin & user location in mapView
+//NEEDS: - route drawn from user location to meet up location in mapView
+//NEEDS: - estimated travel time by vehicle & foot in mapView
+//NEEDS: - Display a link to the buyer's profile/account
+
 /// This Class Manages the Pickup View and its attributes and delegate behaviors
 class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     
@@ -26,15 +31,12 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.layer.cornerRadius = 4.0;
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.startMonitoringSignificantLocationChanges()
-        self.locationManager.startUpdatingLocation()
+        datePicker.date =  Date(timeIntervalSince1970: saleItem.jsonBuyerReqTime) 
+        setupLocationManager()
         placeMeetupPin()
         panToMeetupLocation()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         panToMeetupLocation()
@@ -92,25 +94,6 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
             mapView.addAnnotation(annotation)
         }
     }
-    private func placeMeetupPin(){
-        var meetupLoc = CLLocationCoordinate2D(latitude : saleItem.jsonLatitude,
-                                               longitude: saleItem.jsonLongitude)
-        let RequestedMeetupPin = MKPointAnnotation()
-        RequestedMeetupPin.coordinate = meetupLoc
-        RequestedMeetupPin.title = "Meet Up Location"
-        RequestedMeetupPin.subtitle = "Request For Approval"
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.addAnnotation(RequestedMeetupPin)
-    }
-    /**
-     Pans the current mapView to this user's GPS location
-     */
-    private func panToMeetupLocation(){
-        let center = CLLocationCoordinate2D(latitude: saleItem.jsonLatitude, longitude: saleItem.jsonLongitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-        mapView.setRegion(region, animated: true)
-        mapView.showsUserLocation = true
-    }
     
     // MARK: - Support Functions
     /**
@@ -129,6 +112,41 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         }
     }
     
+    /**
+     Enables user location functionality within this Views MapView
+     */
+    func setupLocationManager(){
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.startMonitoringSignificantLocationChanges()
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    /**
+     places a red pin (annotation) at the Buyer's requested meetup location in the mapView
+     */
+    private func placeMeetupPin(){
+        var meetupLoc = CLLocationCoordinate2D(latitude : saleItem.jsonLatitude,
+                                               longitude: saleItem.jsonLongitude)
+        let RequestedMeetupPin = MKPointAnnotation()
+        RequestedMeetupPin.coordinate = meetupLoc
+        RequestedMeetupPin.title = "Meet Up Location"
+        RequestedMeetupPin.subtitle = "Request For Approval"
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotation(RequestedMeetupPin)
+    }
+    
+    /**
+     Pans the current mapView to this user's GPS location
+     */
+    private func panToMeetupLocation(){
+        let center = CLLocationCoordinate2D(latitude: saleItem.jsonLatitude, longitude: saleItem.jsonLongitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        mapView.setRegion(region, animated: true)
+        mapView.showsUserLocation = true
+    }
     
 }
 

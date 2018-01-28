@@ -990,22 +990,22 @@
                         <viewControllerLayoutGuide type="bottom" id="1FL-uC-s7s"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5QZ-qG-I62">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTc-13-PQA">
                                 <rect key="frame" x="16" y="20" width="343" height="343"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="343" id="Pyj-HT-zF6"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="1Ou-MX-y79" id="8dV-b0-Z9C"/>
                                     <outletCollection property="gestureRecognizers" destination="4KR-nr-BsU" appends="YES" id="hqx-Hq-WWX"/>
                                 </connections>
                             </mapView>
                             <datePicker userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-Jp-3QW">
-                                <rect key="frame" x="16" y="363" width="320" height="103"/>
+                                <rect key="frame" x="16" y="363" width="343" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="103" id="SMr-11-BC9"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="536921105.144719">
                                     <!--2018-01-06 08:45:05 +0000-->
                                 </date>
@@ -1013,13 +1013,9 @@
                                     <!--2018-01-01 11:00:00 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cij-6X-2W5">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cij-6X-2W5">
                                 <rect key="frame" x="314" y="318" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cij-6X-2W5" secondAttribute="height" multiplier="1:1" id="XPx-fd-J5C"/>
-                                    <constraint firstAttribute="height" constant="35" id="n1v-Ow-6mH"/>
-                                    <constraint firstAttribute="width" constant="35" id="tqy-CC-gD9"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="currentLocationPanningDisabled"/>
                                 <connections>
                                     <action selector="followBtnPressed:" destination="1Ou-MX-y79" eventType="touchUpInside" id="KJM-ur-OIf"/>
@@ -1027,10 +1023,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SxG-5s-WsL" customClass="PressableButton" customModule="SwiftyButton">
                                 <rect key="frame" x="196" y="474" width="163" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="QYd-2S-R8J"/>
-                                    <constraint firstAttribute="height" constant="44" id="S74-U4-hqh"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Change Meet up"/>
@@ -1046,6 +1038,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bD-F9-kIS" customClass="PressableButton" customModule="SwiftyButton">
                                 <rect key="frame" x="16" y="474" width="163" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5TZ-Hh-Ut9"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="163" id="A6p-Ia-t1Y"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Accept"/>
@@ -1058,24 +1054,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1FL-uC-s7s" firstAttribute="top" secondItem="8bD-F9-kIS" secondAttribute="bottom" constant="85" id="20f-Mg-JEH"/>
-                            <constraint firstItem="B6U-l2-EiY" firstAttribute="leading" secondItem="5QZ-qG-I62" secondAttribute="leadingMargin" constant="78" id="35f-M6-w9L"/>
-                            <constraint firstItem="JTc-13-PQA" firstAttribute="leading" secondItem="5QZ-qG-I62" secondAttribute="leadingMargin" id="3Ok-1o-sUa"/>
-                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="top" secondItem="cij-6X-2W5" secondAttribute="bottom" constant="10" id="GLz-rZ-6TR"/>
-                            <constraint firstItem="8bD-F9-kIS" firstAttribute="baseline" secondItem="SxG-5s-WsL" secondAttribute="firstBaseline" id="IG5-Ti-b1F"/>
-                            <constraint firstItem="B6U-l2-EiY" firstAttribute="centerX" secondItem="JTc-13-PQA" secondAttribute="centerX" id="Nua-cL-YgC"/>
-                            <constraint firstItem="JTc-13-PQA" firstAttribute="trailing" secondItem="5QZ-qG-I62" secondAttribute="trailingMargin" id="RBW-xk-di8"/>
-                            <constraint firstItem="B6U-l2-EiY" firstAttribute="top" secondItem="8bD-F9-kIS" secondAttribute="bottom" constant="26" id="RKf-AX-ACn"/>
-                            <constraint firstItem="JTc-13-PQA" firstAttribute="leading" secondItem="WcC-Jp-3QW" secondAttribute="leading" id="VYm-1u-CX5"/>
-                            <constraint firstItem="SxG-5s-WsL" firstAttribute="trailing" secondItem="JTc-13-PQA" secondAttribute="trailing" id="chJ-kd-h4g"/>
-                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="top" secondItem="JTc-13-PQA" secondAttribute="bottom" id="hk4-fD-MQX"/>
-                            <constraint firstItem="JTc-13-PQA" firstAttribute="top" secondItem="5QZ-qG-I62" secondAttribute="top" constant="20" symbolic="YES" id="iJU-zE-mYC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cij-6X-2W5" secondAttribute="trailing" constant="10" id="m4B-qZ-5sf"/>
-                            <constraint firstItem="8bD-F9-kIS" firstAttribute="leading" secondItem="WcC-Jp-3QW" secondAttribute="leading" id="p4e-Mc-0Fu"/>
-                            <constraint firstItem="SxG-5s-WsL" firstAttribute="leading" secondItem="8bD-F9-kIS" secondAttribute="trailing" constant="17" id="pXL-Fg-XC9"/>
-                            <constraint firstItem="8bD-F9-kIS" firstAttribute="top" secondItem="WcC-Jp-3QW" secondAttribute="bottom" constant="8" symbolic="YES" id="qfo-7O-C7t"/>
-                            <constraint firstItem="8bD-F9-kIS" firstAttribute="top" secondItem="SxG-5s-WsL" secondAttribute="top" id="vyD-sI-WJl"/>
-                            <constraint firstItem="8bD-F9-kIS" firstAttribute="firstBaseline" secondItem="SxG-5s-WsL" secondAttribute="baseline" id="wYQ-9S-9G6"/>
+                            <constraint firstItem="B6U-l2-EiY" firstAttribute="top" secondItem="8bD-F9-kIS" secondAttribute="bottom" constant="26" id="1cL-dF-JRb"/>
+                            <constraint firstItem="B6U-l2-EiY" firstAttribute="centerX" secondItem="WcC-Jp-3QW" secondAttribute="centerX" id="1tr-Ha-6q2"/>
+                            <constraint firstAttribute="bottom" secondItem="WcC-Jp-3QW" secondAttribute="bottom" constant="137" id="3hL-Qq-Pi1"/>
+                            <constraint firstItem="8bD-F9-kIS" firstAttribute="baseline" secondItem="SxG-5s-WsL" secondAttribute="firstBaseline" id="AO4-dE-xYz"/>
+                            <constraint firstItem="8bD-F9-kIS" firstAttribute="leading" secondItem="WcC-Jp-3QW" secondAttribute="leading" id="DA0-gB-Mfc"/>
+                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="leading" secondItem="5QZ-qG-I62" secondAttribute="leadingMargin" id="Ho3-Ie-m5A"/>
+                            <constraint firstItem="B6U-l2-EiY" firstAttribute="leading" secondItem="5QZ-qG-I62" secondAttribute="leadingMargin" constant="78" id="J3H-lN-2fP"/>
+                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="trailing" secondItem="JTc-13-PQA" secondAttribute="trailing" id="JrC-0M-62F"/>
+                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="leading" secondItem="JTc-13-PQA" secondAttribute="leading" id="NUm-dg-uxj"/>
+                            <constraint firstItem="JTc-13-PQA" firstAttribute="top" secondItem="5QZ-qG-I62" secondAttribute="top" constant="20" symbolic="YES" id="RKU-rE-H3e"/>
+                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="top" secondItem="JTc-13-PQA" secondAttribute="bottom" id="Rwg-D4-GFv"/>
+                            <constraint firstItem="WcC-Jp-3QW" firstAttribute="trailing" secondItem="5QZ-qG-I62" secondAttribute="trailingMargin" id="S4Z-Py-OKR"/>
+                            <constraint firstItem="8bD-F9-kIS" firstAttribute="top" secondItem="SxG-5s-WsL" secondAttribute="top" id="WLA-QB-SS5"/>
+                            <constraint firstItem="8bD-F9-kIS" firstAttribute="top" secondItem="WcC-Jp-3QW" secondAttribute="bottom" constant="8" symbolic="YES" id="Z7G-l6-hwo"/>
+                            <constraint firstItem="SxG-5s-WsL" firstAttribute="trailing" secondItem="WcC-Jp-3QW" secondAttribute="trailing" id="ldP-5P-s2k"/>
+                            <constraint firstItem="SxG-5s-WsL" firstAttribute="leading" secondItem="8bD-F9-kIS" secondAttribute="trailing" constant="17" id="w2T-29-dPK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1091,7 +1085,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-4086" y="2111"/>
+            <point key="canvasLocation" x="-4087.1999999999998" y="2110.794602698651"/>
         </scene>
     </scenes>
     <resources>

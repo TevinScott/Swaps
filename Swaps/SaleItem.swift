@@ -41,6 +41,7 @@ class SaleItem {
     var jsonStatus: String!     { return json["status"] as? String      }
     var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)}
     var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)}
+    var jsonBuyerReqTime: Double! { return json["BuyerRequestedTime"] as! Double}
     var jsonImageURL: NSURL!    {
         guard let jsonUrlString = json["imageURL"] as? String else { return nil }
         imageURL = jsonUrlString
@@ -79,7 +80,6 @@ class SaleItem {
         creatorUserID = ((saleAttribute["userID"]) as? String)!
     }
    
-
     /*
      Initializes SaleItems attributes to default values.
     */
