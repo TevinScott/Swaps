@@ -271,7 +271,7 @@
                         <segue destination="eW5-U5-u9f" kind="show" identifier="EditSaleItemSegue" id="Aol-nF-kP3"/>
                         <segue destination="dWU-fE-xou" kind="show" identifier="ViewSaleItemSegue" id="Skv-tn-tCQ"/>
                         <segue destination="Gvs-pP-Xr1" kind="show" identifier="goToProfileSegue" id="2E3-cl-gs0"/>
-                        <segue destination="1Ou-MX-y79" kind="show" id="bjm-ap-bP1"/>
+                        <segue destination="1Ou-MX-y79" kind="show" identifier="sequeToMyItemRequest" id="bjm-ap-bP1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dR3-JZ-iM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -990,7 +990,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1FL-uC-s7s"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5QZ-qG-I62">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTc-13-PQA">
@@ -1102,7 +1102,7 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xFS-MV-jnd"/>
+        <segue reference="bjm-ap-bP1"/>
         <segue reference="jXF-iB-2jA"/>
         <segue reference="uFR-wf-9zT"/>
         <segue reference="N3P-dg-JMw"/>

@@ -128,7 +128,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      places a red pin (annotation) at the Buyer's requested meetup location in the mapView
      */
     private func placeMeetupPin(){
-        var meetupLoc = CLLocationCoordinate2D(latitude : saleItem.jsonLatitude,
+        let meetupLoc = CLLocationCoordinate2D(latitude : saleItem.jsonLatitude,
                                                longitude: saleItem.jsonLongitude)
         let RequestedMeetupPin = MKPointAnnotation()
         RequestedMeetupPin.coordinate = meetupLoc
