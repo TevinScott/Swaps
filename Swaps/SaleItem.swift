@@ -32,16 +32,13 @@ class SaleItem {
     private var json: [String: AnyObject]!
     var jsonPickupLoc: [String: AnyObject]!
     // MARK: - JSON Attributes
-    var jsonCategory: String!   { return json["category"] as? String    }
-    var jsonDesc: String!       { return json["desc"] as? String        }
-    var jsonName: String!       { return json["name"] as? String        }
-    var jsonPrice: String!      { return json["price"] as? String       }
-    var jsonUserID: String!     { return json["userID"] as? String      }
-    var jsonObjectID: String!   { return json["objectID"] as? String    }
-    var jsonStatus: String!     { return json["status"] as? String      }
-    var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)}
-    var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)}
-    var jsonBuyerReqTime: Double! { return json["BuyerRequestedTime"] as! Double}
+    var jsonCategory: String!   { return json["category"] as? String                }
+    var jsonUserID: String!     { return json["userID"] as? String                  }
+    var jsonObjectID: String!   { return json["objectID"] as? String                }
+    var jsonStatus: String!     { return json["status"] as? String                  }
+    var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)    }
+    var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)   }
+    var jsonBuyerReqTime:Double!{ return json["BuyerRequestedTime"] as! Double      }
     var jsonImageURL: NSURL!    {
         guard let jsonUrlString = json["imageURL"] as? String else { return nil }
         imageURL = jsonUrlString
@@ -63,6 +60,10 @@ class SaleItem {
     init(json: [String: AnyObject]) {
         self.json = json
         jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
+        name = json["name"] as? String
+        description = json["desc"] as? String
+        price = json["price"] as? String  
+        
     }
     /**
     intializes variables to default placeholder values for testing.

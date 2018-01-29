@@ -45,7 +45,7 @@ class MyListingCollectionViewCell: UICollectionViewCell {
      updates this cell to the current SaleItem's JSON attributes.
      */
     private func updateUIFromJson(){
-        if let priceVal: String = saleItem?.jsonPrice! {
+        if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
         }
         if let status: String = saleItem?.jsonStatus! {

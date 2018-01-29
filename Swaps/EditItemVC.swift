@@ -127,10 +127,10 @@ class EditItemVC: UIViewController, UINavigationControllerDelegate {
      the saleItem value
      */
     func updateUIFromJson() {
-        if(saleItem?.jsonName != nil)  { itemNameField.text = saleItem?.jsonName!           }
-        if(saleItem?.jsonPrice != nil) { itemPriceField.text = saleItem?.jsonPrice!         }
-        if(saleItem?.jsonDesc != nil)  { itemDescTextView.text = saleItem?.jsonDesc!        }
-        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!             }
+        if(saleItem?.name != nil)       { itemNameField.text = saleItem?.name!          }
+        if(saleItem?.price != nil)      { itemPriceField.text = saleItem?.price!        }
+        if(saleItem?.description != nil){ itemDescTextView.text = saleItem?.description!}
+        if(saleItem?.image != nil)      { itemImageView.image = saleItem?.image!        }
         itemImageView.layer.cornerRadius = 8.0
         itemImageView.clipsToBounds = true
     }

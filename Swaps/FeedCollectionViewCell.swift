@@ -26,7 +26,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
      updates this cell to the current values of the SaleItem.
     */
     private func updateUI(){
-       
         //places dollarsign in front of sale item price
         if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
@@ -47,9 +46,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     private func updateUIFromJson(){
         //places dollarsign in front of sale item price
-        
-        
-        if let priceVal: String = saleItem?.jsonPrice! {
+        if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
         }
         setImageWhenNeeded()

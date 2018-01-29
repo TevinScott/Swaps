@@ -84,10 +84,10 @@ class SaleItemVC: UIViewController {
      the saleItem value
      */
     func updateUIFromJson() {
-        if(saleItem?.jsonName != nil)  { itemNameLabel.text = saleItem?.jsonName!            }
-        if(saleItem?.jsonPrice != nil) { itemPriceLabel.text =  "$\((saleItem?.jsonPrice)!)" }
-        if(saleItem?.jsonDesc != nil)  { itemDescLabel.text = saleItem?.jsonDesc!            }
-        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!              }
+        if(saleItem?.name != nil)       { itemNameLabel.text = saleItem?.name!              }
+        if(saleItem?.price != nil)      { itemPriceLabel.text =  "$\((saleItem?.price)!)"   }
+        if(saleItem?.description != nil){ itemDescLabel.text = saleItem?.description!       }
+        if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!             }
         if(saleItem?.jsonUserID != nil){
             dbManager.getUsernameFromUserID(userID: (saleItem?.jsonUserID)!) {
                 (username) -> () in self.usernameLabel.text = username}
