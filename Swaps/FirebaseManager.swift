@@ -72,7 +72,7 @@ class FirebaseManager {
     func uploadSaleItem(inputSaleItem: SaleItem){
 
         uploadImageToFirebaseStorage(name: inputSaleItem.name!, image: inputSaleItem.image!){ (completedURL) -> () in //image upload
-            inputSaleItem.imageURL = completedURL
+            inputSaleItem.imageURL = NSURL(string: completedURL)
             self.uploadSaleItemToDatabase(saleItem: inputSaleItem) //saleItem upload
         }
     }
@@ -92,8 +92,8 @@ class FirebaseManager {
                                                                "desc" : saleItem.description!])
                 if(imageChanged){
                     self.uploadImageToFirebaseStorage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in
-                        self.deleteImageInFireStorage(imageURL: saleItem.imageURL!)
-                        saleItem.imageURL = completedURL
+                        self.deleteImageInFireStorage(imageURL: saleItem.imageURL!.absoluteString!)
+                        saleItem.imageURL = NSURL(string: completedURL)
                         self.deleteImageInFireStorage(imageURL: previousURL)
                         self.saleRef.child(saleItem.itemID!).updateChildValues(["imageURL" : completedURL])
                     }
@@ -124,7 +124,7 @@ class FirebaseManager {
     func deleteSaleItem(saleItemToDelete: SaleItem) {
         saleRef = rootRef.child("Sale Items")
         saleRef?.child(saleItemToDelete.itemID!).removeValue()
-        deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
+        deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!.absoluteString!)
     }
     
     

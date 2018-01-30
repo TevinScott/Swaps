@@ -88,8 +88,8 @@ class SaleItemVC: UIViewController {
         if(saleItem?.price != nil)      { itemPriceLabel.text =  "$\((saleItem?.price)!)"   }
         if(saleItem?.description != nil){ itemDescLabel.text = saleItem?.description!       }
         if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!             }
-        if(saleItem?.jsonUserID != nil){
-            dbManager.getUsernameFromUserID(userID: (saleItem?.jsonUserID)!) {
+        if(saleItem?.creatorUserID != nil){
+            dbManager.getUsernameFromUserID(userID: (saleItem?.creatorUserID)!) {
                 (username) -> () in self.usernameLabel.text = username}
         }
         itemImageView.layer.cornerRadius = 8.0

@@ -95,12 +95,12 @@ class AlgoliaSearchManager {
         if(imageChanged) {
             self.firebaseHandle.uploadImageToFirebaseStorage(name: modifiedSaleItem.name!, image: modifiedSaleItem.image!) {
                 (completionURL) -> () in
-                self.firebaseHandle.deleteImageInFireStorage(imageURL: modifiedSaleItem.jsonImageURL.absoluteString!)
+                self.firebaseHandle.deleteImageInFireStorage(imageURL: modifiedSaleItem.imageURL.absoluteString!)
                 saleItemDictionary["imageURL"] = completionURL
-                self.adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.jsonObjectID)
+                self.adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.itemID)
             }
         } else {
-            adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.jsonObjectID)
+            adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: modifiedSaleItem.itemID)
         }
     }
     
@@ -133,7 +133,7 @@ class AlgoliaSearchManager {
     */
     func uploadToIndex(saleItem: SaleItem){
         firebaseHandle.uploadImageToFirebaseStorage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in //image upload
-            saleItem.imageURL = completedURL
+            saleItem.imageURL = NSURL(string: completedURL)
             let saleItemDictionary : [String : AnyObject] = ["name" : saleItem.name as AnyObject,
                                                              "price" : saleItem.price as AnyObject,
                                                              "desc" : saleItem.description as AnyObject,
@@ -162,8 +162,8 @@ class AlgoliaSearchManager {
                                     the Algolia index and it's image from the the firebase Storage.
     */
     func deleteAlgoliaSaleItem(saleItemToDelete: SaleItem){
-        adminSaleIndex.deleteObject(withID: saleItemToDelete.jsonObjectID)
-        firebaseHandle.deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!)
+        adminSaleIndex.deleteObject(withID: saleItemToDelete.itemID)
+        firebaseHandle.deleteImageInFireStorage(imageURL: saleItemToDelete.imageURL!.absoluteString!)
     
     }
     
@@ -174,17 +174,17 @@ class AlgoliaSearchManager {
      */
     func addPickupRequestLocation(toIndex: SaleItem) {
         let saleItemDictionary: [String: [String: AnyObject]] =
-            ["pickupLocation"    :  ["long": toIndex.pickupLocation.longitude as AnyObject,
-                                     "lat" : toIndex.pickupLocation.latitude as AnyObject],
+            ["pickupLocation"    :  ["long": toIndex.meetup.longitude as AnyObject,
+                                     "lat" : toIndex.meetup.latitude as AnyObject],
             ]
         
-        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.jsonObjectID)
+        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.itemID)
     }
     func addBuyerRequestedPickupDate(toIndex: SaleItem) {
         let saleItemDictionary: [String: AnyObject] =
             ["BuyerRequestedTime":  toIndex.requestedPickupDate as AnyObject,
              "status":"Requested Meet-up" as AnyObject]
-        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.jsonObjectID)
+        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.itemID)
         
     }
 }

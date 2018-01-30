@@ -69,7 +69,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
         //NEEDS: Dialog Box & Location needs to match the annotation/pin placed by user
         if(self.locCoord != nil && saleItem != nil){
             saleItem.requestedPickupDate = floor(datePicker.date.timeIntervalSince1970)
-            saleItem.pickupLocation = (longitude: locCoord.longitude, latitude: locCoord.latitude)
+            saleItem.meetup = (longitude: locCoord.longitude, latitude: locCoord.latitude)
             algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
             algoliaHandle.addBuyerRequestedPickupDate(toIndex: saleItem)
         }

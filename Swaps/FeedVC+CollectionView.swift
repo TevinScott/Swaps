@@ -67,7 +67,7 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
         if let cell = collectionView.cellForItem(at: indexPath) as? FeedCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             if let userID = Auth.auth().currentUser?.uid {
-                if(cell.saleItem?.jsonUserID == userID){
+                if(cell.saleItem?.creatorUserID == userID){
                     performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
                 }
                 else{

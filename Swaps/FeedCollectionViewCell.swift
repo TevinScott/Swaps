@@ -32,7 +32,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         }
 
         if (saleItem?.imageURL != nil){
-            setImageFromURLString(imgURL: (saleItem?.imageURL)!)
+            setImageFromURL(imgURL: (saleItem?.imageURL)!)
             
         }
         else {
@@ -58,19 +58,20 @@ class FeedCollectionViewCell: UICollectionViewCell {
      This function is used to set the saleitem cell Image efficiently. Swift re-uses cells in collections and tables. Thus, if the new sale item's downloaded image will match a reused cell's image, the download is skipped.
     */
     private func setImageWhenNeeded(){
+        print(saleItem?.imageURL)
         // if the current cell URL is nil set it to the saleItem URL
-        if(currentCellImageURL == nil && saleItem?.jsonImageURL != nil){
+        if(currentCellImageURL == nil && saleItem?.imageURL != nil){
             saleItemImg.image = UIImage(named: "default-placeholder")
-            currentCellImageURL = saleItem?.jsonImageURL
-            setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
+            currentCellImageURL = saleItem?.imageURL
+            setImageFromURL(imgURL: (saleItem?.imageURL)!)
         }
             // if the current Image URL has been set
         else if(currentCellImageURL != nil){
             //if current cell URL doesnt match the newly set saleItem URL set the default place holder
-            if((currentCellImageURL != saleItem?.jsonImageURL)){
+            if((currentCellImageURL != saleItem?.imageURL)){
                 saleItemImg.image = UIImage(named: "default-placeholder")
-                currentCellImageURL = saleItem?.jsonImageURL
-                setImageFromURL(imgURL: (saleItem?.jsonImageURL)!)
+                currentCellImageURL = saleItem?.imageURL
+                setImageFromURL(imgURL: (saleItem?.imageURL)!)
             }
             /* if the URLs' Match it is assumed that the sale item's
              image, if downloaded, will match this recycled cell's image */

@@ -19,7 +19,7 @@ class SaleItem {
     var price: String!
     var description: String!
     var image: UIImage!
-    var imageURL: String! // only instantiated after this saleItem is uploaded
+    var imageURL: NSURL! 
     var category : String!
     let placeholderImage = UIImage(named: "default-placeholder")
     var timecreated: Double! //days
@@ -28,22 +28,16 @@ class SaleItem {
     var creatorUserID: String!
     
     var creationLocation: (longitude :Double, latitude: Double)!
-    var pickupLocation: (longitude :Double, latitude: Double)!
+    var meetup: (longitude :Double, latitude: Double)!
     private var json: [String: AnyObject]!
     var jsonPickupLoc: [String: AnyObject]!
     // MARK: - JSON Attributes
     var jsonCategory: String!   { return json["category"] as? String                }
-    var jsonUserID: String!     { return json["userID"] as? String                  }
-    var jsonObjectID: String!   { return json["objectID"] as? String                }
     var jsonStatus: String!     { return json["status"] as? String                  }
     var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)    }
     var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)   }
     var jsonBuyerReqTime:Double!{ return json["BuyerRequestedTime"] as! Double      }
-    var jsonImageURL: NSURL!    {
-        guard let jsonUrlString = json["imageURL"] as? String else { return nil }
-        imageURL = jsonUrlString
-        return NSURL(string: jsonUrlString)
-    }
+    
     /**
      var jsonPickupLocation: String {
         return json["pickUpLocation"] as? String
@@ -60,9 +54,16 @@ class SaleItem {
     init(json: [String: AnyObject]) {
         self.json = json
         jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
+        itemID = json["objectID"] as? String
         name = json["name"] as? String
         description = json["desc"] as? String
-        price = json["price"] as? String  
+        price = json["price"] as? String
+        creatorUserID = json["userID"] as? String
+        imageURL = NSURL(string: (json["imageURL"] as? String)!) 
+        //print("not unwrapped", (Double(jsonPickupLoc["lat"] as! String))!)
+        //meetup = (latitude: Double(jsonPickupLoc["lat"] as! String),
+          //                longitude: Double(jsonPickupLoc["long"] as! String))
+        
         
     }
     /**
@@ -77,7 +78,7 @@ class SaleItem {
         name = ((saleAttribute["name"]) as? String)!
         price = ((saleAttribute["price"]) as? String)!
         description = ((saleAttribute["desc"]) as? String)!
-        imageURL = ((saleAttribute["imageURL"]) as? String)!
+        imageURL = NSURL(string: ((saleAttribute["imageURL"]) as? String)!)!
         creatorUserID = ((saleAttribute["userID"]) as? String)!
     }
    

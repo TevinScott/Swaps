@@ -72,7 +72,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         //NEEDS: Dialog Box & Location needs to match the annotation/pin placed by user
         if(self.locCoord != nil && saleItem != nil){
             saleItem.requestedPickupDate = floor(datePicker.date.timeIntervalSince1970)
-            saleItem.pickupLocation = (longitude: locCoord.longitude, latitude: locCoord.latitude)
+            saleItem.meetup = (longitude: locCoord.longitude, latitude: locCoord.latitude)
             algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
             algoliaHandle.addBuyerRequestedPickupDate(toIndex: saleItem)
         }
@@ -128,8 +128,8 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      places a red pin (annotation) at the Buyer's requested meetup location in the mapView
      */
     private func placeMeetupPin(){
-        let meetupLoc = CLLocationCoordinate2D(latitude : saleItem.jsonLatitude,
-                                               longitude: saleItem.jsonLongitude)
+        let meetupLoc = CLLocationCoordinate2D(latitude : saleItem.meetup.latitude,
+                                               longitude: saleItem.meetup.longitude)
         let RequestedMeetupPin = MKPointAnnotation()
         RequestedMeetupPin.coordinate = meetupLoc
         RequestedMeetupPin.title = "Meet Up Location"
@@ -142,7 +142,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      Pans the current mapView to this user's GPS location
      */
     private func panToMeetupLocation(){
-        let center = CLLocationCoordinate2D(latitude: saleItem.jsonLatitude, longitude: saleItem.jsonLongitude)
+        let center = CLLocationCoordinate2D(latitude: saleItem.meetup.latitude, longitude: saleItem.meetup.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
