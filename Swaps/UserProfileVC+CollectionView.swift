@@ -66,9 +66,9 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
-            if(cell.saleItem?.jsonStatus == "listed"){
+            if(cell.saleItem?.itemStatus == "listed"){
                 performSegue(withIdentifier: "EditFromMyListings", sender: cell)
-            } else if (cell.saleItem?.jsonStatus == "Requested Meet Up") {
+            } else if (cell.saleItem?.itemStatus == "Requested Meet Up") {
                 performSegue(withIdentifier: "segueToPendingMeetupVC", sender: cell)
             }
 

@@ -48,7 +48,7 @@ class MyListingCollectionViewCell: UICollectionViewCell {
         if let priceVal: String = saleItem?.price! {
             priceLabel.text = "$\(priceVal)"
         }
-        if let status: String = saleItem?.jsonStatus! {
+        if let status: String = saleItem?.itemStatus! {
             statusLabel.text = status
             if status == "Requested Meet Up" {
                 statusView.backgroundColor = UIColor(red: 224/255, green: 191/255, blue: 66/255, alpha: 1.0)

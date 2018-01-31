@@ -83,7 +83,6 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      */
     @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
         if(mapView.isScrollEnabled){
-            print("add new location called")
             let location = sender.location(in: mapView)
             locCoord = mapView.convert(location, toCoordinateFrom: mapView)
             let annotation = MKPointAnnotation()
@@ -128,8 +127,8 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      places a red pin (annotation) at the Buyer's requested meetup location in the mapView
      */
     private func placeMeetupPin(){
-        let meetupLoc = CLLocationCoordinate2D(latitude : saleItem.meetup.latitude,
-                                               longitude: saleItem.meetup.longitude)
+        let meetupLoc = CLLocationCoordinate2D(latitude : saleItem.meetup.latitude!,
+                                               longitude: saleItem.meetup.longitude!)
         let RequestedMeetupPin = MKPointAnnotation()
         RequestedMeetupPin.coordinate = meetupLoc
         RequestedMeetupPin.title = "Meet Up Location"
@@ -142,7 +141,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      Pans the current mapView to this user's GPS location
      */
     private func panToMeetupLocation(){
-        let center = CLLocationCoordinate2D(latitude: saleItem.meetup.latitude, longitude: saleItem.meetup.longitude)
+        let center = CLLocationCoordinate2D(latitude: saleItem.meetup.latitude!, longitude: saleItem.meetup.longitude!)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true

@@ -26,14 +26,13 @@ class SaleItem {
     var requestedPickupDate: Double!
     var saleDuration: Int!
     var creatorUserID: String!
-    
+    var itemStatus: String!
     var creationLocation: (longitude :Double, latitude: Double)!
-    var meetup: (longitude :Double, latitude: Double)!
+    var meetup: (longitude :Double?, latitude: Double?)!
     private var json: [String: AnyObject]!
     var jsonPickupLoc: [String: AnyObject]!
     // MARK: - JSON Attributes
     var jsonCategory: String!   { return json["category"] as? String                }
-    var jsonStatus: String!     { return json["status"] as? String                  }
     var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)    }
     var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)   }
     var jsonBuyerReqTime:Double!{ return json["BuyerRequestedTime"] as! Double      }
@@ -54,17 +53,17 @@ class SaleItem {
     init(json: [String: AnyObject]) {
         self.json = json
         jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
+        itemStatus = json["status"] as? String
+        if(itemStatus == "Requested Meet Up"){
+            meetup = (latitude: Double(String(describing: jsonPickupLoc["lat"]!))!,
+                      longitude: Double(String(describing: jsonPickupLoc["long"]!))!)
+        }
         itemID = json["objectID"] as? String
         name = json["name"] as? String
         description = json["desc"] as? String
         price = json["price"] as? String
         creatorUserID = json["userID"] as? String
         imageURL = NSURL(string: (json["imageURL"] as? String)!) 
-        //print("not unwrapped", (Double(jsonPickupLoc["lat"] as! String))!)
-        //meetup = (latitude: Double(jsonPickupLoc["lat"] as! String),
-          //                longitude: Double(jsonPickupLoc["long"] as! String))
-        
-        
     }
     /**
     intializes variables to default placeholder values for testing.

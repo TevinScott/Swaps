@@ -58,7 +58,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
      This function is used to set the saleitem cell Image efficiently. Swift re-uses cells in collections and tables. Thus, if the new sale item's downloaded image will match a reused cell's image, the download is skipped.
     */
     private func setImageWhenNeeded(){
-        print(saleItem?.imageURL)
         // if the current cell URL is nil set it to the saleItem URL
         if(currentCellImageURL == nil && saleItem?.imageURL != nil){
             saleItemImg.image = UIImage(named: "default-placeholder")
