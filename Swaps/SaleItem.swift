@@ -30,18 +30,7 @@ class SaleItem {
     var creationLocation: (longitude :Double, latitude: Double)!
     var meetup: (longitude :Double?, latitude: Double?)!
     private var json: [String: AnyObject]!
-    var jsonPickupLoc: [String: AnyObject]!
-    // MARK: - JSON Attributes
-    var jsonCategory: String!   { return json["category"] as? String                }
-    var jsonLatitude: Double!   { return Double(jsonPickupLoc["lat"] as! String)    }
-    var jsonLongitude: Double!  { return Double(jsonPickupLoc["long"] as! String)   }
-    var jsonBuyerReqTime:Double!{ return json["BuyerRequestedTime"] as! Double      }
-    
-    /**
-     var jsonPickupLocation: String {
-        return json["pickUpLocation"] as? String
-     }
-     */
+    private var jsonPickupLoc: [String: AnyObject]!
     
     // MARK: - Initializers
     
@@ -54,16 +43,18 @@ class SaleItem {
         self.json = json
         jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
         itemStatus = json["status"] as? String
-        if(itemStatus == "Requested Meet Up"){
-            meetup = (latitude: Double(String(describing: jsonPickupLoc["lat"]!))!,
-                      longitude: Double(String(describing: jsonPickupLoc["long"]!))!)
-        }
         itemID = json["objectID"] as? String
         name = json["name"] as? String
         description = json["desc"] as? String
         price = json["price"] as? String
         creatorUserID = json["userID"] as? String
-        imageURL = NSURL(string: (json["imageURL"] as? String)!) 
+        imageURL = NSURL(string: (json["imageURL"] as? String)!)
+        category = json["category"] as? String
+        if(itemStatus == "Requested Meet Up" || itemStatus == "Confirmed")  {
+            meetup = (latitude: Double(String(describing: jsonPickupLoc["lat"]!))!,
+                      longitude: Double(String(describing: jsonPickupLoc["long"]!))!)
+            requestedPickupDate = Double(String(describing: json["BuyerRequestedTime"]!))!
+        }
     }
     /**
     intializes variables to default placeholder values for testing.
@@ -84,7 +75,7 @@ class SaleItem {
     /*
      Initializes SaleItems attributes to default values.
     */
-    init(){
+    init() {
         image = placeholderImage!
         name = "Currently Un-named"
         price = "00.00"

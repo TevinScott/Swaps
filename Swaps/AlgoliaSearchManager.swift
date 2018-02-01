@@ -188,4 +188,10 @@ class AlgoliaSearchManager {
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.itemID)
         
     }
+    func confirmMeetup(atIndex: SaleItem){
+        let saleItemDictionary: [String: AnyObject] =
+            ["status":"Confirmed" as AnyObject]
+        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: atIndex.itemID)
+
+    }
 }

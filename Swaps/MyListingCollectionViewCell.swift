@@ -50,6 +50,9 @@ class MyListingCollectionViewCell: UICollectionViewCell {
         }
         if let status: String = saleItem?.itemStatus! {
             statusLabel.text = status
+            if status == "Confirmed" {
+                statusView.backgroundColor = UIColor(red: 224/255, green: 191/255, blue: 66/255, alpha: 1.0)
+            }
             if status == "Requested Meet Up" {
                 statusView.backgroundColor = UIColor(red: 224/255, green: 191/255, blue: 66/255, alpha: 1.0)
             }

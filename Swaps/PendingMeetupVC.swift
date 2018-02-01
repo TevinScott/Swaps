@@ -31,7 +31,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.layer.cornerRadius = 4.0;
-        datePicker.date =  Date(timeIntervalSince1970: saleItem.jsonBuyerReqTime) 
+        datePicker.date =  Date(timeIntervalSince1970: saleItem.requestedPickupDate) 
         setupLocationManager()
         placeMeetupPin()
         panToMeetupLocation()
@@ -66,16 +66,10 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     }
     
     /**
-     this button currently sets the pick up location of the Sale Item in the algolia database
-     */
-    @IBAction func meetupBtnPressed(_ sender: Any) {
-        //NEEDS: Dialog Box & Location needs to match the annotation/pin placed by user
-        if(self.locCoord != nil && saleItem != nil){
-            saleItem.requestedPickupDate = floor(datePicker.date.timeIntervalSince1970)
-            saleItem.meetup = (longitude: locCoord.longitude, latitude: locCoord.latitude)
-            algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
-            algoliaHandle.addBuyerRequestedPickupDate(toIndex: saleItem)
-        }
+     
+    */
+    @IBAction func confirmBtnPressed(_ sender: Any) {
+        algoliaHandle.confirmMeetup(atIndex: saleItem)
     }
     
     /**

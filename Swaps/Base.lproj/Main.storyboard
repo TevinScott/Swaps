@@ -996,6 +996,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTc-13-PQA">
                                 <rect key="frame" x="16" y="20" width="343" height="343"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JTc-13-PQA" secondAttribute="height" multiplier="1:1" id="Dmr-lf-YG2"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="1Ou-MX-y79" id="8dV-b0-Z9C"/>
                                     <outletCollection property="gestureRecognizers" destination="4KR-nr-BsU" appends="YES" id="hqx-Hq-WWX"/>
@@ -1050,6 +1053,9 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="confirmBtnPressed:" destination="1Ou-MX-y79" eventType="touchUpInside" id="2qj-3M-aUv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1102,7 +1108,7 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bjm-ap-bP1"/>
+        <segue reference="xFS-MV-jnd"/>
         <segue reference="jXF-iB-2jA"/>
         <segue reference="uFR-wf-9zT"/>
         <segue reference="N3P-dg-JMw"/>
