@@ -59,5 +59,9 @@ class UserProfileVC: UIViewController {
             self.myListedItems = SaleItemCollection.init(inputList: ListOfUsersItems)
         }
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        myListingsCollectionView.reloadData()
+    }
 }
 

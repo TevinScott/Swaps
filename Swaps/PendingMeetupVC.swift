@@ -70,6 +70,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     */
     @IBAction func confirmBtnPressed(_ sender: Any) {
         algoliaHandle.confirmMeetup(atIndex: saleItem)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     /**
