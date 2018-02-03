@@ -1034,6 +1034,9 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeBtnPressed:" destination="1Ou-MX-y79" eventType="touchUpInside" id="ubP-cG-pj2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6U-l2-EiY">
                                 <rect key="frame" x="94" y="544" width="187" height="30"/>
@@ -1079,13 +1082,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="acceptBtn" destination="8bD-F9-kIS" id="M8L-0h-mgN"/>
+                        <outlet property="changeMeetupBtn" destination="SxG-5s-WsL" id="t47-EJ-koa"/>
                         <outlet property="datePicker" destination="WcC-Jp-3QW" id="vMM-5k-gyu"/>
                         <outlet property="mapView" destination="JTc-13-PQA" id="Z0W-yr-1uc"/>
                         <outlet property="toggleFollowBtn" destination="cij-6X-2W5" id="pnD-4g-yLu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTR-iM-VvP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.14999999999999999" id="4KR-nr-BsU">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.29999999999999999" id="4KR-nr-BsU">
                     <connections>
                         <action selector="addPin:" destination="1Ou-MX-y79" id="ifG-kS-qDl"/>
                     </connections>

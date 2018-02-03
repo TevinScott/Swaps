@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
-
+import SwiftyButton
 //NEEDS: - Zoom out to fit both the meet up location pin & user location in mapView
 //NEEDS: - route drawn from user location to meet up location in mapView
 //NEEDS: - estimated travel time by vehicle & foot in mapView
@@ -22,36 +22,15 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var toggleFollowBtn: UIButton!
-    var locationManager = CLLocationManager()
-    var algoliaHandle = AlgoliaSearchManager()
-    var saleItem : SaleItem!
-    var locCoord : CLLocationCoordinate2D!
-    
-    // MARK: - View controller life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        mapView.layer.cornerRadius = 4.0;
-        datePicker.date =  Date(timeIntervalSince1970: saleItem.requestedPickupDate) 
-        setupLocationManager()
-        placeMeetupPin()
-        panToMeetupLocation()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        panToMeetupLocation()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+    @IBOutlet weak var acceptBtn: PressableButton!
+    @IBOutlet weak var changeMeetupBtn: PressableButton!
+    private var locationManager = CLLocationManager()
+    private var algoliaHandle = AlgoliaSearchManager()
+    private var locCoord : CLLocationCoordinate2D!
+    private var changeMeetupEnabled = false;
+    public var saleItem : SaleItem!
     
     // MARK: - Button Actions
-    
     /**
      This Button, when pressed will either cause the mapView to stay centered on the user's location or stop the fixed centering
      */
@@ -66,11 +45,22 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     }
     
     /**
-     
+     confirms the user accepts the specified time and place displayed in the mapView and datepicker
     */
     @IBAction func confirmBtnPressed(_ sender: Any) {
-        algoliaHandle.confirmMeetup(atIndex: saleItem)
-        _ = navigationController?.popViewController(animated: true)
+        if(changeMeetupEnabled != true){
+            algoliaHandle.confirmMeetup(atIndex: saleItem)
+            _ = navigationController?.popViewController(animated: true)
+        } else {
+            print("currently no action for this button while performing a counter request")
+        }
+    }
+    
+    /**
+     toggles the ability to interact with the mapview and date picker to later send a counter meet up request to the buyer.
+    */
+    @IBAction func changeBtnPressed(_ sender: Any) {
+        toggleChangeMeetup()
     }
     
     /**
@@ -90,6 +80,44 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     }
     
     // MARK: - Support Functions
+    
+    /**
+     toggles the iteractability of the map View & date picker and changes the UI buttons accordingly
+    */
+    private func toggleChangeMeetup() {
+        if(changeMeetupEnabled != true){
+            changeMeetupEnabled = true
+            mapView.isZoomEnabled = true
+            mapView.isRotateEnabled = true
+            mapView.isScrollEnabled = true
+            datePicker.isUserInteractionEnabled = true
+            acceptBtn.setTitle("Send Request", for: .normal)
+            changeMeetupBtn.setTitle("Cancel Changes", for: .normal)
+            print("turning on meetup change")
+        }
+        else if(changeMeetupEnabled){
+            changeMeetupEnabled = false
+            mapView.isZoomEnabled = false
+            mapView.isRotateEnabled = false
+            mapView.isScrollEnabled = false
+            datePicker.isUserInteractionEnabled = false
+            acceptBtn.setTitle("Accept", for: .normal)
+            print("turning off meetup change")
+            changeMeetupBtn.setTitle("Change Meet up", for: .normal)
+            setSubviewsToSaleItemVariables()
+        }
+    }
+    
+    /**
+     sets the mapview to display the pin for the requested meet up location in this view's sale item attribute. also sets the date picker to the corresponding sale item attribute's requested meet up date & time.
+     */
+    private func setSubviewsToSaleItemVariables(){
+        datePicker.date =  Date(timeIntervalSince1970: saleItem.requestedPickupDate)
+        setupLocationManager()
+        placeMeetupPin()
+        panToMeetupLocation()
+    }
+    
     /**
      called once user allows location permissions. will move the map view to the user's current location should the move.
      */
@@ -109,7 +137,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     /**
      Enables user location functionality within this Views MapView
      */
-    func setupLocationManager(){
+    private func setupLocationManager(){
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
@@ -142,5 +170,22 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         mapView.showsUserLocation = true
     }
     
+    // MARK: - View controller life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapView.layer.cornerRadius = 4.0;
+        setSubviewsToSaleItemVariables()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        panToMeetupLocation()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 }
 
