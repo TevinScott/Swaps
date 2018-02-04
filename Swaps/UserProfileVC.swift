@@ -54,14 +54,13 @@ class UserProfileVC: UIViewController {
         let width = ((myListingsCollectionView.frame).width - leftAndRightPadding)/numberOfItemsPerRow
         let layout = myListingsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width+heightAdjustment)
-        
-        algoliaSearchManager.getUserItems() { (ListOfUsersItems) -> () in
-            self.myListedItems = SaleItemCollection.init(inputList: ListOfUsersItems)
-        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        myListingsCollectionView.reloadData()
+        algoliaSearchManager.getUserItems() { (ListOfUsersItems) -> () in
+            self.myListedItems = SaleItemCollection.init(inputList: ListOfUsersItems)
+            print("this update was called")
+        }
     }
 }
 

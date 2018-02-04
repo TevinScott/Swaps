@@ -27,7 +27,7 @@ class AlgoliaSearchManager {
     
     // MARK: - Intializer
     /**
-     initializes the Algolia Search Manager to point to the Skill-Trader Index and sets the attributes that will be searched
+     initializes the Algolia Search Manager to point to the Skill-Trader Index and sets the attributes that will be searched.
     */
     init(){
         let client = Client(appID: "KJBTLKM9VP", apiKey: "336ec5d2a6f528a23c73482a3d657643")
@@ -39,9 +39,9 @@ class AlgoliaSearchManager {
     
     // MARK: - Database Query Functions
     /**
-     gets the first 15 indexes listed within the Algolia JSON Database
+     gets the first 15 indexes listed within the Algolia JSON Database.
      
-     - parameter escapingList: returns 15 of the most recent entries in the Algolia database
+     - parameter escapingList: returns 15 of the most recent entries in the Algolia database.
     */
     func getAllItems(escapingList: @escaping ([SaleItem]) -> ()){
         query.attributesToRetrieve = ["name", "desc", "category"]
@@ -59,9 +59,9 @@ class AlgoliaSearchManager {
     }
     
     /**
-     gets the first 15 indexes listed by the currently signed in user, from the Algolia JSON Database
+     gets the first 15 indexes listed by the currently signed in user, from the Algolia JSON Database.
      
-     - parameter escapingList: returns 15 of the most recent entries in the Algolia database
+     - parameter escapingList: returns 15 of the most recent entries in the Algolia database.
      */
     func getUserItems(escapingList: @escaping ([SaleItem]) -> ()){
         query.attributesToRetrieve = ["userID"]
@@ -79,12 +79,12 @@ class AlgoliaSearchManager {
         
     }
     /**
-     updates a saleItem that is stored in the Algolia JSON Index
+     updates a saleItem that is stored in the Algolia JSON Index.
      
      - parameters:
-        - modifiedSaleItem: the swift data structure representation of the updated version of the Sale Item to be changed in the Algolia Index
-        - imageChanged:     a boolean answer to weither the current sale item image has been changed by the user in the app
-        - previousURL:      the previous Image URL which will be used to delete the previous image from Firebase Storage
+        - modifiedSaleItem: the swift data structure representation of the updated version of the Sale Item to be changed in the Algolia Index.
+        - imageChanged:     a boolean answer to weither the current sale item image has been changed by the user in the app.
+        - previousURL:      the previous Image URL which will be used to delete the previous image from Firebase Storage.
      */
     func updateItemIndexValues(modifiedSaleItem: SaleItem, imageChanged: Bool){
         var saleItemDictionary: [String: String] = [
@@ -105,11 +105,11 @@ class AlgoliaSearchManager {
     }
     
     /**
-     gets the first 15 values matching the search parameter within the Algolia JSON Database
+     gets the first 15 values matching the search parameter within the Algolia JSON Database.
      
      - parameters:
-        - searchString: the string for which the search will be queried by
-        - escapingList: returns 15 of the best matching indices in the Algolia database
+        - searchString: the string for which the search will be queried by.
+        - escapingList: returns 15 of the best matching indices in the Algolia database.
      */
     func searchDatabase(searchString: String, escapingList: @escaping ([SaleItem]) -> ()){
         query.attributesToRetrieve = ["name", "desc", "category"]
@@ -127,9 +127,9 @@ class AlgoliaSearchManager {
     }
     
     /**
-     uploads The given saleItem to the Algolia Index as a Key: value list
+     uploads The given saleItem to the Algolia Index as a Key: value list.
      
-     - parameter saleItem: the swift data structure representation of the sale item that will be uploaded
+     - parameter saleItem: the swift data structure representation of the sale item that will be uploaded.
     */
     func uploadToIndex(saleItem: SaleItem){
         firebaseHandle.uploadImageToFirebaseStorage(name: saleItem.name!, image: saleItem.image!){ (completedURL) -> () in //image upload
@@ -157,7 +157,7 @@ class AlgoliaSearchManager {
     }
     
     /**
-     Deletes the saleItem Index at a given ID
+     Deletes the saleItem Index at a given ID.
      
      - Parameter saleItemToDelete: the handle for a particular sale Item that will be deleted from
                                     the Algolia index and it's image from the the firebase Storage.
@@ -169,29 +169,57 @@ class AlgoliaSearchManager {
     }
     
     /**
-     Adds Pickup location co-ordinates to the Index of the corresponding Algolia SaleItem
+     Adds Pickup location co-ordinates to the Index of the corresponding Algolia SaleItem.
      
-     - Parameter saleItem: A swift data structure representing the corresponding Algolia Sale Item Index.
+     - Parameter toIndex: A swift data structure representing the corresponding Algolia Sale Item Index.
      */
     func addPickupRequestLocation(toIndex: SaleItem) {
         let saleItemDictionary: [String: [String: AnyObject]] =
-            ["pickupLocation"    :  ["long": toIndex.meetup.longitude as AnyObject,
-                                     "lat" : toIndex.meetup.latitude as AnyObject],
+            ["pickupLocation"    :  ["long": toIndex.meetup.longitude   as AnyObject,
+                                     "lat" : toIndex.meetup.latitude    as AnyObject],
             ]
         
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.itemID)
     }
+    
+    /**
+     adds a potential buyer's requested meet up time to this specified sale item index.
+     
+     - Parameter toIndex: used to find the index of this sale item in the Algolia json database using
+     this item's itemID.
+    */
     func addBuyerRequestedPickupDate(toIndex: SaleItem) {
         let saleItemDictionary: [String: AnyObject] =
-            ["BuyerRequestedTime":  toIndex.requestedPickupDate as AnyObject,
-             "status":"Requested Meet-up" as AnyObject]
+            ["BuyerRequestedTime"   :  toIndex.requestedPickupDate  as AnyObject,
+             "status"               :"Requested Meet-up"            as AnyObject]
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.itemID)
         
     }
+    
+    /**
+     updates the status of the sale item at this specified index to Confirmed.
+     
+     - Parameter atIndex: used to find the index of this sale item in the algolia json database using
+                            this item's itemID.
+     */
     func confirmMeetup(atIndex: SaleItem){
         let saleItemDictionary: [String: AnyObject] =
             ["status":"Confirmed" as AnyObject]
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: atIndex.itemID)
 
+    }
+    
+    /**
+     removes this sale item's requested meetup Attributes at it's index in the Algolia json Database.
+     
+     - Parameter atIndex: used to find the index of this sale item in the algolia json database using
+                            this item's itemID.
+    */
+    func clearMeetupRequest(atIndex: SaleItem) {
+        let saleItemDictionary: [String: AnyObject] =
+            ["status"               :"listed"   as AnyObject,
+             "BuyerRequestedTime"   : "0"       as AnyObject,
+             "pickupLocation"       : "none"    as AnyObject]
+        adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: atIndex.itemID)
     }
 }

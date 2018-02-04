@@ -1041,6 +1041,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6U-l2-EiY">
                                 <rect key="frame" x="94" y="544" width="187" height="30"/>
                                 <state key="normal" title="Cancel Meet Up"/>
+                                <connections>
+                                    <action selector="cancelBtnPressed:" destination="1Ou-MX-y79" eventType="touchUpInside" id="Rdi-a9-gdA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bD-F9-kIS" customClass="PressableButton" customModule="SwiftyButton">
                                 <rect key="frame" x="16" y="474" width="163" height="44"/>
@@ -1113,9 +1116,9 @@
         <image name="user" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xFS-MV-jnd"/>
-        <segue reference="jXF-iB-2jA"/>
+        <segue reference="bjm-ap-bP1"/>
+        <segue reference="Aol-nF-kP3"/>
         <segue reference="uFR-wf-9zT"/>
-        <segue reference="TQr-bG-8W6"/>
+        <segue reference="N3P-dg-JMw"/>
     </inferredMetricsTieBreakers>
 </document>

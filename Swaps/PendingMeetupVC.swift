@@ -45,6 +45,14 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     }
     
     /**
+     This button cancels the meetup request with the potential buyer and returns to the user's listings view
+    */
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        algoliaHandle.clearMeetupRequest(atIndex: self.saleItem)
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    /**
      confirms the user accepts the specified time and place displayed in the mapView and datepicker
     */
     @IBAction func confirmBtnPressed(_ sender: Any) {
@@ -67,7 +75,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
      adds a pin to the location the user last tapped on inside this class's mapView
      */
     @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
-        if(mapView.isScrollEnabled){
+        if(changeMeetupEnabled){
             let location = sender.location(in: mapView)
             locCoord = mapView.convert(location, toCoordinateFrom: mapView)
             let annotation = MKPointAnnotation()
@@ -82,6 +90,31 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     // MARK: - Support Functions
     
     /**
+     checks this sale item's requested meetup time and determine's if it is after the current time.
+     
+     - returns: a boolean answer to if the sale item is after the current date & time when this function is called.
+    */
+    private func isInDate() -> Bool {
+        var answer = false
+        if(saleItem.requestedPickupDate >= NSDate().timeIntervalSince1970){
+            answer = true
+        }
+        return answer
+    }
+    
+    /**
+     
+     *FUNCTION IN PROGRESS*
+    private func sendNewMeetupRequest(){
+        if(mapView.annotations.count > 1 && changeMeetupEnabled){
+            saleItem.meetup = (longitude: locCoord.longitude, latitude: locCoord.latitude)
+            algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
+        }
+    }
+    */
+    
+    
+    /**
      toggles the iteractability of the map View & date picker and changes the UI buttons accordingly
     */
     private func toggleChangeMeetup() {
@@ -94,6 +127,7 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
             acceptBtn.setTitle("Send Request", for: .normal)
             changeMeetupBtn.setTitle("Cancel Changes", for: .normal)
             print("turning on meetup change")
+            mapView.removeAnnotations(mapView.annotations)
         }
         else if(changeMeetupEnabled){
             changeMeetupEnabled = false
@@ -175,6 +209,8 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         mapView.layer.cornerRadius = 4.0;
         setSubviewsToSaleItemVariables()
+        
+        print("is this buyer's requested date after this current time?: ", isInDate())
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
