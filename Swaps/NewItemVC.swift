@@ -92,10 +92,8 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
     }
     
     /**
-     shows a dialogbox prompting the user that they are about to replaces there currently set image. They have the choice to cancel the action or proceed.
-     
-     - Returns
-     answer: a string stating the answer either a camera, library, or none
+     shows a dialogbox prompting the user that they are about to replaces there currently set image.
+     They have the choice to cancel the action or proceed.
      */
     func showCameraOrLibraryDialog(){
 

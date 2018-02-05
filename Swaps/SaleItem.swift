@@ -29,8 +29,6 @@ class SaleItem {
     var itemStatus: String!
     var creationLocation: (longitude :Double, latitude: Double)!
     var meetup: (longitude :Double?, latitude: Double?)!
-    private var json: [String: AnyObject]!
-    private var jsonPickupLoc: [String: AnyObject]!
     
     // MARK: - Initializers
     
@@ -40,8 +38,7 @@ class SaleItem {
      - parameter json: input json object representation of a sale item.
     */
     init(json: [String: AnyObject]) {
-        self.json = json
-        jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
+        var jsonPickupLoc = json["pickupLocation"] as? [String: AnyObject]
         itemStatus = json["status"] as? String
         itemID = json["objectID"] as? String
         name = json["name"] as? String
@@ -51,8 +48,8 @@ class SaleItem {
         imageURL = NSURL(string: (json["imageURL"] as? String)!)
         category = json["category"] as? String
         if(itemStatus == "Requested Meet Up" || itemStatus == "Confirmed")  {
-            meetup = (latitude: Double(String(describing: jsonPickupLoc["lat"]!))!,
-                      longitude: Double(String(describing: jsonPickupLoc["long"]!))!)
+            meetup = (latitude: Double(String(describing: jsonPickupLoc!["lat"]!))!,
+                      longitude: Double(String(describing: jsonPickupLoc!["long"]!))!)
             requestedPickupDate = Double(String(describing: json["BuyerRequestedTime"]!))!
         }
     }

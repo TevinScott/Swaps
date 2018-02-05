@@ -103,6 +103,23 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
     }
     
     /**
+     shows a dialogbox prompting the user that they are about to replaces there currently set image. They have the choice to cancel the action or proceed.
+     
+     - Returns
+     answer: a string stating the answer either a camera, library, or none
+     */
+    func showMeetupOutOfDateDialogAlert(){
+        let alertController = UIAlertController(title: "Out Of Date Meet up",
+                                                message: "The Meet up Date that was chosen has passed. Your item status will return to \"Listed\"",
+                                                preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (_) in
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(cancelAction)
+        //finally presenting the dialog box
+        self.present(alertController, animated: true, completion: nil)
+    }
+    /**
      
      *FUNCTION IN PROGRESS*
     private func sendNewMeetupRequest(){
@@ -126,7 +143,6 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
             datePicker.isUserInteractionEnabled = true
             acceptBtn.setTitle("Send Request", for: .normal)
             changeMeetupBtn.setTitle("Cancel Changes", for: .normal)
-            print("turning on meetup change")
             mapView.removeAnnotations(mapView.annotations)
         }
         else if(changeMeetupEnabled){
@@ -136,7 +152,6 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
             mapView.isScrollEnabled = false
             datePicker.isUserInteractionEnabled = false
             acceptBtn.setTitle("Accept", for: .normal)
-            print("turning off meetup change")
             changeMeetupBtn.setTitle("Change Meet up", for: .normal)
             setSubviewsToSaleItemVariables()
         }
@@ -209,12 +224,14 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         mapView.layer.cornerRadius = 4.0;
         setSubviewsToSaleItemVariables()
-        
-        print("is this buyer's requested date after this current time?: ", isInDate())
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         panToMeetupLocation()
+        if( !isInDate() ) {
+            self.algoliaHandle.clearMeetupRequest(atIndex: self.saleItem)
+            showMeetupOutOfDateDialogAlert()
+        }
     }
     
     override func didReceiveMemoryWarning() {

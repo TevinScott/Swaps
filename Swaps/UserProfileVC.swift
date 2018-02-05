@@ -59,7 +59,6 @@ class UserProfileVC: UIViewController {
         super.viewDidAppear(animated)
         algoliaSearchManager.getUserItems() { (ListOfUsersItems) -> () in
             self.myListedItems = SaleItemCollection.init(inputList: ListOfUsersItems)
-            print("this update was called")
         }
     }
 }
