@@ -38,7 +38,8 @@ class FeedVC : UIViewController, UISearchBarDelegate{
     // collection View variables
     private var refreshControl: UIRefreshControl!
     internal var collectionViewOriginalLocation: CGFloat!
-    internal let cellIdentifier = "SaleCell"
+    internal let standardCellIdentifier = "SaleCell"
+    internal let userCellIdentifier = "UserSaleCell"
 
     // MARK: - Button Actions
     /**

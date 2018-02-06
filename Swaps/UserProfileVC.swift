@@ -19,7 +19,7 @@ class UserProfileVC: UIViewController {
     let algoliaSearchManager = AlgoliaSearchManager()
     let firebaseHandle = FirebaseManager()
     var myListedItems: SaleItemCollection! = SaleItemCollection(){ didSet { myListingsCollectionView?.reloadData() } }
-    let cellIdentifier = "SaleCell"
+    let userCellIdentifier = "userSaleCell"
     
     private let leftAndRightPadding: CGFloat = 32.0
     private let numberOfItemsPerRow: CGFloat = 2.0

@@ -49,10 +49,18 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      - returns:             A configured cell object. You must not return nil from this method.
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FeedCollectionViewCell
         let cellSaleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
-        cell.saleItem = cellSaleItem
-        return cell
+        let userID = Auth.auth().currentUser?.uid
+        if(cellSaleItem?.creatorUserID == userID){
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellIdentifier, for: indexPath) as! MyListingCollectionViewCell
+            cell.saleItem = cellSaleItem
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: standardCellIdentifier, for: indexPath) as! FeedCollectionViewCell
+            cell.saleItem = cellSaleItem
+            return cell
+        }
+        
     }
     
     /**

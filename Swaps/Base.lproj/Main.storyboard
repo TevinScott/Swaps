@@ -34,7 +34,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SaleCell" id="3PL-Nf-2UG" customClass="MyListingCollectionViewCell" customModule="Swaps" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserSaleCell" id="3PL-Nf-2UG" customClass="MyListingCollectionViewCell" customModule="Swaps" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -226,6 +226,87 @@
                                             <outlet property="priceLabel" destination="kyT-cH-mRr" id="lwq-b4-hDn"/>
                                             <outlet property="saleItemImg" destination="NVU-aP-Ryf" id="UT8-hf-4Md"/>
                                             <outlet property="visualEffectView" destination="xyn-Gn-ant" id="1IN-wt-s3Z"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UserSaleCell" id="K8K-AQ-p0E" customClass="MyListingCollectionViewCell" customModule="Swaps" customModuleProvider="target">
+                                        <rect key="frame" x="215" y="10" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="447-JO-M86" userLabel="SaleItemImg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-yA-uJA">
+                                                    <rect key="frame" x="0.0" y="125" width="150" height="25"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Jm-HN-g2f">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="25"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$XX.XX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytJ-8z-UEt">
+                                                                <rect key="frame" x="8" y="2" width="134" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="ytJ-8z-UEt" firstAttribute="trailing" secondItem="4Jm-HN-g2f" secondAttribute="trailingMargin" id="2lU-Dx-htQ"/>
+                                                            <constraint firstItem="ytJ-8z-UEt" firstAttribute="centerY" secondItem="4Jm-HN-g2f" secondAttribute="centerY" id="kBa-V1-Mmy"/>
+                                                            <constraint firstItem="ytJ-8z-UEt" firstAttribute="leading" secondItem="4Jm-HN-g2f" secondAttribute="leadingMargin" id="qP9-LQ-Lbn"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="895-Gh-w39"/>
+                                                    </constraints>
+                                                    <blurEffect style="light"/>
+                                                </visualEffectView>
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cho-Hp-s86">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="23"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Op-Cm-uj3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="23"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fyC-ez-5Ni">
+                                                                <rect key="frame" x="24" y="1" width="103" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="fyC-ez-5Ni" firstAttribute="leading" secondItem="7Op-Cm-uj3" secondAttribute="leading" constant="24" id="9A1-y9-7fZ"/>
+                                                            <constraint firstItem="fyC-ez-5Ni" firstAttribute="centerY" secondItem="7Op-Cm-uj3" secondAttribute="centerY" id="f6j-KQ-UDy"/>
+                                                            <constraint firstAttribute="trailing" secondItem="fyC-ez-5Ni" secondAttribute="trailing" constant="23" id="jiW-TM-hOw"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="23" id="8Uj-aM-JuB"/>
+                                                    </constraints>
+                                                    <blurEffect style="light"/>
+                                                </visualEffectView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="447-JO-M86" firstAttribute="leading" secondItem="pJP-yA-uJA" secondAttribute="leading" id="Bmk-8u-G31"/>
+                                            <constraint firstItem="447-JO-M86" firstAttribute="trailing" secondItem="cho-Hp-s86" secondAttribute="trailing" id="KpX-Zh-cTk"/>
+                                            <constraint firstItem="447-JO-M86" firstAttribute="leading" secondItem="cho-Hp-s86" secondAttribute="leading" id="fpt-i5-dcu"/>
+                                            <constraint firstAttribute="bottom" secondItem="447-JO-M86" secondAttribute="bottom" id="h8a-fX-NdU"/>
+                                            <constraint firstItem="cho-Hp-s86" firstAttribute="top" secondItem="K8K-AQ-p0E" secondAttribute="top" id="hWI-Uu-sNW"/>
+                                            <constraint firstItem="447-JO-M86" firstAttribute="top" secondItem="cho-Hp-s86" secondAttribute="top" id="hZE-Sz-xfG"/>
+                                            <constraint firstItem="cho-Hp-s86" firstAttribute="leading" secondItem="K8K-AQ-p0E" secondAttribute="leading" id="hzB-46-sMF"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="cho-Hp-s86" secondAttribute="trailing" constant="-8" id="j1b-Gw-WMO"/>
+                                            <constraint firstItem="447-JO-M86" firstAttribute="bottom" secondItem="pJP-yA-uJA" secondAttribute="bottom" id="tb2-19-0yn"/>
+                                            <constraint firstItem="447-JO-M86" firstAttribute="trailing" secondItem="pJP-yA-uJA" secondAttribute="trailing" id="uT9-So-IKX"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="priceLabel" destination="ytJ-8z-UEt" id="DNq-hW-CWv"/>
+                                            <outlet property="saleItemImg" destination="447-JO-M86" id="E89-0L-Dzc"/>
+                                            <outlet property="statusBlur" destination="cho-Hp-s86" id="HEW-S3-xLZ"/>
+                                            <outlet property="statusLabel" destination="fyC-ez-5Ni" id="438-eY-qGi"/>
+                                            <outlet property="statusView" destination="7Op-Cm-uj3" id="8bF-bI-PoH"/>
+                                            <outlet property="visualEffectView" destination="pJP-yA-uJA" id="M59-tZ-3kU"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
