@@ -52,6 +52,8 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cellSaleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
         let userID = Auth.auth().currentUser?.uid
         if(cellSaleItem?.creatorUserID == userID){
+            print("item name: ", cellSaleItem?.name)
+            print("item date val: ", cellSaleItem?.requestedPickupDate, "\n\n")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellIdentifier, for: indexPath) as! MyListingCollectionViewCell
             cell.saleItem = cellSaleItem
             return cell
@@ -72,19 +74,19 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
      -indexPath:        The index path of the cell that was selected.
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        if let cell = collectionView.cellForItem(at: indexPath) as? FeedCollectionViewCell {
-            //branch here, if user owns item go to (Edit)SaleItemSegue
-            if let userID = Auth.auth().currentUser?.uid {
-                if(cell.saleItem?.creatorUserID == userID){
-                    performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
-                }
-                else{
-                    //user is currently signed in but their userID does not match that of the sale item's userID.
-                    performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
-                }
-            } else {
-                //user is not currently signed in.
+        if let userID = Auth.auth().currentUser?.uid {
+            if let cell = collectionView.cellForItem(at: indexPath) as? FeedCollectionViewCell {
                 performSegue(withIdentifier: "ViewSaleItemSegue", sender: cell)
+            }
+            if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
+                if(cell.saleItem?.creatorUserID == userID){
+                    print("pressed cell and id's match")
+                    if(cell.saleItem?.itemStatus == "listed"){
+                        performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
+                    }else if (cell.saleItem?.itemStatus == "Requested Meet Up") {
+                        performSegue(withIdentifier: "segueToMyItemRequest", sender: cell)
+                    }
+                }
             }
         }
     }
@@ -107,8 +109,8 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
             self.searchBar.frame.origin.y = 0
             self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
         }
-        if segue.identifier == "EditSaleItemSegue"{
-            let selectedSaleItem = (sender as! FeedCollectionViewCell).saleItem!
+        else if segue.identifier == "EditSaleItemSegue"{
+            let selectedSaleItem = (sender as! MyListingCollectionViewCell).saleItem!
             let textToPass = selectedSaleItem
             let saleItemVC = segue.destination as! EditItemVC
             saleItemVC.saleItem = textToPass
@@ -116,6 +118,16 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
             self.searchBar.frame.origin.y = 0
             self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
         }
+        else if segue.identifier == "segueToMyItemRequest"{
+            let selectedSaleItem = (sender as! MyListingCollectionViewCell).saleItem!
+            let saleItemToPass = selectedSaleItem
+            let saleItemVC = segue.destination as! PendingMeetupVC
+            saleItemVC.saleItem = saleItemToPass
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            /**
+             self.searchBar.frame.origin.y = 0
+             self.collectionView.frame.origin.y = self.collectionViewOriginalLocation
+             */
+        }
     }
-
 }

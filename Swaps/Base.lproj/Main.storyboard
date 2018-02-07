@@ -352,7 +352,7 @@
                         <segue destination="eW5-U5-u9f" kind="show" identifier="EditSaleItemSegue" id="Aol-nF-kP3"/>
                         <segue destination="dWU-fE-xou" kind="show" identifier="ViewSaleItemSegue" id="Skv-tn-tCQ"/>
                         <segue destination="Gvs-pP-Xr1" kind="show" identifier="goToProfileSegue" id="2E3-cl-gs0"/>
-                        <segue destination="1Ou-MX-y79" kind="show" identifier="sequeToMyItemRequest" id="bjm-ap-bP1"/>
+                        <segue destination="1Ou-MX-y79" kind="show" identifier="segueToMyItemRequest" id="bjm-ap-bP1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dR3-JZ-iM5" userLabel="First Responder" sceneMemberID="firstResponder"/>

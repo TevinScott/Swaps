@@ -39,7 +39,9 @@ class SaleItemCollection {
             return listOfItems[indexPath.item]
         }
         else {
+            print("calling this default init")
             return SaleItem.init()
+            
         }
     }
     
