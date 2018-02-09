@@ -52,8 +52,6 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cellSaleItem = setOfItems.getSaleItemAtIndexPath(indexPath: indexPath)
         let userID = Auth.auth().currentUser?.uid
         if(cellSaleItem?.creatorUserID == userID){
-            print("item name: ", cellSaleItem?.name)
-            print("item date val: ", cellSaleItem?.requestedPickupDate, "\n\n")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellIdentifier, for: indexPath) as! MyListingCollectionViewCell
             cell.saleItem = cellSaleItem
             return cell
@@ -83,7 +81,7 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
                     print("pressed cell and id's match")
                     if(cell.saleItem?.itemStatus == "listed"){
                         performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
-                    }else if (cell.saleItem?.itemStatus == "Requested Meet Up") {
+                    }else if (cell.saleItem?.itemStatus == "Buyer Requested Meet Up") {
                         performSegue(withIdentifier: "segueToMyItemRequest", sender: cell)
                     }
                 }

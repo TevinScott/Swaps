@@ -47,7 +47,7 @@ class SaleItem {
         creatorUserID = json["userID"] as? String
         imageURL = NSURL(string: (json["imageURL"] as? String)!)
         category = json["category"] as? String
-        if(itemStatus == "Requested Meet Up" || itemStatus == "Confirmed")  {
+        if(itemStatus == "Buyer Requested Meet Up" || itemStatus == "Seller Requested Meet Up" || itemStatus == "Confirmed") {
             meetup = (latitude: Double(String(describing: jsonPickupLoc!["lat"]!))!,
                       longitude: Double(String(describing: jsonPickupLoc!["long"]!))!)
             requestedPickupDate = Double(String(describing: json["BuyerRequestedTime"]!))!

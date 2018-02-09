@@ -19,7 +19,7 @@ class UserProfileVC: UIViewController {
     let algoliaSearchManager = AlgoliaSearchManager()
     let firebaseHandle = FirebaseManager()
     var myListedItems: SaleItemCollection! = SaleItemCollection(){ didSet { myListingsCollectionView?.reloadData() } }
-    let userCellIdentifier = "userSaleCell"
+    let userCellIdentifier = "UserSaleCell"
     
     private let leftAndRightPadding: CGFloat = 32.0
     private let numberOfItemsPerRow: CGFloat = 2.0
@@ -33,6 +33,7 @@ class UserProfileVC: UIViewController {
      
      */
     @IBAction func signOutBtnPressed(_ sender: Any) {
+        print("signOutPressed")
         signOut()
     }
 
@@ -44,7 +45,7 @@ class UserProfileVC: UIViewController {
     private func signOut(){
         try! Auth.auth().signOut()
         GIDSignIn.sharedInstance().signOut()
-        coreDataManager.deleteAll()
+        //coreDataManager.deleteAll()
         self.performSegue(withIdentifier: "SegueToSignIn", sender: self)
     }
 

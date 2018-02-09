@@ -180,9 +180,6 @@ class NewItemVC: UIViewController, UINavigationControllerDelegate{
         descriptionTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
         descriptionTextView.layer.cornerRadius = 8;
     }
-
-
-    
 }
 
 

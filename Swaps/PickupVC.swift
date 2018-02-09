@@ -70,8 +70,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
         if(self.locCoord != nil && saleItem != nil){
             //saleItem.requestedPickupDate = floor(datePicker.date.timeIntervalSince1970)
             saleItem.meetup = (longitude: locCoord.longitude, latitude: locCoord.latitude)
-            algoliaHandle.addPickupRequestLocation(toIndex: saleItem)
-            algoliaHandle.addBuyerRequestedPickupDate(toIndex: saleItem)
+            algoliaHandle.addMeetupRequestInfo(toIndex: saleItem, by:"Buyer")
         }
         
         

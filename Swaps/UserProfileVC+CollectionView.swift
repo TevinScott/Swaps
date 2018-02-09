@@ -68,7 +68,7 @@ extension UserProfileVC : UICollectionViewDelegate, UICollectionViewDataSource {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             if(cell.saleItem?.itemStatus == "listed"){
                 performSegue(withIdentifier: "EditFromMyListings", sender: cell)
-            } else if (cell.saleItem?.itemStatus == "Requested Meet Up") {
+            } else if (cell.saleItem?.itemStatus == "Buyer Requested Meet Up") {
                 performSegue(withIdentifier: "segueToPendingMeetupVC", sender: cell)
             }
 

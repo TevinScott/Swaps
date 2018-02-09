@@ -188,10 +188,12 @@ class AlgoliaSearchManager {
      - Parameter toIndex: used to find the index of this sale item in the Algolia json database using
      this item's itemID.
     */
-    func addBuyerRequestedPickupDate(toIndex: SaleItem) {
+    func addMeetupRequestInfo(toIndex: SaleItem, by: String) {
         let saleItemDictionary: [String: AnyObject] =
             ["BuyerRequestedTime"   :  toIndex.requestedPickupDate  as AnyObject,
-             "status"               :"Requested Meet-up"            as AnyObject]
+             "status"               :"\(by) Requested Meet-up"            as AnyObject,
+             "pickupLocation"    : ["long": toIndex.meetup.longitude   as AnyObject,
+                                    "lat" : toIndex.meetup.latitude    as AnyObject] as AnyObject]
         adminSaleIndex.partialUpdateObject(saleItemDictionary, withID: toIndex.itemID)
         
     }

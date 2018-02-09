@@ -53,7 +53,7 @@ class MyListingCollectionViewCell: UICollectionViewCell {
             if status == "Confirmed" {
                 statusView.backgroundColor = UIColor(red: 81/255, green: 184/255, blue: 113/255, alpha: 1.0)
             }
-            if status == "Requested Meet Up" {
+            if status == "Buyer Requested Meet Up" {
                 statusView.backgroundColor = UIColor(red: 224/255, green: 191/255, blue: 66/255, alpha: 1.0)
             }
             else if status == "listed" {

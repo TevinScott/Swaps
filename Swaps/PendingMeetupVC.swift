@@ -59,7 +59,8 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
         if(changeMeetupEnabled != true){
             algoliaHandle.confirmMeetup(atIndex: saleItem)
             _ = navigationController?.popViewController(animated: true)
-        } else {
+        } else if(changeMeetupEnabled){
+            
             print("currently no action for this button while performing a counter request")
         }
     }
