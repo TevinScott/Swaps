@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 /// This Class Manages the Pickup View and its attributes and delegate behaviors
-class PickupVC : UIViewController, CLLocationManagerDelegate{
+class PickupVC : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     
     // MARK: - Attributes
     @IBOutlet weak var mapView: MKMapView!
@@ -20,8 +20,49 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     var locationManager = CLLocationManager()
     var algoliaHandle = AlgoliaSearchManager()
     var saleItem : SaleItem!
-    var locCoord : CLLocationCoordinate2D!
+    var userLocCoord: CLLocationCoordinate2D!
+    var meetupLocCoord : CLLocationCoordinate2D!
     
+    /**
+     Draws the route from the user location to the placed pin annotation on the map view.
+    */
+    func drawRoute(){
+        let userLocationPlacemark = MKPlacemark(coordinate: userLocCoord, addressDictionary: nil)
+        let meetupLocationPlacemark = MKPlacemark(coordinate: meetupLocCoord, addressDictionary: nil)
+        let userLocationMapItem = MKMapItem(placemark: userLocationPlacemark)
+        let meetupLocationMapItem = MKMapItem(placemark: meetupLocationPlacemark)
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = userLocationMapItem
+        directionRequest.destination = meetupLocationMapItem
+        directionRequest.transportType = .automobile
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        // 8.
+        directions.calculate {
+            (response, error) -> Void in
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                return
+            }
+            print("drawing route: ", response.routes[0].distance)
+            let route = response.routes[0]
+            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        }
+    }
+    
+    //required function for MKMapViewDelegate
+    internal func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor(red:66/255,green: 134/255,blue: 244/255, alpha:1.0)
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
+
     // MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +77,6 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        panToCurrentLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +86,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     // MARK: - Button Actions
 
     /**
@@ -67,9 +107,9 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     */
     @IBAction func meetupBtnPressed(_ sender: Any) {
         //NEEDS: Dialog Box & Location needs to match the annotation/pin placed by user
-        if(self.locCoord != nil && saleItem != nil){
+        if(self.meetupLocCoord != nil && saleItem != nil){
             //saleItem.requestedPickupDate = floor(datePicker.date.timeIntervalSince1970)
-            saleItem.meetup = (longitude: locCoord.longitude, latitude: locCoord.latitude)
+            saleItem.meetup = (longitude: meetupLocCoord.longitude, latitude: meetupLocCoord.latitude)
             algoliaHandle.addMeetupRequestInfo(toIndex: saleItem, by:"Buyer")
         }
         
@@ -81,13 +121,14 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     */
     @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: mapView)
-        locCoord = mapView.convert(location, toCoordinateFrom: mapView)
+        meetupLocCoord = mapView.convert(location, toCoordinateFrom: mapView)
         let annotation = MKPointAnnotation()
-        annotation.coordinate = locCoord
+        annotation.coordinate = meetupLocCoord
         annotation.title = "Meet Up Location"
         annotation.subtitle = "Initial Request"
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(annotation)
+        drawRoute()
     }
     
     /**
@@ -95,6 +136,7 @@ class PickupVC : UIViewController, CLLocationManagerDelegate{
     */
     private func panToCurrentLocation(){
         let center = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        userLocCoord = center
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
