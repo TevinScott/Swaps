@@ -22,46 +22,6 @@ class PickupVC : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     var saleItem : SaleItem!
     var userLocCoord: CLLocationCoordinate2D!
     var meetupLocCoord : CLLocationCoordinate2D!
-    
-    /**
-     Draws the route from the user location to the placed pin annotation on the map view.
-    */
-    func drawRoute(){
-        let userLocationPlacemark = MKPlacemark(coordinate: userLocCoord, addressDictionary: nil)
-        let meetupLocationPlacemark = MKPlacemark(coordinate: meetupLocCoord, addressDictionary: nil)
-        let userLocationMapItem = MKMapItem(placemark: userLocationPlacemark)
-        let meetupLocationMapItem = MKMapItem(placemark: meetupLocationPlacemark)
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = userLocationMapItem
-        directionRequest.destination = meetupLocationMapItem
-        directionRequest.transportType = .automobile
-        // Calculate the direction
-        let directions = MKDirections(request: directionRequest)
-        // 8.
-        directions.calculate {
-            (response, error) -> Void in
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                return
-            }
-            print("drawing route: ", response.routes[0].distance)
-            let route = response.routes[0]
-            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-        }
-    }
-    
-    //required function for MKMapViewDelegate
-    internal func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor(red:66/255,green: 134/255,blue: 244/255, alpha:1.0)
-        renderer.lineWidth = 4.0
-        
-        return renderer
-    }
 
     // MARK: - View controller life cycle
     override func viewDidLoad() {
@@ -159,5 +119,45 @@ class PickupVC : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
         }
     }
     
-
+    /**
+     Draws the route from the user location to the placed pin annotation on the map view.
+     */
+    func drawRoute(){
+        let userLocationPlacemark = MKPlacemark(coordinate: userLocCoord, addressDictionary: nil)
+        let meetupLocationPlacemark = MKPlacemark(coordinate: meetupLocCoord, addressDictionary: nil)
+        let userLocationMapItem = MKMapItem(placemark: userLocationPlacemark)
+        let meetupLocationMapItem = MKMapItem(placemark: meetupLocationPlacemark)
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = userLocationMapItem
+        directionRequest.destination = meetupLocationMapItem
+        directionRequest.transportType = .automobile
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        // 8.
+        directions.calculate {
+            (response, error) -> Void in
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                return
+            }
+            
+            print("drawing route: ", response.routes[0].distance)
+            let route = response.routes[0]
+            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        }
+        
+    }
+    
+    //required function for MKMapViewDelegate
+    internal func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor(red:66/255,green: 134/255,blue: 244/255, alpha:1.0)
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
 }
