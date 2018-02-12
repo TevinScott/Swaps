@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E219ACA42031EAAC0005AB58 /* SellerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219ACA32031EAAC0005AB58 /* SellerVC.swift */; };
 		E21A388520124DC30062340F /* UserProfileVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A388420124DC30062340F /* UserProfileVC+CollectionView.swift */; };
 		E223E6991FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */; };
 		E223E69B1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */; };
@@ -61,6 +62,7 @@
 		3A16CFBAF8B9E2E0F612DDB1 /* Pods-Swaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.release.xcconfig"; sourceTree = "<group>"; };
 		716BD394BF05CE38DC7305FA /* Pods_Swaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3A993FDFFAFA58D5DF2277 /* Pods-Swaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swaps/Pods-Swaps.debug.xcconfig"; sourceTree = "<group>"; };
+		E219ACA32031EAAC0005AB58 /* SellerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerVC.swift; sourceTree = "<group>"; };
 		E21A388420124DC30062340F /* UserProfileVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileVC+CollectionView.swift"; sourceTree = "<group>"; };
 		E223E6981FF66E7E0098F8CC /* EditItemVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditItemVC+ImagePicker.swift"; sourceTree = "<group>"; };
 		E223E69A1FF6704A0098F8CC /* EditItemVC+KeyboardFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditItemVC+KeyboardFunctionality.swift"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
 				E21A388420124DC30062340F /* UserProfileVC+CollectionView.swift */,
+				E219ACA32031EAAC0005AB58 /* SellerVC.swift */,
 			);
 			name = "UserProfileVC & Extensions";
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				E23F43062006AB2800FD041D /* FirebaseManager+UserData.swift in Sources */,
 				E2CF505F1F9156770071EAD2 /* CoreDataManager.swift in Sources */,
 				E234CE991FFF3BF600AD5C9D /* AccountSetupVC+ImagePicker.swift in Sources */,
+				E219ACA42031EAAC0005AB58 /* SellerVC.swift in Sources */,
 				E29B61DB1FFAC6EA00F9D98F /* FeedVC+CollectionView.swift in Sources */,
 				E24F8EA71F906038008BAFAD /* SignInVC.swift in Sources */,
 				E2F890651F81314800CD479D /* UIImage+ImageCompression.swift in Sources */,

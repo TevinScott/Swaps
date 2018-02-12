@@ -602,7 +602,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ps4" translatesAutoresizingMaskIntoConstraints="NO" id="Niy-Fq-BXu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Niy-Fq-BXu">
                                 <rect key="frame" x="25" y="25" width="325" height="325"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Niy-Fq-BXu" secondAttribute="height" multiplier="1:1" id="cjF-9P-xJs"/>
@@ -713,7 +713,7 @@
         <!--Seller Name-->
         <scene sceneID="NLK-sh-eeQ">
             <objects>
-                <viewController storyboardIdentifier="SellerView" title="Seller Name" id="bFE-u4-RF5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SellerView" title="Seller Name" id="bFE-u4-RF5" customClass="SellerVC" customModule="Swaps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EG6-4v-glG"/>
                         <viewControllerLayoutGuide type="bottom" id="JsY-Cj-XTq"/>
@@ -833,6 +833,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.58431372550000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="sellerCollection" destination="ahy-J9-h99" id="Mru-Sm-444"/>
+                        <outlet property="sellerProfileImage" destination="gr2-Lc-6oH" id="zKX-qF-9ZK"/>
+                        <outlet property="sellerRatingLabel" destination="Fjr-oc-Ivr" id="R4z-zX-DuY"/>
+                        <outlet property="sellerViewCountLabel" destination="1VD-kX-f3q" id="Yse-H1-fpe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuk-II-Zpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1322,7 +1328,6 @@
         <image name="notfaved" width="32" height="32"/>
         <image name="product image placeholder" width="500" height="500"/>
         <image name="profile-placeholder" width="600" height="600"/>
-        <image name="ps4" width="670" height="500"/>
         <image name="star" width="64" height="64"/>
         <image name="uploadIcon" width="64" height="64"/>
         <image name="user" width="32" height="32"/>
