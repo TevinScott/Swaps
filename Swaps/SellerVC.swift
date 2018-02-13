@@ -19,5 +19,8 @@ class SellerVC: UIViewController {
     @IBOutlet weak var sellerCollection: UICollectionView!
     @IBOutlet weak var sellerViewCountLabel: UILabel!
     @IBOutlet weak var sellerRatingLabel: UILabel!
+    var sellerListedItems: SaleItemCollection! = SaleItemCollection(){ didSet {
+                                                 sellerCollection.reloadData()}}
+    internal let standardCellIdentifier = "SaleCell"
     
 }

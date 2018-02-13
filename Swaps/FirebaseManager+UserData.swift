@@ -13,6 +13,18 @@ import FirebaseAuth
 extension FirebaseManager {
     
     /**
+     This function retrieves the a snapshot of the corresponding user data in the Firebase database and initializes the escaping parameter accountInfo using the datasnapshot.
+     
+     - parameters:
+        - userID: the unique ID that will be used to retreive the associated data from the Firebase database.
+        - accountInfo: the packaged swift data structure representing the dataSnapshot from the firebase database.
+    */
+    func getUserDataWith(userID:String, accountInfo: @escaping (UserAccountInfo) ->()){
+        //NEEDS: - to call firebase and get snapshot of data inside userAccounts.
+        //NEEDS: - to instatiated the escaping parameter accountInfo with the given snapshot
+    }
+    
+    /**
      Checks wether the currently signed in user has already been setup within the firebase database
      
      - parameters:
