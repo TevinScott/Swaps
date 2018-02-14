@@ -8,7 +8,6 @@
 
 import Foundation
 import FirebaseAuth
-
 /// An extension of the Firebase Manager Class that primarily handles the accessing of user data from the Firebase Database.
 extension FirebaseManager {
     
@@ -20,7 +19,9 @@ extension FirebaseManager {
         - accountInfo: the packaged swift data structure representing the dataSnapshot from the firebase database.
     */
     func getUserDataWith(userID:String, accountInfo: @escaping (UserAccountInfo) ->()){
-        //NEEDS: - to call firebase and get snapshot of data inside userAccounts.
+        userRef.child(userID).observe(.value, with: { (snapshot) in
+            print(snapshot)
+        })
         //NEEDS: - to instatiated the escaping parameter accountInfo with the given snapshot
     }
     

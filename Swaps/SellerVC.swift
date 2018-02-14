@@ -13,6 +13,7 @@ import UIKit
 class SellerVC: UIViewController {
     
     // MARK: - Attributes
+    var sellerID: String!
     var firebaseHandle: FirebaseManager!
     var alogoliaHandle: AlgoliaSearchManager!
     @IBOutlet weak var sellerProfileImage: UIImageView!
@@ -23,4 +24,32 @@ class SellerVC: UIViewController {
                                                  sellerCollection.reloadData()}}
     internal let standardCellIdentifier = "SaleCell"
     
+    // MARK: - View controller life cycle
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //search and database init.
+        firebaseHandle = FirebaseManager()
+        firebaseHandle.getUserDataWith(userID: sellerID){ (accountInfo) -> () in
+            
+        }
+        /**
+        algoliaSearchManager.getAllItems() { (escapingList) -> () in
+            self.setOfItems = SaleItemCollection.init(inputList: escapingList)
+        }
+        */
+    }
 }

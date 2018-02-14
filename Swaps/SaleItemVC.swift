@@ -19,7 +19,7 @@ class SaleItemVC: UIViewController {
     @IBOutlet var itemPriceLabel: UILabel!
     @IBOutlet var itemDescLabel: UITextView!
     @IBOutlet var favoriteItemBtn: UIBarButtonItem!
-    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet weak var usernameBtn: UIButton!
     @IBOutlet var pickupBtn: UIButton!
     
     var saleItem: SaleItem? = SaleItem()
@@ -57,6 +57,9 @@ class SaleItemVC: UIViewController {
         performSegue(withIdentifier: "PickupViewSegue", sender: self)
     }
     
+    @IBAction func sellerBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "SegueToSellerProfile", sender: self)
+    }
     // MARK: - Support Functions
     
     /**
@@ -90,7 +93,8 @@ class SaleItemVC: UIViewController {
         if(saleItem?.image != nil)     { itemImageView.image = saleItem?.image!             }
         if(saleItem?.creatorUserID != nil){
             dbManager.getUsernameFromUserID(userID: (saleItem?.creatorUserID)!) {
-                (username) -> () in self.usernameLabel.text = username}
+                (username) -> () in self.usernameBtn.setTitle(username, for: .normal)
+            }
         }
         itemImageView.layer.cornerRadius = 8.0
         itemImageView.clipsToBounds = true
@@ -109,6 +113,10 @@ class SaleItemVC: UIViewController {
         if segue.identifier == "PickupViewSegue"{
             let pickupView = segue.destination as! PickupVC
             pickupView.saleItem = self.saleItem
+        }
+        if segue.identifier == "SegueToSellerProfile"{
+            let sellerView = segue.destination as! SellerVC
+            sellerView.sellerID = saleItem?.creatorUserID
         }
     }
     
