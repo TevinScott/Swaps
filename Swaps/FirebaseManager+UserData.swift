@@ -21,6 +21,7 @@ extension FirebaseManager {
     func getUserDataWith(userID:String, accountInfo: @escaping (UserAccountInfo) ->()){
         userRef.child(userID).observe(.value, with: { (snapshot) in
             print(snapshot)
+            accountInfo(UserAccountInfo.init(snapshot: snapshot))
         })
         //NEEDS: - to instatiated the escaping parameter accountInfo with the given snapshot
     }

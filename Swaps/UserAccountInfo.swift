@@ -77,10 +77,10 @@ class UserAccountInfo {
     init(snapshot: DataSnapshot) {
         let userProfileDictionary = snapshot.value as! [String: Any]
         userID = ((userProfileDictionary["userID"]) as? String)!
-        chosenUsername = ((userProfileDictionary["chosenUsername"]) as? String)!
-        oneTimeNameChangeUsed = ((userProfileDictionary["nameChanged?"]) as? String)?.toBool()!
+        chosenUsername = ((userProfileDictionary["username"]) as? String)!
+        oneTimeNameChangeUsed = ((userProfileDictionary["oneTimeNameChangeUsed?"]) as? String)?.toBool()!
         profileImageURL = ((userProfileDictionary["profileImageURL"]) as? String)!
-        accountSetupCompleted = ((userProfileDictionary["accountSetupCompleted"]) as? String)?.toBool()!
+        accountSetupCompleted = ((userProfileDictionary["isAccountCreationCompleted?"]) as? String)?.toBool()!
     }
     init(){
         
