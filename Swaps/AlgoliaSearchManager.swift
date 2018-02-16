@@ -57,7 +57,7 @@ class AlgoliaSearchManager {
         })
 
     }
-    
+    // NEEDS: - refactoring to take user ID
     /**
      gets the first 15 indexes listed by the currently signed in user, from the Algolia JSON Database.
      

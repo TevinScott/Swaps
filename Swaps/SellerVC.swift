@@ -50,6 +50,12 @@ class SellerVC: UIViewController {
             self.setImageFromURL(imgURL: NSURL(string: self.sellerAccount.profileImageURL)!)
             //need to round the corners 
         }
+        //creates round images
+        sellerProfileImage.layer.borderWidth = 1.0
+        sellerProfileImage.layer.masksToBounds = false
+        sellerProfileImage.layer.borderColor = UIColor.white.cgColor
+        sellerProfileImage.layer.cornerRadius = sellerProfileImage.frame.size.width / 2
+        sellerProfileImage.clipsToBounds = true
         /**
         algoliaSearchManager.getAllItems() { (escapingList) -> () in
             self.setOfItems = SaleItemCollection.init(inputList: escapingList)
