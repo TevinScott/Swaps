@@ -796,8 +796,8 @@
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
-                                            <outlet property="dataSource" destination="tFc-K4-vh5" id="pc4-ts-aSO"/>
-                                            <outlet property="delegate" destination="tFc-K4-vh5" id="nVb-2C-yhf"/>
+                                            <outlet property="dataSource" destination="bFE-u4-RF5" id="PyT-IB-C0V"/>
+                                            <outlet property="delegate" destination="bFE-u4-RF5" id="v0M-ry-2Lp"/>
                                         </connections>
                                     </collectionView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userImageLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gr2-Lc-6oH">

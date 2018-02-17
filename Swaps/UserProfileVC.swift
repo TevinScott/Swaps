@@ -58,7 +58,7 @@ class UserProfileVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        algoliaSearchManager.getUserItems() { (ListOfUsersItems) -> () in
+        algoliaSearchManager.getUserItemsWith(userID: (Auth.auth().currentUser?.uid)!) { (ListOfUsersItems) -> () in
             self.myListedItems = SaleItemCollection.init(inputList: ListOfUsersItems)
         }
     }

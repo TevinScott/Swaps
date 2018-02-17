@@ -48,7 +48,7 @@ extension SellerVC: UICollectionViewDelegate, UICollectionViewDataSource {
      - returns:             A configured cell object. You must not return nil from this method.
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: standardCellIdentifier, for: indexPath) as! MyListingCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: standardCellIdentifier, for: indexPath) as! FeedCollectionViewCell
         let cellSaleItem = sellerListedItems.getSaleItemAtIndexPath(indexPath: indexPath)
         cell.saleItem = cellSaleItem
         return cell
@@ -63,6 +63,7 @@ extension SellerVC: UICollectionViewDelegate, UICollectionViewDataSource {
      -indexPath:        The index path of the cell that was selected.
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        //NEEDS:- fixed segues
         if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             if(cell.saleItem?.itemStatus == "listed"){

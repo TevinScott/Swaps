@@ -63,9 +63,10 @@ class AlgoliaSearchManager {
      
      - parameter escapingList: returns 15 of the most recent entries in the Algolia database.
      */
-    func getUserItems(escapingList: @escaping ([SaleItem]) -> ()){
+    func getUserItemsWith(userID: String, escapingList: @escaping ([SaleItem]) -> ()){
+        
         query.attributesToRetrieve = ["userID"]
-        query.query = Auth.auth().currentUser?.uid
+        query.query = userID
         saleItemIndex.search(Query(query: query.query), completionHandler: { (content, error) -> Void in
             if error == nil {
                 guard let hits = content!["hits"] as? [[String: AnyObject]] else { return }

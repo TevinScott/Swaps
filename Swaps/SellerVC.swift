@@ -16,7 +16,7 @@ class SellerVC: UIViewController {
     var sellerID: String!
     var sellerAccount: UserAccountInfo!
     var firebaseHandle: FirebaseManager!
-    var alogoliaHandle: AlgoliaSearchManager!
+    var algoliaHandle: AlgoliaSearchManager!
     @IBOutlet weak var sellerProfileImage: UIImageView!
     @IBOutlet weak var sellerCollection: UICollectionView!
     @IBOutlet weak var sellerViewCountLabel: UILabel!
@@ -36,7 +36,6 @@ class SellerVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,22 +44,20 @@ class SellerVC: UIViewController {
         super.viewDidLoad()
         //search and database init.
         firebaseHandle = FirebaseManager()
+        algoliaHandle = AlgoliaSearchManager()
         firebaseHandle.getUserDataWith(userID: sellerID){ (accountInfo) -> () in
             self.sellerAccount = accountInfo
             self.setImageFromURL(imgURL: NSURL(string: self.sellerAccount.profileImageURL)!)
-            //need to round the corners 
         }
-        //creates round images
+        self.algoliaHandle.getUserItemsWith(userID: sellerID) { (escapingList) -> () in
+            self.sellerListedItems = SaleItemCollection.init(inputList: escapingList)
+        }
+        //creates round image
         sellerProfileImage.layer.borderWidth = 1.0
         sellerProfileImage.layer.masksToBounds = false
         sellerProfileImage.layer.borderColor = UIColor.white.cgColor
         sellerProfileImage.layer.cornerRadius = sellerProfileImage.frame.size.width / 2
         sellerProfileImage.clipsToBounds = true
-        /**
-        algoliaSearchManager.getAllItems() { (escapingList) -> () in
-            self.setOfItems = SaleItemCollection.init(inputList: escapingList)
-        }
-        */
     }
     /**
      sets this Cells saleItemImg to an image downloaded via URL link. this  function is done asynchronously.
@@ -79,7 +76,6 @@ class SellerVC: UIViewController {
                     self.sellerProfileImage.image = image
                 }
             })
-            
         })
         task.resume()
         imageDownloadSession = task
