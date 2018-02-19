@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 ///This Class manages the adjustment of a Given View, creating the space for the iOS Keyboard
@@ -15,10 +14,20 @@ class KeyboardHandler {
     // MARK: - Attributes
     var scrollViewHandle: UIScrollView?
     var parentViewHandle: UIView!
+    
     // MARK: - Initializers
     init( view: UIScrollView){
         scrollViewHandle = view
     }
+    
+    /**
+     intializes this Class's attributes with the given parameters
+     
+     - Parameters:
+        - scrollView: a reference to a scrollview that will be manipulated to
+                    accomedate the keyboard and reset after keyboard as disappeared.
+        -parentView: a reference to the view for which the scroll view resides in.
+    */
     init (scrollView: UIScrollView, parentView: UIView ){
         scrollViewHandle = scrollView
         parentViewHandle = parentView

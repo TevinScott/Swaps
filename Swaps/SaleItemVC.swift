@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 /// Manages the a SaleItem View

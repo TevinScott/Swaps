@@ -146,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhP-26-Jti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5223" y="2111"/>
+            <point key="canvasLocation" x="-5225" y="2060"/>
         </scene>
         <!--Feed-->
         <scene sceneID="YcE-oA-FoX">
@@ -357,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dR3-JZ-iM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3404" y="1341"/>
+            <point key="canvasLocation" x="-3399" y="1317"/>
         </scene>
         <!--New Listing-->
         <scene sceneID="Oks-ZH-vsQ">
@@ -495,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHg-Rf-oz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2217" y="1341"/>
+            <point key="canvasLocation" x="-2506" y="1317"/>
         </scene>
         <!--Pickup Location-->
         <scene sceneID="nif-up-o6i">
@@ -588,7 +588,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2180" y="2882"/>
+            <point key="canvasLocation" x="-2506" y="2803"/>
         </scene>
         <!--View Item-->
         <scene sceneID="OnQ-sS-YaA">
@@ -709,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulV-Ij-8Gy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2180" y="2111"/>
+            <point key="canvasLocation" x="-2505" y="2059"/>
         </scene>
         <!--Seller Name-->
         <scene sceneID="NLK-sh-eeQ">
@@ -874,7 +874,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuk-II-Zpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1050.4000000000001" y="2110.344827586207"/>
+            <point key="canvasLocation" x="-988" y="2059"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="lxV-q8-ElM">
@@ -1054,7 +1054,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luY-Jf-OMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3657" y="-198"/>
+            <point key="canvasLocation" x="-3658" y="-168"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gxt-cO-iRt">
@@ -1227,7 +1227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7f-p0-jFh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3439" y="2882"/>
+            <point key="canvasLocation" x="-3441" y="2803"/>
         </scene>
         <!--Pending Meet Up-->
         <scene sceneID="scl-hn-xTo">
@@ -1351,7 +1351,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-4087.1999999999998" y="2110.344827586207"/>
+            <point key="canvasLocation" x="-4126" y="2059"/>
         </scene>
     </scenes>
     <resources>
@@ -1370,9 +1370,9 @@
         <image name="userImageLarge" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bjm-ap-bP1"/>
-        <segue reference="Aol-nF-kP3"/>
+        <segue reference="xFS-MV-jnd"/>
+        <segue reference="jXF-iB-2jA"/>
         <segue reference="uFR-wf-9zT"/>
-        <segue reference="N3P-dg-JMw"/>
+        <segue reference="TQr-bG-8W6"/>
     </inferredMetricsTieBreakers>
 </document>

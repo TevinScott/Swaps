@@ -6,7 +6,6 @@
 //  Copyright © 2018 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 ///A View Controller that manages the Seller View

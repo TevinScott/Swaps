@@ -142,8 +142,6 @@ class PickupVC : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
                 }
                 return
             }
-            
-            print("drawing route: ", response.routes[0].distance)
             let route = response.routes[0]
             self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
             let rect = route.polyline.boundingMapRect

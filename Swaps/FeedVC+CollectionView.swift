@@ -6,7 +6,6 @@
 //  Copyright © 2018 Tevin Scott. All rights reserved.
 //
 
-import UIKit
 import FirebaseAuth
 
 extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -78,7 +77,6 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource {
             }
             if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
                 if(cell.saleItem?.creatorUserID == userID){
-                    print("pressed cell and id's match")
                     if(cell.saleItem?.itemStatus == "listed"){
                         performSegue(withIdentifier: "EditSaleItemSegue", sender: cell)
                     }else if (cell.saleItem?.itemStatus == "Buyer Requested Meet Up") {

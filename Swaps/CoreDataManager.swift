@@ -6,9 +6,7 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import CoreData
-import UIKit
 import Firebase
 import GoogleSignIn
 

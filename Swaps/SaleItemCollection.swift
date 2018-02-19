@@ -5,9 +5,7 @@
 //  Created by Tevin Scott on 9/27/17.
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
-
 import Foundation
-
 /// In ItemCollection Stores a List Of Items and provides functionality protaining to the data structure
 class SaleItemCollection {
     
@@ -23,7 +21,11 @@ class SaleItemCollection {
         listOfItems = [SaleItem]()
     }
     
-    ///initializes an Object of ItemCollection with a given set of listOfItems
+    /**
+     initializes an Object of ItemCollection with a given set of listOfItems
+     
+     - Parameter inputList: intitializes this class's listOfItems using the inputted SaleItem array
+     */
     init(inputList: [SaleItem]){
         listOfItems = inputList
     }
@@ -39,9 +41,7 @@ class SaleItemCollection {
             return listOfItems[indexPath.item]
         }
         else {
-            print("calling this default init")
             return SaleItem.init()
-            
         }
     }
     

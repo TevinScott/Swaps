@@ -151,8 +151,6 @@
 			children = (
 				E286B9321F918344008000B3 /* UserProfileVC.swift */,
 				E21A388420124DC30062340F /* UserProfileVC+CollectionView.swift */,
-				E2AEEA292033471900D8F81F /* SellerVC+CollectionView.swift */,
-				E219ACA32031EAAC0005AB58 /* SellerVC.swift */,
 			);
 			name = "UserProfileVC & Extensions";
 			sourceTree = "<group>";
@@ -240,6 +238,15 @@
 			path = SwapsTests;
 			sourceTree = "<group>";
 		};
+		E27E7252203B373F008B4668 /* SellerVC & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2AEEA292033471900D8F81F /* SellerVC+CollectionView.swift */,
+				E219ACA32031EAAC0005AB58 /* SellerVC.swift */,
+			);
+			name = "SellerVC & Extensions";
+			sourceTree = "<group>";
+		};
 		E29B61DE1FFAC7CE00F9D98F /* FeedVC & Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +301,7 @@
 				E29B61DE1FFAC7CE00F9D98F /* FeedVC & Extensions */,
 				E234CE9A1FFF3D5D00AD5C9D /* AccountSetupVC & Extensions */,
 				E203971B2013ACE50068B196 /* UserProfileVC & Extensions */,
+				E27E7252203B373F008B4668 /* SellerVC & Extensions */,
 				E25BC4AC1F83285E0054D6F5 /* SaleItemVC.swift */,
 				E24F8EA61F906038008BAFAD /* SignInVC.swift */,
 				E2C0C1AB201CD82A006DD3A2 /* PendingMeetupVC.swift */,

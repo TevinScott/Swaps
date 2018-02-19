@@ -6,8 +6,7 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
-import UIKit
+
 import Firebase
 
 /// SaleItem describes an item that a user would like to Sell

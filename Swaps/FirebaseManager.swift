@@ -6,8 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage

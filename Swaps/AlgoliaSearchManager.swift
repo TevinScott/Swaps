@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import AlgoliaSearch
 import FirebaseAuth
 /// A Class Manager for Algolia Search API Functionality

@@ -60,8 +60,8 @@ class PendingMeetupVC : UIViewController, CLLocationManagerDelegate{
             algoliaHandle.confirmMeetup(atIndex: saleItem)
             _ = navigationController?.popViewController(animated: true)
         } else if(changeMeetupEnabled){
-            
-            print("currently no action for this button while performing a counter request")
+            //NEEDS: - This should update the meet up values of corresponding sale item in the algolia index
+            //         to the new given time & Location variables from this view's datepicker & mapkit
         }
     }
     

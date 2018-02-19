@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import Firebase
 import GoogleSignIn
@@ -33,7 +32,6 @@ class UserProfileVC: UIViewController {
      
      */
     @IBAction func signOutBtnPressed(_ sender: Any) {
-        print("signOutPressed")
         signOut()
     }
 

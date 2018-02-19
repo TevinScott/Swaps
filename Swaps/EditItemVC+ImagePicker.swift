@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 /// An Extension of the EditItemVC that allows the usage of the system camera & Photo Library

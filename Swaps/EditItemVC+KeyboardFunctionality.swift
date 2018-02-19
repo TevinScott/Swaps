@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import UIKit
 /// Extends the EditItemVC Class to better handle shifting the scrollview to fit the keyboard without obstructing any text fields or text Views
 extension EditItemVC: UITextFieldDelegate , UITextViewDelegate {

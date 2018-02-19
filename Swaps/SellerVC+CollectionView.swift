@@ -6,7 +6,6 @@
 //  Copyright © 2018 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import FirebaseAuth
 
 extension SellerVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -63,7 +62,7 @@ extension SellerVC: UICollectionViewDelegate, UICollectionViewDataSource {
      -indexPath:        The index path of the cell that was selected.
      */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        //NEEDS:- fixed segues
+        //NEEDS:- Corrected Segue here & below
         if let cell = collectionView.cellForItem(at: indexPath) as? MyListingCollectionViewCell {
             //branch here, if user owns item go to (Edit)SaleItemSegue
             if(cell.saleItem?.itemStatus == "listed"){
@@ -84,6 +83,7 @@ extension SellerVC: UICollectionViewDelegate, UICollectionViewDataSource {
      - sender:   The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //NEEDS:- Corrected Segue here also
         if segue.identifier == "EditFromMyListings"{
             let selectedSaleItem = (sender as! MyListingCollectionViewCell).saleItem!
             let saleItemToPass = selectedSaleItem

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Tevin Scott. All rights reserved.
 //
 
-import Foundation
 import Firebase
 
 /// A Data Structure to manage The user's account information
@@ -22,7 +21,13 @@ class UserAccountInfo {
     var totalStars = 0 // 1-5 added each time this user is rated
     var averageRating: Int = 0 //total /
     var amountOfRatings: Int = 0 { didSet { averageRating = totalStars/amountOfRatings } }
-    func updateRating(newRating: Int){
+    
+    /**
+     used to update the user's current rating
+     
+        - Parameter newRating: value from 1-5 that will be added to this given user's rating.
+    */
+    public func updateRating(newRating: Int){
         totalStars += newRating
         amountOfRatings += 1
     }
@@ -73,6 +78,8 @@ class UserAccountInfo {
     }
     /**
      initializes the UserAccountInfo attributes to the given Firebase snapshot
+     
+     -  Parameter snapshot: the value for which this object will use to initialize it's attributes
      */
     init(snapshot: DataSnapshot) {
         let userProfileDictionary = snapshot.value as! [String: Any]
@@ -81,8 +88,5 @@ class UserAccountInfo {
         oneTimeNameChangeUsed = ((userProfileDictionary["oneTimeNameChangeUsed?"]) as? String)?.toBool()!
         profileImageURL = ((userProfileDictionary["profileImageURL"]) as? String)!
         accountSetupCompleted = ((userProfileDictionary["isAccountCreationCompleted?"]) as? String)?.toBool()!
-    }
-    init(){
-        
     }
 }
